@@ -48,8 +48,4 @@
     <ProjectReference Include="..\GTranslate\src\GTranslate\GTranslate.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="$(ILRepack) /xmldocs /wildcards /attr:$(TargetPath) $(TargetPath)  /out:$(TargetDir)DllMerge\$(TargetFileName) $(TargetDir)*.dll&#xD;&#xA;IF NOT EXIST &quot;$(TargetDir)DllMerge_Source&quot; mkdir &quot;$(TargetDir)DllMerge_Source&quot;&#xD;&#xA;move /Y &quot;$(TargetDir)*.*&quot; &quot;$(TargetDir)DllMerge_Source&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).pdb&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).exe&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).runtimeconfig.json&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;move /Y &quot;$(TargetDir)DllMerge\*.*&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;" />
-  </Target>
-
 </Project>
