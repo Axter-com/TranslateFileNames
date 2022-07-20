@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>2.1</Version>
+	<LangVersion>10</LangVersion>
+	<TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <Authors>d4n3436</Authors>
+    <Description>A collection of free translation APIs (Google Translate, Bing Translator, Microsoft Translator and Yandex.Translate). Currently supports translation, transliteration, language detection and text-to-speech.</Description>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageTags>translator;translator-api;translation;translation-api;tts;text-to-speech</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/d4n3436/GTranslate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/d4n3436/GTranslate</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/d4n3436/GTranslate/releases</PackageReleaseNotes>
+    <Copyright>Copyright ©2021 d4n3436</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <BaseOutputPath>$(SolutionDir)TranslateFileNames\bin\</BaseOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+  	<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+  </PropertyGroup>	
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows|AnyCPU'">
+    <NoWarn>1701;1702;</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows|AnyCPU'">
+    <NoWarn>1701;1702;</NoWarn>
+  </PropertyGroup>
+</Project>
