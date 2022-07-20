@@ -44,7 +44,6 @@ namespace TranslateFilenamesOrg
         private static int _totalCount = 0;
         private static int _renameCount = 0;
         private static int _renameErrorCount = 0;
-        private static int _renameSubErrorCount = 0;
         private static int _errorCount = 0;
         private static int _maximumTranslateDataLength = 10000; // Fails at 10500
         private static int _workerThreadCount = 0;
@@ -131,7 +130,7 @@ namespace TranslateFilenamesOrg
                         _verbose = true;
                         break;
                     case "-itemize":
-                    case "-i":
+                    case "-z":
                         _progressBarOutput = false;
                         break;
                     case "-dotoutput":
@@ -149,7 +148,7 @@ namespace TranslateFilenamesOrg
                     case "-?":
                     case "/?":
                     case "?":
-                        AdvanceHelpPage = true;
+                        AdvanceHelpPage=true;
                         goto case "-h";
                     case "-help":
                     case "-h":
@@ -170,7 +169,7 @@ namespace TranslateFilenamesOrg
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            if (!Initialize(args))
+            if (!Initialize(args)) 
                 return;
 
             string RecursiveModeText = (_searchOption == SearchOption.AllDirectories) ? " recursively" : "";
@@ -202,7 +201,7 @@ namespace TranslateFilenamesOrg
                 }
 
                 if ((_filesPerTransReq == FilesPerTransReq.OnePerFile && subCount > 0)
-                    ||
+                    || 
                     (sourceText.Length + fileDetails.Name.Length + 4 > _maximumTranslateDataLength))
                 {
                     if (_progressBarOutput)
@@ -235,7 +234,7 @@ namespace TranslateFilenamesOrg
             }
             ToConsole("\nFound " + _renameCount + " files to rename out of " + _filesToRename.Count + ".", OutPutLevel.PostProgressBar);
             if (_renameErrorCount > 0)
-                ToConsole(_renameErrorCount + " Rename errors occurred and " + _renameSubErrorCount + " sub rename errors.", OutPutLevel.PostProgressBar);
+                ToConsole(_renameErrorCount + " Rename errors occurred.", OutPutLevel.PostProgressBar);
             if (_errorCount > 0)
                 ToConsole(_errorCount + " unknown errors occurred.", OutPutLevel.PostProgressBar);
             ToConsole("Translation completed. Elapse time = " + sw.Elapsed, OutPutLevel.PostProgressBar);
@@ -282,7 +281,7 @@ namespace TranslateFilenamesOrg
                     return false;
                 }
             }
-
+            
             _filesToRename = Directory.GetFiles(_path, _fileType, _searchOption).ToList();
             if (_filesToRename.Count == 0)
             {
@@ -307,15 +306,11 @@ namespace TranslateFilenamesOrg
                 {
                     Interlocked.Increment(ref _workerThreadCount);
                     await GTranslate_TranslateSourceText(sourceText, fileDetailsList);
-                }
-                catch (Exception ee)
-                {
+                }catch (Exception ee){
                     ToConsole(ee.Message, OutPutLevel.ErrorLvl);
                     ++_errorCount;
                     throw new Exception(ee.Message);
-                }
-                finally
-                {
+                }finally{
                     Interlocked.Decrement(ref _workerThreadCount);
                 }
 
@@ -326,7 +321,7 @@ namespace TranslateFilenamesOrg
                     if (fileDetail.Name == null || fileDetail.Name.Length == 0 || fileDetail.Translation == null || fileDetail.Translation.Length == 0)
                         continue;
                     try
-                    {
+                    { 
                         string oldFileName = Path.Combine(fileDetail.ParrentPath, fileDetail.Name + fileDetail.Extension);
                         string appendedName = (_appendOrgName ? " (" + fileDetail.Name + ")" : "") + ((_appendLangName > 0 && fileDetail.SourceLang != null && fileDetail.SourceLang.Length > 0) ? fileDetail.SourceLang : "");
                         fileDetail.Translation = FileDetailsReplaceIllegalFileNameChar(fileDetail);// Replaces illegal windows file name characters with alternative characters
@@ -349,11 +344,9 @@ namespace TranslateFilenamesOrg
                                     File.Move(_longPathPrefix + oldFileName, _longPathPrefix + newFileName);
                                     UndoListText += newFileName + "|" + oldFileName + "\n";
                                     ToConsole("Renamed file \"" + oldFileName + "\" to \"" + newFileName + "\"");
-                                }
-                                catch (Exception exc)
-                                {
+                                } catch (Exception exc) {
                                     int lastErrCode = Marshal.GetLastWin32Error();
-                                    string newIndexFileName = lastErrCode == 183 || (exc != null && exc.Message != null && exc.Message.StartsWith("Cannot create a file when that file already exists")) ? RenameFileWithAppendedIndex(_longPathPrefix + oldFileName, _longPathPrefix + Path.Combine(fileDetail.ParrentPath, fileDetail.Translation + appendedName), fileDetail.Extension) : null;
+                                    string newIndexFileName = lastErrCode == 183 ? RenameFileWithAppendedIndex(_longPathPrefix + oldFileName, _longPathPrefix + Path.Combine(fileDetail.ParrentPath, fileDetail.Translation + appendedName), fileDetail.Extension) : null;
                                     if (newIndexFileName != null)
                                     {
                                         UndoListText += newIndexFileName + "|" + oldFileName + "\n";
@@ -363,14 +356,12 @@ namespace TranslateFilenamesOrg
                                     {
                                         --_renameCount;
                                         ++_renameErrorCount;
-                                        ToConsole("Could not rename file \"" + oldFileName + "\" to \"" + newIndexFileName + "\"\nErr Msg: " + exc.Message + "\nErrNo: " + lastErrCode, OutPutLevel.ErrorLvl);
+                                        ToConsole("Could not rename file \"" + oldFileName + "\" to \"" + newFileName + "\"\nErr Msg: " + exc.Message, OutPutLevel.ErrorLvl);
                                     }
                                 }
                             }
                         }
-                    }
-                    catch (Exception eeeee)
-                    {
+                    } catch (Exception eeeee) {
                         ToConsole(eeeee.Message, OutPutLevel.ErrorLvl);
                         ++_errorCount;
                         throw new Exception(eeeee.Message);
@@ -389,17 +380,13 @@ namespace TranslateFilenamesOrg
                             while (!write_result.IsCompleted)
                                 Thread.Sleep(10);
                             Monitor.Pulse(_lock);
-                        }
-                        finally
-                        {
+                        } finally {
                             Monitor.Exit(_lock);
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                ToConsole(e.Message, OutPutLevel.ErrorLvl);
+            } catch (Exception e) {
+                 ToConsole(e.Message, OutPutLevel.ErrorLvl);
                 ++_errorCount;
             }
         }
@@ -422,11 +409,10 @@ namespace TranslateFilenamesOrg
                     File.Move(oldFileName, newIndexFileName);
                     return newIndexFileName;
                 }
-                catch (Exception e)
+                catch(Exception e)
                 {
-                    int lastErrCode = Marshal.GetLastWin32Error();
-                    ++_renameSubErrorCount;
-                    ToConsole("Could not rename file \"" + oldFileName + "\" to \"" + newIndexFileName + "\"\nErr Msg: " + e.Message + "\nErrCode: " + lastErrCode, OutPutLevel.VerboseIfNotSilent);
+                    ++_renameErrorCount;
+                    ToConsole("Could not rename file \"" + oldFileName + "\" to \"" + newIndexFileName + "\"\nErr Msg: " + e.Message, OutPutLevel.ErrorLvl);
                 }
             }
             return null;
@@ -461,7 +447,7 @@ namespace TranslateFilenamesOrg
         /// <param name="fileDetailsList">List of files to translate</param>
         private static async Task GTranslate_TranslateSourceText(string sourceText, List<FileDetails> fileDetailsList)
         {
-            var translator = new AggregateTranslator(); // GoogleTranslator2();// AggregateTranslator(); //
+            var translator = new GoogleTranslator2();// AggregateTranslator();
             try
             {
                 GTranslate.Results.ITranslationResult result = await translator.TranslateAsync(sourceText, _targetLang, _fromLang);
@@ -589,7 +575,7 @@ namespace TranslateFilenamesOrg
         /// </summary>
         /// <param name="message">String to print</param>
         private static void ToConsole(string message, OutPutLevel outputlevel = OutPutLevel.NormalLvl)
-        {
+        { 
             if (_silent)
                 return;
             else if (outputlevel == OutPutLevel.ErrorLvl || outputlevel == OutPutLevel.PreProgressBar || outputlevel == OutPutLevel.PostProgressBar)
@@ -655,7 +641,7 @@ namespace TranslateFilenamesOrg
                 Console.WriteLine("  -f, -FromLang [lang]\t2 letter source language code (default: -- [ = Auto Detect]) ");
                 Console.WriteLine("  -x, -NoRename\t\tDo NOT rename files. Only prints rename candidates.");
                 Console.WriteLine("  -d, -DotOutput\tPrints dot for progress. Overrides all other outputs.");
-                Console.WriteLine("  -i, -Itemize\t\tReplaces progressbar with itemized output.");
+                Console.WriteLine("  -z, -Itemize\t\tReplaces progressbar with itemized output.");
                 Console.WriteLine("  -v, -Verbose\t\tPrints extra details. Overrides Silent option.");
                 Console.WriteLine("  -s, -Silent\t\tNo output to the console. Overrides Itemize.");
                 Console.WriteLine("  -m, -MaxThrds [num]\tMaximum worker threads. (default: " + _maxWorkerThreads + ").");

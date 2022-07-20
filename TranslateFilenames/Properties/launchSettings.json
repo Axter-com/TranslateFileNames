@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TranslateFilenames": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\david\\Pictures\\renametest\\t1 -v",
+      "nativeDebugging": true
+    }
+  }
+}
