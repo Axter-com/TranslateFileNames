@@ -1,0 +1,10 @@
+If using ILRepack, use the following script:
+$(ILRepack) xmldocs wildcards attr$(TargetPath) $(TargetPath)  out$(TargetDir)DllMerge$(TargetFileName) $(TargetDir).dll
+IF NOT EXIST $(TargetDir)DllMerge_Source mkdir $(TargetDir)DllMerge_Source
+copy Y $(TargetDir).DLL $(TargetDir)DllMerge_Source
+copy Y $(TargetDir).XML $(TargetDir)DllMerge_Source
+move Y $(TargetDir)DllMerge. $(TargetDir)$(ILRepack) xmldocs wildcards attr$(TargetPath) $(TargetPath)  out$(TargetDir)DllMerge$(TargetFileName) $(TargetDir).dll
+IF NOT EXIST $(TargetDir)DllMerge_Source mkdir $(TargetDir)DllMerge_Source
+copy Y $(TargetDir).DLL $(TargetDir)DllMerge_Source
+copy Y $(TargetDir).XML $(TargetDir)DllMerge_Source
+move Y $(TargetDir)DllMerge. $(TargetDir)

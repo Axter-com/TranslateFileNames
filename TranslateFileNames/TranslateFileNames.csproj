@@ -1,26 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFramework>net6.0</TargetFramework>
+    <!--<PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishReadyToRun>true</PublishReadyToRun>-->
+	<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <StartupObject></StartupObject>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ErrorReport>send</ErrorReport>
-    <Title>TranslateFilenames</Title>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Description>File name language translator.</Description>
+    <Title>TranslateFilenames</Title>
+    <!--<Description>File name language translator.</Description>-->
     <Copyright>David Maisonave Copyright ©  2022 (https://axter.com/)</Copyright>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/David-Maisonave/TranslateFileNames</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/David-Maisonave/TranslateFileNames</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   <PropertyGroup>
   	<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+  	<IncludeSymbols>True</IncludeSymbols>
+  	<PackAsTool>True</PackAsTool>
+  	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
@@ -47,11 +54,22 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GTranslate\GTranslate.csproj" />
-    <ProjectReference Include="..\GTranslate\src\GTranslate\GTranslate.csproj" />
+    <ProjectReference Include="..\TranslateFilenamesCore\TranslateFilenamesCore.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="$(ILRepack) /xmldocs /wildcards /attr:$(TargetPath) $(TargetPath)  /out:$(TargetDir)DllMerge\$(TargetFileName) $(TargetDir)*.dll&#xD;&#xA;IF NOT EXIST &quot;$(TargetDir)DllMerge_Source&quot; mkdir &quot;$(TargetDir)DllMerge_Source&quot;&#xD;&#xA;move /Y &quot;$(TargetDir)*.*&quot; &quot;$(TargetDir)DllMerge_Source&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).pdb&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).exe&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)DllMerge_Source\$(ProjectName).runtimeconfig.json&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;move /Y &quot;$(TargetDir)DllMerge\*.*&quot; &quot;$(TargetDir)&quot;" />
-  </Target>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>

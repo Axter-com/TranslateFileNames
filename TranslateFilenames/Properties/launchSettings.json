@@ -2,7 +2,7 @@
   "profiles": {
     "TranslateFilenames": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\david\\Pictures\\renametest\\t1 -v",
+      "commandLineArgs": "C:\\Users\\david\\Pictures\\renametest\\t1 -v -C C:\\Users\\david\\Pictures\\renametest\\RenameList.txt",
       "nativeDebugging": true
     }
   }

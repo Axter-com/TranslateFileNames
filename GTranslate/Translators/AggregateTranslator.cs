@@ -102,6 +102,7 @@ public sealed class AggregateTranslator : ITranslator, IDisposable
                 exceptions ??= new List<Exception>();
                 exceptions.Add(e);
             }
+            // Consider adding sleep here for http error 429
         }
 
         throw new AggregateException("No translator provided a valid result.", exceptions);

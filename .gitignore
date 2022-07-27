@@ -260,5 +260,8 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Other files and folders
+# Exclude From Github
+zzExcludeFromGithub/
 
+
+# Other files and fold
