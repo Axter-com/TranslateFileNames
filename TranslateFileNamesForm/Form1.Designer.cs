@@ -60,20 +60,15 @@ namespace TranslateFileNamesForm
             this.NewFilenames.Text = "Translated Filename";
             this.NewFilenames.Width = 400;
             // 
-            // SrcLanguage
-            // 
-            this.SrcLanguage.Text = "Original Language";
-            this.SrcLanguage.Width = 158;
-            // 
             // FilePath
             // 
             this.FilePath.Text = "Parrent Path";
             this.FilePath.Width = 200;
             // 
-            // FileExt
+            // SrcLanguage
             // 
-            this.FileExt.Text = "Ext";
-            this.FileExt.Width = 55;
+            this.SrcLanguage.Text = "Original Language";
+            this.SrcLanguage.Width = 158;
             // 
             // AddFiles
             // 
@@ -112,6 +107,11 @@ namespace TranslateFileNamesForm
             this.listViewFiles.TabIndex = 4;
             this.listViewFiles.UseCompatibleStateImageBehavior = false;
             this.listViewFiles.View = System.Windows.Forms.View.Details;
+            // 
+            // FileExt
+            // 
+            this.FileExt.Text = "Ext";
+            this.FileExt.Width = 55;
             // 
             // TestButton
             // 
@@ -193,7 +193,7 @@ namespace TranslateFileNamesForm
             this.Controls.Add(this.AddFiles);
             this.Controls.Add(this.listViewFiles);
             this.Name = "Form1";
-            this.Text = "TranslateFilenames - Utility to Translate Language of Filenames in Bulk";
+            this.Text = "TranslateFilenames - Utility to Translate Language(s) of Filenames in Bulk";
             this.ResumeLayout(false);
 
         }

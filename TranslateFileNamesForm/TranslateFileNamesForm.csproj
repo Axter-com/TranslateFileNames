@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Icon1.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Icon1.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GTranslate\GTranslate.csproj" />

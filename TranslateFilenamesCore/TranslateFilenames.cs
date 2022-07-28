@@ -481,7 +481,7 @@ namespace TranslateFilenamesCore
         {
             try
             {
-                if (CheckIfOrgFileExist && File.Exists(_options._longPathPrefix + oldFileName))
+                if (CheckIfOrgFileExist && !File.Exists(_options._longPathPrefix + oldFileName))
                     return;
                 File.Move(_options._longPathPrefix + oldFileName, _options._longPathPrefix + newFileName);
                 _undoListText += newFileName + "|" + oldFileName + "\n";

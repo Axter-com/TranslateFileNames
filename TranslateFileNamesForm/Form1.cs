@@ -36,7 +36,10 @@ namespace TranslateFileNamesForm
             TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options options = new TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options();
             //options._maxWorkerThreads = 0;
             _translateFilenames = new TranslateFilenamesFrm(this, options);
-
+#if !DEBUG
+            this.TestButton.Enabled = false;
+            this.TestButton.Visible = false;
+#endif
         }
 
         private static FileDetails Get_filesDetails()
