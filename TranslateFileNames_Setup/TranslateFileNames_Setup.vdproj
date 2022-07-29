@@ -94,10 +94,35 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.Arm64"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:.NET Runtime 6.0.7 (Arm64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.Arm64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x64"
+                    {
+                    "Name" = "8:.NET Runtime 6.0.7 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x86"
+                    {
+                    "Name" = "8:.NET Runtime 6.0.7 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x86"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.Arm64"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.7 (Arm64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.Arm64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.7 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.7 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x86"
                     }
                 }
             }
@@ -306,7 +331,7 @@
         "Name" = "8:TranslateFileNames"
         "ProductName" = "8:TranslateFileNames"
         "ProductCode" = "8:{3DE5F2C9-D4FB-4B53-ADB6-C312FE66BF47}"
-        "PackageCode" = "8:{0DAF5A4D-08E6-4E14-8830-D0D4E67F9A55}"
+        "PackageCode" = "8:{54197B22-87B1-4ACC-8A61-505BC11C0F6D}"
         "UpgradeCode" = "8:{BDDEBB36-2CC4-4937-982A-BB70A39CAC94}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -855,7 +880,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_00F4C721DDFE457AA3673F0D40FFBD22"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\TranslateFileNamesForm.dll"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\TranslateFileNamesForm.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -883,7 +908,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_08EAAA82865A4B22919BEEEFB3BD8CA1"
             {
-            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Release\\net6.0\\TranslateFilenames.dll"
+            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Debug\\net6.0\\TranslateFilenames.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -967,7 +992,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_417C7D5F1B5E4764B7222BE08D6876B0"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -995,7 +1020,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_46C993D3B51D4472A260904CAA3C35ED"
             {
-            "SourcePath" = "8:..\\TranslateFilenamesCore\\obj\\Release\\net6.0\\TranslateFilenamesCore.dll"
+            "SourcePath" = "8:..\\TranslateFilenamesCore\\obj\\Debug\\net6.0\\TranslateFilenamesCore.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -1079,7 +1104,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8B85E5EB3411424B9A6AD4AE77741D7C"
             {
-            "SourcePath" = "8:..\\GTranslate\\obj\\Release\\net6.0\\GTranslate.dll"
+            "SourcePath" = "8:..\\GTranslate\\obj\\Debug\\net6.0\\GTranslate.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -1135,7 +1160,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E685AAA386D94AF08AE9AE7DF0F5F94E"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\TranslateFileNamesForm.dll"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\TranslateFileNamesForm.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"

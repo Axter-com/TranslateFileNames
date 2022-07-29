@@ -8,6 +8,9 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.Design.AxImporter;
 using static TranslateFilenamesCore.TranslateFilenames;
 using System.Runtime.InteropServices;
+using BrightIdeasSoftware;
+using System.ComponentModel;
+using System.Collections;
 
 namespace TranslateFileNamesForm
 {
@@ -31,10 +34,9 @@ namespace TranslateFileNamesForm
             InitializeComponent();
             UpdateListDelegate = new UpdateList(UpdateListMethod);
             SetupProgressBarDelegate = new SetupProgressBarDelegateType(UpdateProgressBar);
-            listViewFiles.FullRowSelect = true;
+            fastObjListView1.FormatCell += FormatCell;
             ClearItemsOnList();
             TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options options = new TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options();
-            //options._maxWorkerThreads = 0;
             _translateFilenames = new TranslateFilenamesFrm(this, options);
 #if !DEBUG
             this.TestButton.Enabled = false;
@@ -42,9 +44,9 @@ namespace TranslateFileNamesForm
 #endif
         }
 
-        private static FileDetails Get_filesDetails()
+        private static FileDetails? Get_filesDetails()
         {
-            FileDetails fileDetails = null;
+            FileDetails? fileDetails = null;
             Monitor.Enter(_lock);
             try
             {
@@ -85,7 +87,6 @@ namespace TranslateFileNamesForm
         }
         public void SetupProgressBar(int QtyFilesToCheck)
         {
-            //this.FilterOption_CmboBx.Enabled = true;
             pBar1.Visible = true;
             pBar1.Minimum = 1;
             pBar1.Value = 1;
@@ -101,7 +102,11 @@ namespace TranslateFileNamesForm
                 pBar1.Update();
                 this.UseWaitCursor = false;
                 pBar1.Visible = false;
-                this.listViewFiles.Enabled = true ;
+                this.fastObjListView1.Enabled = true;
+                ClearList.Enabled = true;
+                RenameAll.Enabled = true;
+                RenameSelected.Enabled = true;
+                RenameNotSelected.Enabled = true;
             }
             else
                 SetupProgressBar(QtyFilesToCheck);
@@ -109,12 +114,16 @@ namespace TranslateFileNamesForm
 
         private void ClearItemsOnList()
         {
-            while (listViewFiles.Items.Count > 0)
-                listViewFiles.Items.RemoveAt(0);
-            this.FilterOption_CmboBx.Enabled = false;
+            this.fastObjListView1.ClearObjects();
             QtyFilesToCheck = 0;
             QtyFilesRenameCandidate = -1;
             pBar1.Visible = false;
+            //ClearList.di
+            ClearList.Enabled = false;
+            RenameAll.Enabled = false;
+            RenameSelected.Enabled = false;
+            RenameNotSelected.Enabled = false;
+            this.Controls.Add(RenameAll);
         }
 
         private void ClearList_Click(object sender, EventArgs e)
@@ -156,12 +165,6 @@ namespace TranslateFileNamesForm
             _translateFilenames.TranslatePath(targetPath);
             Debug.WriteLine("Info: AddFilesToList_Task **** Exiting.");
         }
-        //private async Task AddFilesToList_sub(string targetPath)
-        //{
-        //    Debug.WriteLine("Info: AddFilesToList_sub ----------- Entering.");
-        //    await AddFilesToList_Task(targetPath);
-        //    Debug.WriteLine("Info: AddFilesToList_sub ----------- Exiting.");
-        //}
 
         private void AddFilesToList(string targetPath)
         {
@@ -172,7 +175,7 @@ namespace TranslateFileNamesForm
             pBar1.PerformStep();
             pBar1.PerformStep();
             this.UseWaitCursor = true;
-            this.listViewFiles.Enabled = false;
+            this.fastObjListView1.Enabled = false;
             Task.Run(() => AddFilesToList_Task(targetPath));
             Debug.WriteLine("Info: AddFilesToList Exiting.");
         }
@@ -184,20 +187,25 @@ namespace TranslateFileNamesForm
             Debug.WriteLine("Info: AddToList Entering with file '" + oldFileName + "'.");
             if (fileDetails.Name.Length != 0)
             {
-                var it = new ListViewItem(fileDetails.Name);
                 try
                 {
-                    it.UseItemStyleForSubItems = false;
                     Debug.WriteLine("Info: AddToList adding infor for file '" + oldFileName + "' trans = '" + newFileName + "'");
-                    listViewFiles.Items.Add(it);
                     fileDetails.Translation = _translateFilenames.FileDetailsReplaceIllegalFileNameChar(fileDetails);// Replaces illegal windows file name characters with alternative characters
-                    it.SubItems.Add(fileDetails.Translation, Color.DarkRed, Color.WhiteSmoke, new Font(listViewFiles.Font, FontStyle.Bold));
                     string SourceLang = fileDetails.SourceLang;
                     SourceLang = SourceLang.TrimStart(new string("_[").ToCharArray());
                     SourceLang = SourceLang.TrimEnd(']').ToString();
-                    it.SubItems.Add(SourceLang);
-                    it.SubItems.Add(fileDetails.ParrentPath);
-                    it.SubItems.Add(fileDetails.Extension);
+
+                    ArrayList l = new ArrayList();
+                    FileRowDetails fileRowDetails = new FileRowDetails(fileDetails.Name)
+                    {
+                        Name = fileDetails.Name,
+                        NewFilename = fileDetails.Translation,
+                        SrcLanguage = SourceLang,
+                        ParentPath = fileDetails.ParrentPath,
+                        FileExt = fileDetails.Extension,
+                    };
+                    l.Add(fileRowDetails);
+                    this.fastObjListView1.AddObjects(l);
                     Debug.WriteLine("Info: AddToList added row for file '" + oldFileName + "'.");
                 }
                 catch (Exception e)
@@ -216,30 +224,96 @@ namespace TranslateFileNamesForm
             string newFileName = Path.Combine(fileDetail.ParrentPath, fileDetail.Translation + appendedName + fileDetail.Extension);
             _translateFilenames.RenameFile(fileDetail, oldFileName, newFileName, true);
         }
-        private void RenameItems(bool GetSelected = false, bool GetNotSelected = false)
+
+        public enum WhichItems
         {
-            this.UseWaitCursor = true;
-            this.listViewFiles.Enabled = false;
-            System.Windows.Forms.ListView.ListViewItemCollection Items = listViewFiles.Items;
-            System.Windows.Forms.ListView.SelectedListViewItemCollection sItems = listViewFiles.SelectedItems;
-            int PrgBarCount = GetSelected ? sItems.Count : (GetNotSelected ? Items.Count - sItems.Count : Items.Count);
-            int Count = GetSelected ? sItems.Count : Items.Count;
-            SetupProgressBar(PrgBarCount);
-            for (int i = 0; i < Count; i++)
+            AllItems,
+            SelectedItems,
+            UnselectedItems,
+            CheckedItems,
+            UncheckedItems
+        }
+        private void RenameItems(WhichItems whichItems = WhichItems.AllItems) // bool GetSelected = false, bool GetNotSelected = false, bool GetChecked = false)
+        {
+            int QtyRenamed = 0;
+            string OrgName = "", LastRenameSuccess = "";
+            try
             {
-                if (GetNotSelected && sItems.Contains(Items[i]))
-                    continue;
-                string OrgName = GetSelected ? sItems[i].SubItems[0].Text : Items[i].SubItems[0].Text;
-                string NewName = GetSelected ? sItems[i].SubItems[1].Text : Items[i].SubItems[1].Text;
-                string OrgLang = GetSelected ? sItems[i].SubItems[2].Text : Items[i].SubItems[2].Text;
-                string ParentPath = GetSelected ? sItems[i].SubItems[3].Text : Items[i].SubItems[3].Text;
-                string Extension = GetSelected ? sItems[i].SubItems[4].Text : Items[i].SubItems[4].Text;
-                RenameItem(OrgName, NewName, ParentPath, OrgLang, Extension);
-                pBar1.PerformStep();
+                this.UseWaitCursor = true;
+                this.fastObjListView1.Enabled = false;
+                System.Windows.Forms.ListView.ListViewItemCollection Items = fastObjListView1.Items;
+                IList s_arrayList = fastObjListView1.SelectedObjects;
+                IList c_arrayList = fastObjListView1.CheckedObjects;
+                int sCount = s_arrayList.Count;
+                int cCount = c_arrayList.Count;
+                int iCount = fastObjListView1.GetItemCount();
+                if (whichItems == WhichItems.SelectedItems && cCount > 0 && (sCount == 0 || (sCount == 1 && cCount > sCount)))
+                    whichItems = WhichItems.CheckedItems;
+                else if (whichItems == WhichItems.UnselectedItems && cCount > 0 && (sCount == 0 || (sCount == 1 && cCount > sCount)))
+                    whichItems = WhichItems.UncheckedItems;
+                int PrgBarCount = 0;
+                int Count = 0;
+                switch(whichItems)
+                {
+                    case WhichItems.AllItems:
+                        PrgBarCount = iCount;
+                        Count = iCount;
+                        break;
+                    case WhichItems.SelectedItems:
+                        PrgBarCount = sCount;
+                        Count = sCount;
+                        break;
+                    case WhichItems.UnselectedItems:
+                        PrgBarCount = iCount - sCount;
+                        Count = iCount;
+                        break;
+                    case WhichItems.CheckedItems:
+                        PrgBarCount = cCount;
+                        Count = cCount;
+                        break;
+                    case WhichItems.UncheckedItems:
+                        PrgBarCount = iCount - cCount;
+                        Count = iCount;
+                        break;
+                }
+
+                SetupProgressBar(PrgBarCount);
+                for (int i = 0; i < Count; i++)
+                {
+                    if ((whichItems == WhichItems.UnselectedItems && s_arrayList.Contains(fastObjListView1.GetModelObject(i))) ||
+                        (whichItems == WhichItems.UncheckedItems && c_arrayList.Contains(fastObjListView1.GetModelObject(i))))
+                        continue;
+                    if (whichItems == WhichItems.SelectedItems || whichItems == WhichItems.CheckedItems)
+                    {
+                        FileRowDetails fileRowDetails = whichItems == WhichItems.SelectedItems ? (FileRowDetails)s_arrayList[i] : (FileRowDetails)c_arrayList[i];
+                        OrgName = fileRowDetails.Name;
+                        RenameItem(OrgName, fileRowDetails.NewFilename, fileRowDetails.ParentPath, fileRowDetails.SrcLanguage, fileRowDetails.FileExt);
+                    }
+                    else
+                    {
+                        OrgName = Items[i].SubItems[0].Text;
+                        string NewName = Items[i].SubItems[1].Text;
+                        string OrgLang = Items[i].SubItems[2].Text;
+                        string ParentPath = Items[i].SubItems[3].Text;
+                        string Extension = Items[i].SubItems[4].Text;
+                        RenameItem(OrgName, NewName, ParentPath, OrgLang, Extension);
+                    }
+                    pBar1.PerformStep();
+                    ++QtyRenamed;
+                    LastRenameSuccess = OrgName;
+                }
+            } catch (Exception e) 
+            {
+                string LastRenameInfo = (OrgName.Length > 0) ? "; LastFile='" + OrgName + "'; " : "; ";
+                if (LastRenameSuccess.Length > 0)
+                    LastRenameInfo += "LastSuccess='" + LastRenameSuccess + "'; ";
+                Debug.WriteLine("ERROR: - RenameItems: Exception thrown. Rename-Count=" + QtyRenamed + LastRenameInfo + "Exception MSG=" + e.Message);
+            } finally 
+            { 
+                this.UseWaitCursor = false;
+                pBar1.Visible = false;
+                this.fastObjListView1.Enabled = true;
             }
-            this.UseWaitCursor = false;
-            pBar1.Visible = false;
-            this.listViewFiles.Enabled = true;
         }
         private void RenameAll_Click(object sender, EventArgs e)
         {
@@ -248,19 +322,81 @@ namespace TranslateFileNamesForm
 
         private void RenameSelected_Click(object sender, EventArgs e)
         {
-            RenameItems(true);
+            RenameItems(WhichItems.SelectedItems);
         }
 
         private void RenameNotSelected_Click(object sender, EventArgs e)
         {
-            RenameItems(false, true);
+            RenameItems(WhichItems.UnselectedItems);
         }
+
+        private void FormatCell(object sender, FormatCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1) 
+            {
+                e.SubItem.Font = new Font(fastObjListView1.Font, FontStyle.Bold);
+                e.SubItem.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void FilterText_TextChanged(object sender, EventArgs e)
+        {
+            TimedFilter(this.fastObjListView1, ((System.Windows.Forms.TextBox)sender).Text, 0);
+        }
+
+        public void TimedFilter(BrightIdeasSoftware.ObjectListView olv, string txt)
+        {
+            TimedFilter(olv, txt, 0);
+        }
+
+        public void TimedFilter(BrightIdeasSoftware.ObjectListView olv, string txt, int matchKind)
+        {
+            TextMatchFilter filter = null;
+            if (!String.IsNullOrEmpty(txt))
+            {
+                switch (matchKind)
+                {
+                    case 0:
+                    default:
+                        filter = TextMatchFilter.Contains(olv, txt);
+                        break;
+                    case 1:
+                        filter = TextMatchFilter.Prefix(olv, txt);
+                        break;
+                    case 2:
+                        filter = TextMatchFilter.Regex(olv, txt);
+                        break;
+                }
+            }
+
+            // Text highlighting requires at least a default renderer
+            if (olv.DefaultRenderer == null)
+                olv.DefaultRenderer = new HighlightTextRenderer(filter);
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            olv.AdditionalFilter = filter;
+            //olv.Invalidate();
+            stopWatch.Stop();
+
+            IList objects = olv.Objects as IList;
+            //if (objects == null)
+            //    this.ToolStripStatus1 = prefixForNextSelectionMessage =
+            //        String.Format("Filtered in {0}ms", stopWatch.ElapsedMilliseconds);
+            //else
+            //    this.ToolStripStatus1 = prefixForNextSelectionMessage =
+            //        String.Format("Filtered {0} items down to {1} items in {2}ms",
+            //                      objects.Count,
+            //                      olv.Items.Count,
+            //                      stopWatch.ElapsedMilliseconds);
+        }
+
     }
 
     public class TranslateFilenamesFrm : TranslateFilenames
     {
         private Form1 _form1 = null;
-        public TranslateFilenamesFrm(Form1 form1, TranslateFilenames_Options options = null) : base(options)
+        public TranslateFilenamesFrm(Form1 form1, TranslateFilenames_Options? options = null) : base(options)
         {
             _form1 = form1;
         }
@@ -293,7 +429,14 @@ namespace TranslateFileNamesForm
         /// <param name="message">String to print</param>
         protected override void OutPut(string message, OutPutLevel outputlevel = OutPutLevel.NormalLvl)
         {
-
+            if (_options._silent)
+                return;
+            else if (outputlevel == OutPutLevel.ErrorLvl || outputlevel == OutPutLevel.PreProgressBar || outputlevel == OutPutLevel.PostProgressBar)
+                Debug.WriteLine("ERROR: - " + message);
+            else if (_options._verbose)
+                Debug.WriteLine("VERBOSE: - " + message);
+            else if (outputlevel == OutPutLevel.VerboseIfNotSilent)
+                Debug.WriteLine("INFO: " + message);
         }
 
         /// <summary>
@@ -303,6 +446,115 @@ namespace TranslateFileNamesForm
         {
         }
     }
+    public class FileRowDetails : INotifyPropertyChanged
+    {
+        public bool IsActive = true;
 
+        public FileRowDetails(string fileName)
+        {
+            this._fileName = fileName;
+        }
+
+        public FileRowDetails(string fileName, string NewFilename, string SrcLanguage, 
+            string ParentPath, string FileExt)
+        {
+            this.Name = fileName;
+            this.NewFilename = NewFilename;
+            this.SrcLanguage = SrcLanguage;
+            this.ParentPath = ParentPath;
+            this.FileExt = FileExt;
+        }
+
+        public FileRowDetails(FileRowDetails other)
+        {
+            this.Name = other.Name;
+            this.NewFilename = other.NewFilename;
+            this.SrcLanguage = other.SrcLanguage;
+            this.ParentPath = other.ParentPath;
+            this.FileExt = other.FileExt;
+        }
+
+        [OLVIgnore]
+        public string ImageName
+        {
+            get
+            {
+                return "user";
+            }
+        }
+
+        // Allows tests for properties.
+        [OLVColumn(ImageAspectName = "ImageName")]
+        public string Name
+        {
+            get { return this._fileName; }
+            set
+            {
+                if (this._fileName == value) return;
+                this._fileName = value;
+                this.OnPropertyChanged("Name");
+            }
+        }
+        private string _fileName;
+
+        public string NewFilename
+        {
+            get { return this._newFileName; }
+            set
+            {
+                if (this._newFileName == value) return;
+                this._newFileName = value;
+                this.OnPropertyChanged("NewFilename");
+            }
+        }
+        private string _newFileName;
+
+
+        public string SrcLanguage
+        {
+            get { return this._srcLanguage; }
+            set
+            {
+                if (this._srcLanguage == value) return;
+                this._srcLanguage = value;
+                this.OnPropertyChanged("SrcLanguage");
+            }
+        }
+        private string _srcLanguage;
+
+        public string ParentPath
+        {
+            get { return this._filePath; }
+            set
+            {
+                if (this._filePath == value) return;
+                this._filePath = value;
+                this.OnPropertyChanged("ParentPath");
+            }
+        }
+        private string _filePath;
+
+
+        public string FileExt
+        {
+            get { return this._fileExt; }
+            set
+            {
+                if (this._fileExt == value) return;
+                this._fileExt = value;
+                this.OnPropertyChanged("FileExt");
+            }
+        }
+        private string _fileExt;
+
+        #region Implementation of INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
 
 }

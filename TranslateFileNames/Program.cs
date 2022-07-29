@@ -11,7 +11,7 @@ using GTranslate.Translators;
 using TranslateFilenamesCore;
 
 
-namespace TranslateFilenamesOrg
+namespace TranslateFilenamesConsole
 {
     public class Program
     {
@@ -121,7 +121,7 @@ namespace TranslateFilenamesOrg
             Console.WriteLine("Examples:");
             Console.WriteLine("\t" + _options._programCommandLineName + " -r");
             Console.WriteLine("\t" + _options._programCommandLineName + " \"C:\\Users\\jane-doe\\Pictures\" -r -ext *.jpg");
-            Console.WriteLine("\nFor more help, see https://github.com/David-Maisonave/TranslateFilenamesOrg\n");
+            Console.WriteLine("\nFor more help, see https://github.com/David-Maisonave/TranslateFilenames\n");
         }
 
     }

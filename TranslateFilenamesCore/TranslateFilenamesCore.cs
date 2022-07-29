@@ -685,7 +685,6 @@ namespace TranslateFilenamesCore
             }
         }
 
-
         /// <summary>
         /// Sends logging or status data to derived function
         /// </summary>
