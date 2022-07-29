@@ -780,6 +780,12 @@ namespace BrightIdeasSoftware
         }
         private static string sGroupTitleDefault = "{null}";
 
+        public List<int> ColumnsNotEditable   {
+            get { return columnsNotEditable; }
+            set { columnsNotEditable = value; }
+        }
+        private List<int> columnsNotEditable = null;
+
         /// <summary>
         /// Convert the given enumerable into an ArrayList as efficiently as possible
         /// </summary>
@@ -9339,6 +9345,9 @@ namespace BrightIdeasSoftware
 
             // We don't edit the primary column by single clicks -- only subitems.
             if (this.CellEditActivation == CellEditActivateMode.SingleClick && args.ColumnIndex <= 0) 
+                return;
+
+            if (columnsNotEditable != null && columnsNotEditable.Count > 0 && columnsNotEditable.Contains(args.ColumnIndex))
                 return;
 
             // Don't start a cell edit operation when the user clicks on the background of a checkbox column -- it just looks wrong.

@@ -34,6 +34,7 @@ namespace TranslateFileNamesForm
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.AddFiles = new System.Windows.Forms.Button();
             this.ClearList = new System.Windows.Forms.Button();
             this.TestButton = new System.Windows.Forms.Button();
@@ -169,7 +170,7 @@ namespace TranslateFileNamesForm
             // 
             this.olv_NewFilenames.AspectName = "NewFilename";
             this.olv_NewFilenames.HeaderForeColor = System.Drawing.Color.DarkRed;
-            this.olv_NewFilenames.Text = "Translated Filename";
+            this.olv_NewFilenames.Text = "Candidates for Translation";
             this.olv_NewFilenames.Width = 400;
             // 
             // olv_SrcLanguage
@@ -205,6 +206,7 @@ namespace TranslateFileNamesForm
             this.TargetedPath.Name = "TargetedPath";
             this.TargetedPath.Size = new System.Drawing.Size(397, 31);
             this.TargetedPath.TabIndex = 107;
+            this.TargetedPath.TextChanged += new System.EventHandler(this.TargetedPath_TextChanged);
             // 
             // groupBoxFilter
             // 

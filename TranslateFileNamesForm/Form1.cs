@@ -36,6 +36,11 @@ namespace TranslateFileNamesForm
             SetupProgressBarDelegate = new SetupProgressBarDelegateType(UpdateProgressBar);
             fastObjListView1.FormatCell += FormatCell;
             ClearItemsOnList();
+            fastObjListView1.ColumnsNotEditable = new List<int>();
+            fastObjListView1.ColumnsNotEditable.Add(0);
+            fastObjListView1.ColumnsNotEditable.Add(2);
+            fastObjListView1.ColumnsNotEditable.Add(3);
+            fastObjListView1.ColumnsNotEditable.Add(4);
             TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options options = new TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options();
             _translateFilenames = new TranslateFilenamesFrm(this, options);
 #if !DEBUG
@@ -170,6 +175,8 @@ namespace TranslateFileNamesForm
         {
             Debug.WriteLine("Info: AddFilesToList Entering.");
             _path = targetPath;
+            TargetedPath.Text = targetPath;
+            TargetedPath.Update();
             ClearItemsOnList();
             SetupProgressBar(3);
             pBar1.PerformStep();
@@ -376,21 +383,13 @@ namespace TranslateFileNamesForm
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             olv.AdditionalFilter = filter;
-            //olv.Invalidate();
             stopWatch.Stop();
-
-            IList objects = olv.Objects as IList;
-            //if (objects == null)
-            //    this.ToolStripStatus1 = prefixForNextSelectionMessage =
-            //        String.Format("Filtered in {0}ms", stopWatch.ElapsedMilliseconds);
-            //else
-            //    this.ToolStripStatus1 = prefixForNextSelectionMessage =
-            //        String.Format("Filtered {0} items down to {1} items in {2}ms",
-            //                      objects.Count,
-            //                      olv.Items.Count,
-            //                      stopWatch.ElapsedMilliseconds);
         }
 
+        private void TargetedPath_TextChanged(object sender, EventArgs e)
+        {
+            AddFilesToList(((System.Windows.Forms.TextBox)sender).Text);
+        }
     }
 
     public class TranslateFilenamesFrm : TranslateFilenames
