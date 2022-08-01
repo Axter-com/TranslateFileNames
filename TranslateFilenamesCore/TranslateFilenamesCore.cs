@@ -17,9 +17,7 @@ namespace TranslateFilenamesCore
     public abstract class TranslateFilenames
     {
         #region class variables
-        //public const string defaultStr = "";
-        //public readonly string[] defaultStrArr = new string[0];
-        private const string _LONGPATHPREFIX = "\\\\?\\";
+        public const string _LONGPATHPREFIX = "\\\\?\\";
         private readonly object _lock = new object();
         private bool _exitAfterHelp = false;
         protected TranslateFilenames_Options _options { get; } = new TranslateFilenames_Options();

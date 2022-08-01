@@ -16,6 +16,7 @@ namespace TranslateFileNamesForm
 {
     public partial class Form1 : Form
     {
+        #region class variables
         private static string _path = Directory.GetCurrentDirectory();
         private static List<FileDetails> filesDetails = new List<FileDetails>();
         private static readonly object _lock = new object();
@@ -28,6 +29,7 @@ namespace TranslateFileNamesForm
         public int QtyFilesToCheck = 0;
         public int QtyFilesRenameCandidate = 0;
         TranslateFilenamesFrm _translateFilenames;
+        #endregion
 
         public Form1()
         {
@@ -41,11 +43,13 @@ namespace TranslateFileNamesForm
             fastObjListView1.ColumnsNotEditable.Add(2);
             fastObjListView1.ColumnsNotEditable.Add(3);
             fastObjListView1.ColumnsNotEditable.Add(4);
-            TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options options = new TranslateFilenamesCore.TranslateFilenames.TranslateFilenames_Options();
-            _translateFilenames = new TranslateFilenamesFrm(this, options);
+            TranslateFilenames_Options options = new TranslateFilenames_Options();
+            MaxThread.Text = options._maxWorkerThreads.ToString();
+            MaxTranslateLen.Text    = options._maximumTranslateDataLength.ToString();
+            TargetLanguage.Text = options._targetLang.ToString();
 #if !DEBUG
-            this.TestButton.Enabled = false;
-            this.TestButton.Visible = false;
+            TestButton.Enabled = false;
+            TestButton.Visible = false;
 #endif
         }
 
@@ -105,13 +109,18 @@ namespace TranslateFileNamesForm
             {
                 pBar1.Value = pBar1.Maximum;
                 pBar1.Update();
-                this.UseWaitCursor = false;
+                UseWaitCursor = false;
                 pBar1.Visible = false;
-                this.fastObjListView1.Enabled = true;
-                ClearList.Enabled = true;
-                RenameAll.Enabled = true;
-                RenameSelected.Enabled = true;
-                RenameNotSelected.Enabled = true;
+                fastObjListView1.Enabled = true;
+                ClearList.Visible = true;
+                RenameAll.Visible = true;
+                RenameSelected.Visible = true;
+                RenameNotSelected.Visible = true;
+                RenameChecked.Visible = true;
+                RenameUnchecked.Visible = true;
+                FilterText.Visible = true;
+                labelFilter.Visible = true;
+                RefreshList.Visible = true;
             }
             else
                 SetupProgressBar(QtyFilesToCheck);
@@ -119,16 +128,21 @@ namespace TranslateFileNamesForm
 
         private void ClearItemsOnList()
         {
-            this.fastObjListView1.ClearObjects();
+            fastObjListView1.ClearObjects();
             QtyFilesToCheck = 0;
             QtyFilesRenameCandidate = -1;
             pBar1.Visible = false;
             //ClearList.di
-            ClearList.Enabled = false;
-            RenameAll.Enabled = false;
-            RenameSelected.Enabled = false;
-            RenameNotSelected.Enabled = false;
-            this.Controls.Add(RenameAll);
+            fastObjListView1.Visible = false;
+            ClearList.Visible = false;
+            RenameAll.Visible = false;
+            RenameSelected.Visible = false;
+            RenameNotSelected.Visible = false;
+            RenameChecked.Visible = false;
+            RenameUnchecked.Visible = false;
+            FilterText.Visible = false;
+            labelFilter.Visible = false;
+            RefreshList.Visible = false;
         }
 
         private void ClearList_Click(object sender, EventArgs e)
@@ -142,14 +156,21 @@ namespace TranslateFileNamesForm
             folderBrowserDialog1.Description = "Select the directory containing files to rename.";
             // Do not allow the user to create new files via the FolderBrowserDialog.
             folderBrowserDialog1.ShowNewFolderButton = false;
+            if (TargetedPath.Text.Length > 0)
+                folderBrowserDialog1.InitialDirectory = TargetedPath.Text;
             // Default to the My Documents folder.
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Personal;
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
-                _path = folderBrowserDialog1.SelectedPath;
-                AddFilesToList(_path);
+                if (!AddFilesToList(folderBrowserDialog1.SelectedPath))
+                    MessageBox.Show("Error: Folder does NOT exist!\n" + folderBrowserDialog1.SelectedPath,
+                                  "Folder NOT Exist!",
+                                  MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
             }
+            else
+                ClearItemsOnList();
         }
 
         private void TestButton_Click(object sender, EventArgs e)
@@ -171,20 +192,52 @@ namespace TranslateFileNamesForm
             Debug.WriteLine("Info: AddFilesToList_Task **** Exiting.");
         }
 
-        private void AddFilesToList(string targetPath)
+        private bool AddFilesToList(string targetPath)
         {
             Debug.WriteLine("Info: AddFilesToList Entering.");
+            if (!Directory.Exists(targetPath))
+                return false;
             _path = targetPath;
             TargetedPath.Text = targetPath;
             TargetedPath.Update();
+            TranslateFilenames_Options options = new TranslateFilenames_Options();
+            if (TargetLanguage.Text.Length == 2)
+                options._targetLang = TargetLanguage.Text;
+            if (SourceLanguage.Text.Length == 2)
+                options._targetLang = SourceLanguage.Text;
+            if (checkBoxRecursive.Checked)
+                options._searchOption = SearchOption.AllDirectories;
+            if (checkBoxLongPathSupport.Checked)
+                options._longPathPrefix = TranslateFilenames._LONGPATHPREFIX;
+            if (MaxThread.Text.Length > 0 && Convert.ToInt32(MaxThread.Text) > 0)
+                options._maxWorkerThreads = Convert.ToInt32(MaxThread.Text);
+            if (MaxTranslateLen.Text.Length > 0 && Convert.ToInt32(MaxTranslateLen.Text) > 0)
+                options._maximumTranslateDataLength = Convert.ToInt32(MaxTranslateLen.Text);
+            if (FileType.Text.Length > 0)
+                options._fileType = FileType.Text;
+            if (checkBoxAppendLanguageName.Checked)  // ToDo: Change this to a combo box listing items in GTranslate_TranslateSourceText **switch**
+                options._appendLangName = 9;
+            if (checkBoxAppendOrginalName.Checked)
+                options._appendOrgName = true;
+            if (comboBoxFilesPerTransReq.SelectedIndex > 0)
+            {
+                if (comboBoxFilesPerTransReq.SelectedIndex == 1)
+                    options._filesPerTransReq = FilesPerTransReq.OnePerFile;
+                else if (comboBoxFilesPerTransReq.SelectedIndex == 2)
+                    options._filesPerTransReq = FilesPerTransReq.Many;
+            }
+            _translateFilenames = new TranslateFilenamesFrm(this, options);
+
             ClearItemsOnList();
+            fastObjListView1.Visible = true;
             SetupProgressBar(3);
             pBar1.PerformStep();
             pBar1.PerformStep();
-            this.UseWaitCursor = true;
-            this.fastObjListView1.Enabled = false;
+            UseWaitCursor = true;
+            fastObjListView1.Enabled = false;
             Task.Run(() => AddFilesToList_Task(targetPath));
             Debug.WriteLine("Info: AddFilesToList Exiting.");
+            return true;
         }
         public void AddToList(FileDetails fileDetails)
         {
@@ -212,7 +265,7 @@ namespace TranslateFileNamesForm
                         FileExt = fileDetails.Extension,
                     };
                     l.Add(fileRowDetails);
-                    this.fastObjListView1.AddObjects(l);
+                    fastObjListView1.AddObjects(l);
                     Debug.WriteLine("Info: AddToList added row for file '" + oldFileName + "'.");
                 }
                 catch (Exception e)
@@ -237,17 +290,19 @@ namespace TranslateFileNamesForm
             AllItems,
             SelectedItems,
             UnselectedItems,
+            SelectedItemsAlways,
+            UnselectedItemsAlways,
             CheckedItems,
             UncheckedItems
         }
-        private void RenameItems(WhichItems whichItems = WhichItems.AllItems) // bool GetSelected = false, bool GetNotSelected = false, bool GetChecked = false)
+        private void RenameItems(WhichItems whichItems = WhichItems.AllItems)
         {
             int QtyRenamed = 0;
             string OrgName = "", LastRenameSuccess = "";
+            UseWaitCursor = true;
+            fastObjListView1.Enabled = false;
             try
             {
-                this.UseWaitCursor = true;
-                this.fastObjListView1.Enabled = false;
                 System.Windows.Forms.ListView.ListViewItemCollection Items = fastObjListView1.Items;
                 IList s_arrayList = fastObjListView1.SelectedObjects;
                 IList c_arrayList = fastObjListView1.CheckedObjects;
@@ -258,14 +313,14 @@ namespace TranslateFileNamesForm
                     whichItems = WhichItems.CheckedItems;
                 else if (whichItems == WhichItems.UnselectedItems && cCount > 0 && (sCount == 0 || (sCount == 1 && cCount > sCount)))
                     whichItems = WhichItems.UncheckedItems;
-                int PrgBarCount = 0;
-                int Count = 0;
+                else if (whichItems == WhichItems.SelectedItemsAlways)
+                    whichItems = WhichItems.SelectedItems;
+                else if (whichItems == WhichItems.UnselectedItemsAlways)
+                    whichItems = WhichItems.UnselectedItems;
+                int PrgBarCount;
+                int Count;
                 switch(whichItems)
                 {
-                    case WhichItems.AllItems:
-                        PrgBarCount = iCount;
-                        Count = iCount;
-                        break;
                     case WhichItems.SelectedItems:
                         PrgBarCount = sCount;
                         Count = sCount;
@@ -280,6 +335,11 @@ namespace TranslateFileNamesForm
                         break;
                     case WhichItems.UncheckedItems:
                         PrgBarCount = iCount - cCount;
+                        Count = iCount;
+                        break;
+                    case WhichItems.AllItems:
+                    default:
+                        PrgBarCount = iCount;
                         Count = iCount;
                         break;
                 }
@@ -317,9 +377,9 @@ namespace TranslateFileNamesForm
                 Debug.WriteLine("ERROR: - RenameItems: Exception thrown. Rename-Count=" + QtyRenamed + LastRenameInfo + "Exception MSG=" + e.Message);
             } finally 
             { 
-                this.UseWaitCursor = false;
+                UseWaitCursor = false;
                 pBar1.Visible = false;
-                this.fastObjListView1.Enabled = true;
+                fastObjListView1.Enabled = true;
             }
         }
         private void RenameAll_Click(object sender, EventArgs e)
@@ -337,6 +397,16 @@ namespace TranslateFileNamesForm
             RenameItems(WhichItems.UnselectedItems);
         }
 
+        private void RenameChecked_Click(object sender, EventArgs e)
+        {
+            RenameItems(WhichItems.CheckedItems);
+        }
+
+        private void RenameUnchecked_Click(object sender, EventArgs e)
+        {
+            RenameItems(WhichItems.UncheckedItems);
+        }
+
         private void FormatCell(object sender, FormatCellEventArgs e)
         {
             if (e.ColumnIndex == 1) 
@@ -348,7 +418,7 @@ namespace TranslateFileNamesForm
 
         private void FilterText_TextChanged(object sender, EventArgs e)
         {
-            TimedFilter(this.fastObjListView1, ((System.Windows.Forms.TextBox)sender).Text, 0);
+            TimedFilter(fastObjListView1, ((System.Windows.Forms.TextBox)sender).Text, 0);
         }
 
         public void TimedFilter(BrightIdeasSoftware.ObjectListView olv, string txt)
@@ -386,9 +456,16 @@ namespace TranslateFileNamesForm
             stopWatch.Stop();
         }
 
-        private void TargetedPath_TextChanged(object sender, EventArgs e)
+        private void TargetedPath_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            AddFilesToList(((System.Windows.Forms.TextBox)sender).Text);
+            // Check if User Presses Enter
+            if (e.KeyCode == System.Windows.Forms.Keys.Return)
+                AddFilesToList(((System.Windows.Forms.TextBox)sender).Text);
+        }
+
+        private void RefreshList_Click(object sender, EventArgs e)
+        {
+            AddFilesToList(_path);
         }
     }
 
@@ -451,26 +528,26 @@ namespace TranslateFileNamesForm
 
         public FileRowDetails(string fileName)
         {
-            this._fileName = fileName;
+            _fileName = fileName;
         }
 
         public FileRowDetails(string fileName, string NewFilename, string SrcLanguage, 
             string ParentPath, string FileExt)
         {
-            this.Name = fileName;
-            this.NewFilename = NewFilename;
-            this.SrcLanguage = SrcLanguage;
-            this.ParentPath = ParentPath;
-            this.FileExt = FileExt;
+            Name = fileName;
+            NewFilename = NewFilename;
+            SrcLanguage = SrcLanguage;
+            ParentPath = ParentPath;
+            FileExt = FileExt;
         }
 
         public FileRowDetails(FileRowDetails other)
         {
-            this.Name = other.Name;
-            this.NewFilename = other.NewFilename;
-            this.SrcLanguage = other.SrcLanguage;
-            this.ParentPath = other.ParentPath;
-            this.FileExt = other.FileExt;
+            Name = other.Name;
+            NewFilename = other.NewFilename;
+            SrcLanguage = other.SrcLanguage;
+            ParentPath = other.ParentPath;
+            FileExt = other.FileExt;
         }
 
         [OLVIgnore]
@@ -486,24 +563,24 @@ namespace TranslateFileNamesForm
         [OLVColumn(ImageAspectName = "ImageName")]
         public string Name
         {
-            get { return this._fileName; }
+            get { return _fileName; }
             set
             {
-                if (this._fileName == value) return;
-                this._fileName = value;
-                this.OnPropertyChanged("Name");
+                if (_fileName == value) return;
+                _fileName = value;
+                OnPropertyChanged("Name");
             }
         }
         private string _fileName;
 
         public string NewFilename
         {
-            get { return this._newFileName; }
+            get { return _newFileName; }
             set
             {
-                if (this._newFileName == value) return;
-                this._newFileName = value;
-                this.OnPropertyChanged("NewFilename");
+                if (_newFileName == value) return;
+                _newFileName = value;
+                OnPropertyChanged("NewFilename");
             }
         }
         private string _newFileName;
@@ -511,24 +588,24 @@ namespace TranslateFileNamesForm
 
         public string SrcLanguage
         {
-            get { return this._srcLanguage; }
+            get { return _srcLanguage; }
             set
             {
-                if (this._srcLanguage == value) return;
-                this._srcLanguage = value;
-                this.OnPropertyChanged("SrcLanguage");
+                if (_srcLanguage == value) return;
+                _srcLanguage = value;
+                OnPropertyChanged("SrcLanguage");
             }
         }
         private string _srcLanguage;
 
         public string ParentPath
         {
-            get { return this._filePath; }
+            get { return _filePath; }
             set
             {
-                if (this._filePath == value) return;
-                this._filePath = value;
-                this.OnPropertyChanged("ParentPath");
+                if (_filePath == value) return;
+                _filePath = value;
+                OnPropertyChanged("ParentPath");
             }
         }
         private string _filePath;
@@ -536,12 +613,12 @@ namespace TranslateFileNamesForm
 
         public string FileExt
         {
-            get { return this._fileExt; }
+            get { return _fileExt; }
             set
             {
-                if (this._fileExt == value) return;
-                this._fileExt = value;
-                this.OnPropertyChanged("FileExt");
+                if (_fileExt == value) return;
+                _fileExt = value;
+                OnPropertyChanged("FileExt");
             }
         }
         private string _fileExt;
@@ -550,8 +627,8 @@ namespace TranslateFileNamesForm
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }
