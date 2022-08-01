@@ -9,6 +9,9 @@ Example use-case:
 	Translate foreign movie *.mp4 file names.
 	Translate names of songs ripped from an imported foreign album.
 
+## Screenshot
+[![Screenshot1](doc/screenshot1.png)](https://github.com/David-Maisonave/TranslateFileNames)
+
 ## Command Line Example Usage:
 
 
