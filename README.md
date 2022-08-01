@@ -1,6 +1,5 @@
 # Translate File Names
-
-Command line utility to translate and rename files from their source language to the set language. By default, the set language is the local system TwoLetterISOLanguageName.
+Includes both a windows GUI and a command line utility to translate and rename files from their source language to the set language. By default, the set language is the local system TwoLetterISOLanguageName.
 
 ## What does it do?
 
@@ -10,7 +9,8 @@ Example use-case:
 	Translate foreign movie *.mp4 file names.
 	Translate names of songs ripped from an imported foreign album.
 
-## Example Usage:
+## Command Line Example Usage:
+
 
 TranslateFileNames -r
 
