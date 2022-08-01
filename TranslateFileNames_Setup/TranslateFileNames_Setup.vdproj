@@ -45,6 +45,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4A8922D1460845F5B93891EB4A962BEB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_642639F792084F2AA7B1DB050C5AC4A5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7306765723614B4C9A9900F0E92B758D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,6 +64,12 @@
         "Entry"
         {
         "MsmKey" = "8:_8B85E5EB3411424B9A6AD4AE77741D7C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AA1C8B9AC9A04B10ACF996DF7D5AF905"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -331,7 +349,7 @@
         "Name" = "8:TranslateFileNames"
         "ProductName" = "8:TranslateFileNames"
         "ProductCode" = "8:{3DE5F2C9-D4FB-4B53-ADB6-C312FE66BF47}"
-        "PackageCode" = "8:{54197B22-87B1-4ACC-8A61-505BC11C0F6D}"
+        "PackageCode" = "8:{0C840DA8-C21C-49D8-B507-7D3A68F1B52C}"
         "UpgradeCode" = "8:{BDDEBB36-2CC4-4937-982A-BB70A39CAC94}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -880,7 +898,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_00F4C721DDFE457AA3673F0D40FFBD22"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\TranslateFileNamesForm.dll"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\TranslateFileNamesForm.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -908,7 +926,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_08EAAA82865A4B22919BEEEFB3BD8CA1"
             {
-            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Debug\\net6.0\\TranslateFilenames.dll"
+            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Release\\net6.0\\TranslateFilenames.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -992,7 +1010,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_417C7D5F1B5E4764B7222BE08D6876B0"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -1018,9 +1036,37 @@
                 {
                 }
             }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_44DC805FAB0E459D8E872842688BE649"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C528D467359243BB8779688F866B071D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFilesProjectOutputGroup"
+            "OutputProjectGuid" = "8:{5A618590-74D1-4A58-88C1-3D9D343B0784}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_46C993D3B51D4472A260904CAA3C35ED"
             {
-            "SourcePath" = "8:..\\TranslateFilenamesCore\\obj\\Debug\\net6.0\\TranslateFilenamesCore.dll"
+            "SourcePath" = "8:..\\TranslateFilenamesCore\\obj\\Release\\net6.0\\TranslateFilenamesCore.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -1041,6 +1087,62 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:BuiltProjectOutputGroup"
             "OutputProjectGuid" = "8:{4CA9A65F-D4B6-466C-A8A5-DEA249D77E24}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4966C2D93306478EB112460E290B8965"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C528D467359243BB8779688F866B071D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PriFilesOutputGroup"
+            "OutputProjectGuid" = "8:{5A618590-74D1-4A58-88C1-3D9D343B0784}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4A8922D1460845F5B93891EB4A962BEB"
+            {
+            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Release\\net6.0\\TranslateFilenames.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C528D467359243BB8779688F866B071D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{5A618590-74D1-4A58-88C1-3D9D343B0784}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
@@ -1102,9 +1204,37 @@
                 {
                 }
             }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_642639F792084F2AA7B1DB050C5AC4A5"
+            {
+            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Release\\net6.0\\apphost.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C528D467359243BB8779688F866B071D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{5A618590-74D1-4A58-88C1-3D9D343B0784}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8B85E5EB3411424B9A6AD4AE77741D7C"
             {
-            "SourcePath" = "8:..\\GTranslate\\obj\\Debug\\net6.0\\GTranslate.dll"
+            "SourcePath" = "8:..\\GTranslate\\obj\\Release\\net6.0\\GTranslate.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"
@@ -1125,6 +1255,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:BuiltProjectOutputGroup"
             "OutputProjectGuid" = "8:{291CB6C6-7CEC-4660-AA60-5FD2B81BCED5}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AA1C8B9AC9A04B10ACF996DF7D5AF905"
+            {
+            "SourcePath" = "8:..\\TranslateFilenames\\obj\\Release\\net6.0\\apphost.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C528D467359243BB8779688F866B071D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItemsOutputGroup"
+            "OutputProjectGuid" = "8:{5A618590-74D1-4A58-88C1-3D9D343B0784}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
@@ -1160,7 +1318,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E685AAA386D94AF08AE9AE7DF0F5F94E"
             {
-            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Debug\\net6.0-windows\\TranslateFileNamesForm.dll"
+            "SourcePath" = "8:..\\TranslateFileNamesForm\\obj\\Release\\net6.0-windows\\TranslateFileNamesForm.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C528D467359243BB8779688F866B071D"

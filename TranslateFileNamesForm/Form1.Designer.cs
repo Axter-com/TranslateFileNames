@@ -70,12 +70,13 @@ namespace TranslateFileNamesForm
             this.comboBoxFilesPerTransReq = new System.Windows.Forms.ComboBox();
             this.labelFilesPerTransReq = new System.Windows.Forms.Label();
             this.RefreshList = new System.Windows.Forms.Button();
+            this.linkLabelISO6391LangCode = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.fastObjListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddFiles
             // 
-            this.AddFiles.Location = new System.Drawing.Point(437, 3);
+            this.AddFiles.Location = new System.Drawing.Point(412, 3);
             this.AddFiles.Name = "AddFiles";
             this.AddFiles.Size = new System.Drawing.Size(43, 34);
             this.AddFiles.TabIndex = 1;
@@ -86,11 +87,10 @@ namespace TranslateFileNamesForm
             // 
             // ClearList
             // 
-            this.ClearList.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.ClearList.Location = new System.Drawing.Point(484, 3);
+            this.ClearList.Location = new System.Drawing.Point(459, 3);
             this.ClearList.Name = "ClearList";
             this.ClearList.Size = new System.Drawing.Size(64, 34);
-            this.ClearList.TabIndex = 9;
+            this.ClearList.TabIndex = 2;
             this.ClearList.Text = "Clear";
             this.ClearList.UseVisualStyleBackColor = true;
             this.ClearList.Click += new System.EventHandler(this.ClearList_Click);
@@ -101,7 +101,7 @@ namespace TranslateFileNamesForm
             this.TestButton.Location = new System.Drawing.Point(2, 500);
             this.TestButton.Name = "TestButton";
             this.TestButton.Size = new System.Drawing.Size(60, 34);
-            this.TestButton.TabIndex = 99;
+            this.TestButton.TabIndex = 15;
             this.TestButton.TabStop = false;
             this.TestButton.Text = "Test";
             this.TestButton.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@ namespace TranslateFileNamesForm
             this.RenameAll.Location = new System.Drawing.Point(68, 500);
             this.RenameAll.Name = "RenameAll";
             this.RenameAll.Size = new System.Drawing.Size(112, 34);
-            this.RenameAll.TabIndex = 4;
+            this.RenameAll.TabIndex = 16;
             this.RenameAll.Text = "Rename All";
             this.RenameAll.UseVisualStyleBackColor = true;
             this.RenameAll.Click += new System.EventHandler(this.RenameAll_Click);
@@ -124,7 +124,7 @@ namespace TranslateFileNamesForm
             this.RenameSelected.Location = new System.Drawing.Point(183, 500);
             this.RenameSelected.Name = "RenameSelected";
             this.RenameSelected.Size = new System.Drawing.Size(171, 34);
-            this.RenameSelected.TabIndex = 5;
+            this.RenameSelected.TabIndex = 17;
             this.RenameSelected.Text = "Rename Selected";
             this.RenameSelected.UseVisualStyleBackColor = true;
             this.RenameSelected.Click += new System.EventHandler(this.RenameSelected_Click);
@@ -135,7 +135,7 @@ namespace TranslateFileNamesForm
             this.RenameNotSelected.Location = new System.Drawing.Point(357, 500);
             this.RenameNotSelected.Name = "RenameNotSelected";
             this.RenameNotSelected.Size = new System.Drawing.Size(180, 34);
-            this.RenameNotSelected.TabIndex = 6;
+            this.RenameNotSelected.TabIndex = 18;
             this.RenameNotSelected.Text = "Rename Unselected";
             this.RenameNotSelected.UseVisualStyleBackColor = true;
             this.RenameNotSelected.Click += new System.EventHandler(this.RenameNotSelected_Click);
@@ -174,7 +174,7 @@ namespace TranslateFileNamesForm
             this.fastObjListView1.ShowImagesOnSubItems = true;
             this.fastObjListView1.ShowItemToolTips = true;
             this.fastObjListView1.Size = new System.Drawing.Size(967, 450);
-            this.fastObjListView1.TabIndex = 3;
+            this.fastObjListView1.TabIndex = 21;
             this.fastObjListView1.TintSortColumn = true;
             this.fastObjListView1.UseAlternatingBackColors = true;
             this.fastObjListView1.UseCellFormatEvents = true;
@@ -228,7 +228,7 @@ namespace TranslateFileNamesForm
             // 
             this.TargetedPath.Location = new System.Drawing.Point(74, 3);
             this.TargetedPath.Name = "TargetedPath";
-            this.TargetedPath.Size = new System.Drawing.Size(357, 31);
+            this.TargetedPath.Size = new System.Drawing.Size(332, 31);
             this.TargetedPath.TabIndex = 0;
             this.TargetedPath.WordWrap = false;
             this.TargetedPath.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TargetedPath_PreviewKeyDown);
@@ -239,7 +239,7 @@ namespace TranslateFileNamesForm
             this.FilterText.Location = new System.Drawing.Point(694, 3);
             this.FilterText.Name = "FilterText";
             this.FilterText.Size = new System.Drawing.Size(272, 31);
-            this.FilterText.TabIndex = 2;
+            this.FilterText.TabIndex = 4;
             this.FilterText.TextChanged += new System.EventHandler(this.FilterText_TextChanged);
             // 
             // labelFilter
@@ -258,7 +258,7 @@ namespace TranslateFileNamesForm
             this.RenameUnchecked.Location = new System.Drawing.Point(714, 500);
             this.RenameUnchecked.Name = "RenameUnchecked";
             this.RenameUnchecked.Size = new System.Drawing.Size(187, 34);
-            this.RenameUnchecked.TabIndex = 8;
+            this.RenameUnchecked.TabIndex = 20;
             this.RenameUnchecked.Text = "Rename Unchecked";
             this.RenameUnchecked.UseVisualStyleBackColor = true;
             this.RenameUnchecked.Click += new System.EventHandler(this.RenameUnchecked_Click);
@@ -269,7 +269,7 @@ namespace TranslateFileNamesForm
             this.RenameChecked.Location = new System.Drawing.Point(540, 500);
             this.RenameChecked.Name = "RenameChecked";
             this.RenameChecked.Size = new System.Drawing.Size(171, 34);
-            this.RenameChecked.TabIndex = 7;
+            this.RenameChecked.TabIndex = 19;
             this.RenameChecked.Text = "Rename Checked";
             this.RenameChecked.UseVisualStyleBackColor = true;
             this.RenameChecked.Click += new System.EventHandler(this.RenameChecked_Click);
@@ -289,12 +289,12 @@ namespace TranslateFileNamesForm
             this.TargetLanguage.MaxLength = 2;
             this.TargetLanguage.Name = "TargetLanguage";
             this.TargetLanguage.Size = new System.Drawing.Size(37, 31);
-            this.TargetLanguage.TabIndex = 109;
+            this.TargetLanguage.TabIndex = 12;
             // 
             // labelSourceLanguage
             // 
             this.labelSourceLanguage.AutoSize = true;
-            this.labelSourceLanguage.Location = new System.Drawing.Point(2, 180);
+            this.labelSourceLanguage.Location = new System.Drawing.Point(2, 188);
             this.labelSourceLanguage.Name = "labelSourceLanguage";
             this.labelSourceLanguage.Size = new System.Drawing.Size(286, 25);
             this.labelSourceLanguage.TabIndex = 112;
@@ -302,11 +302,11 @@ namespace TranslateFileNamesForm
             // 
             // SourceLanguage
             // 
-            this.SourceLanguage.Location = new System.Drawing.Point(288, 174);
+            this.SourceLanguage.Location = new System.Drawing.Point(288, 182);
             this.SourceLanguage.MaxLength = 2;
             this.SourceLanguage.Name = "SourceLanguage";
             this.SourceLanguage.Size = new System.Drawing.Size(37, 31);
-            this.SourceLanguage.TabIndex = 111;
+            this.SourceLanguage.TabIndex = 13;
             // 
             // checkBoxRecursive
             // 
@@ -314,7 +314,7 @@ namespace TranslateFileNamesForm
             this.checkBoxRecursive.Location = new System.Drawing.Point(2, 56);
             this.checkBoxRecursive.Name = "checkBoxRecursive";
             this.checkBoxRecursive.Size = new System.Drawing.Size(181, 29);
-            this.checkBoxRecursive.TabIndex = 113;
+            this.checkBoxRecursive.TabIndex = 5;
             this.checkBoxRecursive.Text = "Search Recursively";
             this.checkBoxRecursive.UseVisualStyleBackColor = true;
             // 
@@ -324,7 +324,7 @@ namespace TranslateFileNamesForm
             this.checkBoxLongPathSupport.Location = new System.Drawing.Point(2, 93);
             this.checkBoxLongPathSupport.Name = "checkBoxLongPathSupport";
             this.checkBoxLongPathSupport.Size = new System.Drawing.Size(187, 29);
-            this.checkBoxLongPathSupport.TabIndex = 114;
+            this.checkBoxLongPathSupport.TabIndex = 9;
             this.checkBoxLongPathSupport.Text = "Long Path Support";
             this.checkBoxLongPathSupport.UseVisualStyleBackColor = true;
             // 
@@ -343,7 +343,7 @@ namespace TranslateFileNamesForm
             this.MaxThread.MaxLength = 2;
             this.MaxThread.Name = "MaxThread";
             this.MaxThread.Size = new System.Drawing.Size(62, 31);
-            this.MaxThread.TabIndex = 119;
+            this.MaxThread.TabIndex = 8;
             // 
             // labelMaxTranslateLen
             // 
@@ -360,7 +360,7 @@ namespace TranslateFileNamesForm
             this.MaxTranslateLen.MaxLength = 5;
             this.MaxTranslateLen.Name = "MaxTranslateLen";
             this.MaxTranslateLen.Size = new System.Drawing.Size(62, 31);
-            this.MaxTranslateLen.TabIndex = 121;
+            this.MaxTranslateLen.TabIndex = 11;
             // 
             // checkBoxAppendLanguageName
             // 
@@ -368,7 +368,7 @@ namespace TranslateFileNamesForm
             this.checkBoxAppendLanguageName.Location = new System.Drawing.Point(267, 56);
             this.checkBoxAppendLanguageName.Name = "checkBoxAppendLanguageName";
             this.checkBoxAppendLanguageName.Size = new System.Drawing.Size(236, 29);
-            this.checkBoxAppendLanguageName.TabIndex = 124;
+            this.checkBoxAppendLanguageName.TabIndex = 6;
             this.checkBoxAppendLanguageName.Text = "Append Language Name";
             this.checkBoxAppendLanguageName.UseVisualStyleBackColor = true;
             // 
@@ -378,7 +378,7 @@ namespace TranslateFileNamesForm
             this.checkBoxAppendOrginalName.Location = new System.Drawing.Point(267, 93);
             this.checkBoxAppendOrginalName.Name = "checkBoxAppendOrginalName";
             this.checkBoxAppendOrginalName.Size = new System.Drawing.Size(217, 29);
-            this.checkBoxAppendOrginalName.TabIndex = 123;
+            this.checkBoxAppendOrginalName.TabIndex = 10;
             this.checkBoxAppendOrginalName.Text = "Append Orginal Name";
             this.checkBoxAppendOrginalName.UseVisualStyleBackColor = true;
             // 
@@ -397,7 +397,7 @@ namespace TranslateFileNamesForm
             this.FileType.MaxLength = 128;
             this.FileType.Name = "FileType";
             this.FileType.Size = new System.Drawing.Size(45, 31);
-            this.FileType.TabIndex = 125;
+            this.FileType.TabIndex = 7;
             // 
             // comboBoxFilesPerTransReq
             // 
@@ -406,16 +406,16 @@ namespace TranslateFileNamesForm
             "Auto",
             "OnePerFile",
             "Many"});
-            this.comboBoxFilesPerTransReq.Location = new System.Drawing.Point(556, 140);
+            this.comboBoxFilesPerTransReq.Location = new System.Drawing.Point(809, 180);
             this.comboBoxFilesPerTransReq.Name = "comboBoxFilesPerTransReq";
             this.comboBoxFilesPerTransReq.Size = new System.Drawing.Size(155, 33);
-            this.comboBoxFilesPerTransReq.TabIndex = 127;
+            this.comboBoxFilesPerTransReq.TabIndex = 14;
             this.comboBoxFilesPerTransReq.Text = "Auto";
             // 
             // labelFilesPerTransReq
             // 
             this.labelFilesPerTransReq.AutoSize = true;
-            this.labelFilesPerTransReq.Location = new System.Drawing.Point(345, 142);
+            this.labelFilesPerTransReq.Location = new System.Drawing.Point(598, 182);
             this.labelFilesPerTransReq.Name = "labelFilesPerTransReq";
             this.labelFilesPerTransReq.Size = new System.Drawing.Size(205, 25);
             this.labelFilesPerTransReq.TabIndex = 128;
@@ -423,14 +423,24 @@ namespace TranslateFileNamesForm
             // 
             // RefreshList
             // 
-            this.RefreshList.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.RefreshList.Location = new System.Drawing.Point(552, 3);
+            this.RefreshList.Location = new System.Drawing.Point(527, 3);
             this.RefreshList.Name = "RefreshList";
             this.RefreshList.Size = new System.Drawing.Size(82, 34);
-            this.RefreshList.TabIndex = 129;
+            this.RefreshList.TabIndex = 3;
             this.RefreshList.Text = "Refresh";
             this.RefreshList.UseVisualStyleBackColor = true;
             this.RefreshList.Click += new System.EventHandler(this.RefreshList_Click);
+            // 
+            // linkLabelISO6391LangCode
+            // 
+            this.linkLabelISO6391LangCode.AutoSize = true;
+            this.linkLabelISO6391LangCode.Location = new System.Drawing.Point(342, 140);
+            this.linkLabelISO6391LangCode.Name = "linkLabelISO6391LangCode";
+            this.linkLabelISO6391LangCode.Size = new System.Drawing.Size(356, 25);
+            this.linkLabelISO6391LangCode.TabIndex = 130;
+            this.linkLabelISO6391LangCode.TabStop = true;
+            this.linkLabelISO6391LangCode.Text = "wikipedia.org/wiki/List_of_ISO_639-1_codes";
+            this.linkLabelISO6391LangCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelISO6391LangCode_LinkClicked);
             // 
             // Form1
             // 
@@ -451,6 +461,7 @@ namespace TranslateFileNamesForm
             this.Controls.Add(this.ClearList);
             this.Controls.Add(this.AddFiles);
             this.Controls.Add(this.fastObjListView1);
+            this.Controls.Add(this.linkLabelISO6391LangCode);
             this.Controls.Add(this.labelFilesPerTransReq);
             this.Controls.Add(this.comboBoxFilesPerTransReq);
             this.Controls.Add(this.labelFileType);
@@ -513,5 +524,6 @@ namespace TranslateFileNamesForm
         private ComboBox comboBoxFilesPerTransReq;
         private Label labelFilesPerTransReq;
         private Button RefreshList;
+        private LinkLabel linkLabelISO6391LangCode;
     }
 }

@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using BrightIdeasSoftware;
 using System.ComponentModel;
 using System.Collections;
+using System.Security.Policy;
+using System;
 
 namespace TranslateFileNamesForm
 {
@@ -129,6 +131,7 @@ namespace TranslateFileNamesForm
         private void ClearItemsOnList()
         {
             fastObjListView1.ClearObjects();
+            FilterText.Clear();
             QtyFilesToCheck = 0;
             QtyFilesRenameCandidate = -1;
             pBar1.Visible = false;
@@ -466,6 +469,36 @@ namespace TranslateFileNamesForm
         private void RefreshList_Click(object sender, EventArgs e)
         {
             AddFilesToList(_path);
+        }
+
+        private void linkLabelISO6391LangCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = "https://wikipedia.org/wiki/List_of_ISO_639-1_codes";
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                // hack because of this: https://github.com/dotnet/corefx/issues/10361
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    url = url.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 
