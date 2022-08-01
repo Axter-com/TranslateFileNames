@@ -11,6 +11,7 @@ Example use-case:
 
 ## Command Line Example Usage:
 
+
 TranslateFileNames -r
 
 TranslateFileNames "C:\Users\jane-doe\Pictures" -r -ext *.jpg
