@@ -14,8 +14,19 @@ Example use-case:
 # Content
 
 [Features](README.md#Features)
--  [1. Translates all file names in folder](README.md#1.-Translates-all-file-names-in-folder)
-
+-  [Translates all file names in folder](README.md#Translates-all-file-names-in-folder)
+-  [Modify translated name](README.md#Modify_translated_name)
+-  [Search Recursively](README.md#Search_Recursively)
+-  [Long Path Support](README.md#Long_Path_Support)
+-  [Append Original Name](README.md#Append_Original_Name)
+-  [Append Language Name](README.md#Append_Language_Name)
+-  [File Type](README.md#File_Type)
+-  [Max Threads](README.md#Max_Threads)
+-  [Max Translation Len](README.md#Max_Translation_Len)
+-  [Files-Per-Translation-Req](README.md#Files-Per-Translation-Req)
+-  [Target Language](README.md#Target_Language)
+-  [Source Language](README.md#Source_Language)
+-  [Filter](README.md#Filter)
 
 ## Features
 
@@ -44,44 +55,47 @@ File renaming does not occur untill one of the following options is selected.
 	
 		Renames only files which have not been checked.
 
+#### Filter
 
+This option allows user to use keywords to find or filter the list to only items having the keyword(s).
 
+When this option is used, and the "Rename All" option is selected, only the resulting filtered items displayed are renamed.
 
-#### 2.  Modify translated name
+#### Modify translated name
 
 The translated name on the list, can be edited before performing the rename action.
 
-#### 3.  Search Recursively
+#### Search Recursively
 
 By default, only the files on the root directory are scanned, but by selecting this option, the scan will also search all sub folders.
 
-#### 4.  Long Path Support
+#### Long Path Support
 
 By selecting this option, the rename will occur even if the full path is longer then 255 characters.
 
-#### 5.  Append Original Name 
+#### Append Original Name 
 
 When selected, this options includes the original file name when renaming the file.  Example: TranslatedName(OriginalName).gif
 
-#### 6.  Append Language Name
+#### Append Language Name
 
 When selected, appends the source language name to the renamed file. Example: TranslatedName_[Russian].gif
 
-#### 7.  File Type
+#### File Type
 
 This option can be used to scan only file a specific file extension. Example: .gif
 
-#### 8.  Max Threads
+#### Max Threads
 
 By default the programs uses the ProcessorCount to determine the maximum threads to use.  This options allows the end user to override that option.  The minimum value is 4, and the maximum value is 400.
 
-#### 9.  Max Translation Len
+#### Max Translation Len
 
 The translation length is used when the program translates many files in a single translation request.  This happens if there are many files (over 100), or if the user selects option to translate many files per request.
 
 This value is set to 10000 by default.  The minimum value is 255, and the maximum value is 10,000.
 
-#### 10  Files-Per-Translation-Req
+#### Files-Per-Translation-Req
 
 This options determines if one file is used per translation request, or if many files are used per translation request. The following are the possible options to select from the combobox window.
 
@@ -98,24 +112,18 @@ This options determines if one file is used per translation request, or if many 
 		Multiple files are sent per translation request. This is the perferred option if the files are all in either the source language or the target language.
 
 
-#### 11  Target Language
+#### Target Language
 
 This setting is an [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter code.
 By default, the target language is set to the operating system language settings. (CurrentCulture.TwoLetterISOLanguageName)
 
 Use this option to override the target language.  See [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) link to get desired language code.
 
-#### 12  Source Language
+#### Source Language
 
 This is empty by default. When this value is empty, the translation works in "Auto" mode, which lets the translator determine the source language.
 
 For most use cases, this value should be left empty.  If populated, use [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) link to get desired language code.
-
-#### 13  Filter
-
-This option allows user to use keywords to find or filter the list to only items having the keyword(s).
-
-When this option is used, and the "Rename All" option is selected, only the resulting filtered items displayed are renamed.
 
 [![Screenshot2](doc/screenshot2.png)](https://github.com/David-Maisonave/TranslateFileNames)
 
