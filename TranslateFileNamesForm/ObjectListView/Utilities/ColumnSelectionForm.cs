@@ -8,14 +8,6 @@
  * 2013-04-21  JPP  - Fixed obscure bug in column re-ordered. Thanks to Edwin Chen.
  */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
 namespace BrightIdeasSoftware
 {
     /// <summary>
@@ -30,9 +22,9 @@ namespace BrightIdeasSoftware
     /// </remarks>
     public partial class ColumnSelectionForm : Form
     {
-    	/// <summary>
-    	/// Make a new ColumnSelectionForm
-    	/// </summary>
+        /// <summary>
+        /// Make a new ColumnSelectionForm
+        /// </summary>
         public ColumnSelectionForm()
         {
             InitializeComponent();
@@ -59,7 +51,7 @@ namespace BrightIdeasSoftware
                 return;
 
             this.InitializeForm(olv, view);
-            if (this.ShowDialog() == DialogResult.OK) 
+            if (this.ShowDialog() == DialogResult.OK)
                 this.Apply(olv, view);
         }
 
@@ -72,7 +64,8 @@ namespace BrightIdeasSoftware
         {
             this.AllColumns = olv.AllColumns;
             this.RearrangableColumns = new List<OLVColumn>(this.AllColumns);
-            foreach (OLVColumn col in this.RearrangableColumns) {
+            foreach (OLVColumn col in this.RearrangableColumns)
+            {
                 if (view == View.Details)
                     this.MapColumnToVisible[col] = col.IsVisible;
                 else
@@ -80,14 +73,16 @@ namespace BrightIdeasSoftware
             }
             this.RearrangableColumns.Sort(new SortByDisplayOrder(this));
 
-            this.objectListView1.BooleanCheckStateGetter = delegate(Object rowObject) {
+            this.objectListView1.BooleanCheckStateGetter = delegate (Object rowObject)
+            {
                 return this.MapColumnToVisible[(OLVColumn)rowObject];
             };
 
-            this.objectListView1.BooleanCheckStatePutter = delegate(Object rowObject, bool newValue) {
+            this.objectListView1.BooleanCheckStatePutter = delegate (Object rowObject, bool newValue)
+            {
                 // Some columns should always be shown, so ignore attempts to hide them
                 OLVColumn column = (OLVColumn)rowObject;
-                if (!column.CanBeHidden) 
+                if (!column.CanBeHidden)
                     return true;
 
                 this.MapColumnToVisible[column] = newValue;
@@ -112,27 +107,34 @@ namespace BrightIdeasSoftware
             olv.Freeze();
 
             // Update the column definitions to reflect whether they have been hidden
-            if (view == View.Details) {
+            if (view == View.Details)
+            {
                 foreach (OLVColumn col in olv.AllColumns)
                     col.IsVisible = this.MapColumnToVisible[col];
-            } else {
+            }
+            else
+            {
                 foreach (OLVColumn col in olv.AllColumns)
                     col.IsTileViewColumn = this.MapColumnToVisible[col];
             }
 
             // Collect the columns are still visible
             List<OLVColumn> visibleColumns = this.RearrangableColumns.FindAll(
-                delegate(OLVColumn x) { return this.MapColumnToVisible[x]; });
+                delegate (OLVColumn x) { return this.MapColumnToVisible[x]; });
 
             // Detail view and Tile view have to be handled in different ways.
-            if (view == View.Details) {
+            if (view == View.Details)
+            {
                 // Of the still visible columns, change DisplayIndex to reflect their position in the rearranged list
                 olv.ChangeToFilteredColumns(view);
-                foreach (OLVColumn col in visibleColumns) {
+                foreach (OLVColumn col in visibleColumns)
+                {
                     col.DisplayIndex = visibleColumns.IndexOf((OLVColumn)col);
                     col.LastDisplayIndex = col.DisplayIndex;
                 }
-            } else {
+            }
+            else
+            {
                 // In Tile view, DisplayOrder does nothing. So to change the display order, we have to change the 
                 // order of the columns in the Columns property.
                 // Remember, the primary column is special and has to remain first!
@@ -155,7 +157,7 @@ namespace BrightIdeasSoftware
             int selectedIndex = this.objectListView1.SelectedIndices[0];
             OLVColumn col = this.RearrangableColumns[selectedIndex];
             this.RearrangableColumns.RemoveAt(selectedIndex);
-            this.RearrangableColumns.Insert(selectedIndex-1, col);
+            this.RearrangableColumns.Insert(selectedIndex - 1, col);
 
             this.objectListView1.BuildList();
 
@@ -210,12 +212,15 @@ namespace BrightIdeasSoftware
         /// </summary>
         protected void EnableControls()
         {
-            if (this.objectListView1.SelectedIndices.Count == 0) {
+            if (this.objectListView1.SelectedIndices.Count == 0)
+            {
                 this.buttonMoveUp.Enabled = false;
                 this.buttonMoveDown.Enabled = false;
                 this.buttonShow.Enabled = false;
                 this.buttonHide.Enabled = false;
-            } else {
+            }
+            else
+            {
                 // Can't move the first row up or the last row down
                 this.buttonMoveUp.Enabled = (this.objectListView1.SelectedIndices[0] != 0);
                 this.buttonMoveDown.Enabled = (this.objectListView1.SelectedIndices[0] < (this.objectListView1.GetItemCount() - 1));

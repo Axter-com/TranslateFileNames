@@ -135,7 +135,7 @@ public sealed class LanguageDictionary : ILanguageDictionary<string, Language>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         aliases.TrimExcess();
 #endif
-        
+
         return aliases;
     }
 

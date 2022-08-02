@@ -1,11 +1,11 @@
-﻿using System;
+﻿using GTranslate.Extensions;
+using GTranslate.Results;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using GTranslate.Extensions;
-using GTranslate.Results;
 
 namespace GTranslate.Translators;
 

@@ -35,13 +35,11 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing.Design;
-using System.Windows.Forms;
 
 namespace BrightIdeasSoftware
 {
@@ -78,7 +76,8 @@ namespace BrightIdeasSoftware
         /// 
         /// </summary>
         /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing) {
+        protected override void Dispose(bool disposing)
+        {
             this.Adapter.Dispose();
             base.Dispose(disposing);
         }
@@ -95,7 +94,8 @@ namespace BrightIdeasSoftware
         [Category("Data"),
          Description("Should the control automatically generate columns from the DataSource"),
          DefaultValue(true)]
-        public bool AutoGenerateColumns {
+        public bool AutoGenerateColumns
+        {
             get { return this.Adapter.AutoGenerateColumns; }
             set { this.Adapter.AutoGenerateColumns = value; }
         }
@@ -157,10 +157,12 @@ namespace BrightIdeasSoftware
         /// <remarks>
         /// Adaptors cannot be shared between controls. Each DataListView needs its own adapter.
         /// </remarks>
-        protected DataSourceAdapter Adapter {
-            get {
+        protected DataSourceAdapter Adapter
+        {
+            get
+            {
                 Debug.Assert(adapter != null, "Data adapter should not be null");
-                return adapter; 
+                return adapter;
             }
             set { adapter = value; }
         }
@@ -189,7 +191,8 @@ namespace BrightIdeasSoftware
         /// <remarks>This is a no-op for data lists, since the data
         /// is controlled by the DataSource. Manipulate the data source
         /// rather than this view of the data source.</remarks>
-        public override void InsertObjects(int index, ICollection modelObjects) {
+        public override void InsertObjects(int index, ICollection modelObjects)
+        {
         }
 
         /// <summary>
@@ -209,13 +212,14 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Change the Unfreeze behaviour 
         /// </summary>
-        protected override void DoUnfreeze() {
+        protected override void DoUnfreeze()
+        {
 
             // Copied from base method, but we don't need to BuildList() since we know that our
             // data adaptor is going to do that immediately after this method exits.
             this.EndUpdate();
             this.ResizeFreeSpaceFillingColumns();
-           // this.BuildList();
+            // this.BuildList();
         }
 
         /// <summary>

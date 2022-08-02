@@ -40,8 +40,6 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace BrightIdeasSoftware
@@ -91,12 +89,15 @@ namespace BrightIdeasSoftware
         /// <param name="propertyName">The name of the property/field to be modified</param>
         /// <param name="value">The value to be assigned</param>
         /// <returns>Did the modification work?</returns>
-        public static bool PutProperty(object target, string propertyName, object value) {
-            try {
+        public static bool PutProperty(object target, string propertyName, object value)
+        {
+            try
+            {
                 Munger munger = new Munger(propertyName);
                 return munger.PutValue(target, value);
             }
-            catch (MungerException) {
+            catch (MungerException)
+            {
                 // Not a lot we can do about this. Something went wrong in the bowels
                 // of the property. Let's take the ostrich approach and just ignore it :-)
 
@@ -104,7 +105,7 @@ namespace BrightIdeasSoftware
                 // However, in this case, this is a utility method that explicitly 
                 // contracts to catch and ignore errors. If this is not acceptable,
                 // the programmer should not use this method.
-            } 
+            }
 
             return false;
         }
@@ -121,9 +122,10 @@ namespace BrightIdeasSoftware
         /// </para>
         /// <para>By default this is true during release builds.</para>
         /// </remarks>
-        public static bool IgnoreMissingAspects {
-            get { return ignoreMissingAspects;  }
-            set { ignoreMissingAspects = value;  }
+        public static bool IgnoreMissingAspects
+        {
+            get { return ignoreMissingAspects; }
+            set { ignoreMissingAspects = value; }
         }
         private static bool ignoreMissingAspects
 #if !DEBUG
@@ -152,7 +154,8 @@ namespace BrightIdeasSoftware
         public string AspectName
         {
             get { return aspectName; }
-            set { 
+            set
+            {
                 aspectName = value;
 
                 // Clear any cache
@@ -172,16 +175,20 @@ namespace BrightIdeasSoftware
         /// <remarks>If the aspect name is null or empty, this will return null.</remarks>
         /// <param name="target">The object that will be peeked</param>
         /// <returns>The value read from the target</returns>
-        public Object GetValue(Object target) {
+        public Object GetValue(Object target)
+        {
             if (this.Parts.Count == 0)
                 return null;
 
-            try {
+            try
+            {
                 return this.EvaluateParts(target, this.Parts);
-            } catch (MungerException ex) {
-                if (Munger.IgnoreMissingAspects) 
+            }
+            catch (MungerException ex)
+            {
+                if (Munger.IgnoreMissingAspects)
                     return null;
-                
+
                 return String.Format("'{0}' is not a parameter-less method, property or field of type '{1}'",
                                          ex.Munger.AspectName, ex.Target.GetType());
             }
@@ -194,7 +201,8 @@ namespace BrightIdeasSoftware
         /// <remarks>If the aspect name is null or empty, this will return null.</remarks>
         /// <param name="target">The object that will be peeked</param>
         /// <returns>The value read from the target</returns>
-        public Object GetValueEx(Object target) {
+        public Object GetValueEx(Object target)
+        {
             if (this.Parts.Count == 0)
                 return null;
 
@@ -226,21 +234,29 @@ namespace BrightIdeasSoftware
 
             SimpleMunger lastPart = this.Parts[this.Parts.Count - 1];
 
-            if (this.Parts.Count > 1) {
+            if (this.Parts.Count > 1)
+            {
                 List<SimpleMunger> parts = new List<SimpleMunger>(this.Parts);
                 parts.RemoveAt(parts.Count - 1);
-                try {
+                try
+                {
                     target = this.EvaluateParts(target, parts);
-                } catch (MungerException ex) {
+                }
+                catch (MungerException ex)
+                {
                     this.ReportPutValueException(ex);
                     return false;
                 }
             }
 
-            if (target != null) {
-                try {
+            if (target != null)
+            {
+                try
+                {
                     return lastPart.PutValue(target, value);
-                } catch (MungerException ex) {
+                }
+                catch (MungerException ex)
+                {
                     this.ReportPutValueException(ex);
                 }
             }
@@ -255,8 +271,10 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets the list of SimpleMungers that match our AspectName
         /// </summary>
-        private IList<SimpleMunger> Parts {
-            get {
+        private IList<SimpleMunger> Parts
+        {
+            get
+            {
                 if (aspectParts == null)
                     aspectParts = BuildParts(this.AspectName);
                 return aspectParts;
@@ -269,10 +287,13 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="aspect"></param>
         /// <returns></returns>
-        private IList<SimpleMunger> BuildParts(string aspect) {
+        private IList<SimpleMunger> BuildParts(string aspect)
+        {
             List<SimpleMunger> parts = new List<SimpleMunger>();
-            if (!String.IsNullOrEmpty(aspect)) {
-                foreach (string part in aspect.Split('.')) {
+            if (!String.IsNullOrEmpty(aspect))
+            {
+                foreach (string part in aspect.Split('.'))
+                {
                     parts.Add(new SimpleMunger(part.Trim()));
                 }
             }
@@ -285,8 +306,10 @@ namespace BrightIdeasSoftware
         /// <param name="target"></param>
         /// <param name="parts"></param>
         /// <returns></returns>
-        private object EvaluateParts(object target, IList<SimpleMunger> parts) {
-            foreach (SimpleMunger part in parts) {
+        private object EvaluateParts(object target, IList<SimpleMunger> parts)
+        {
+            foreach (SimpleMunger part in parts)
+            {
                 if (target == null)
                     break;
                 target = part.GetValue(target);
@@ -294,7 +317,8 @@ namespace BrightIdeasSoftware
             return target;
         }
 
-        private void ReportPutValueException(MungerException ex) {
+        private void ReportPutValueException(MungerException ex)
+        {
             //TODO: How should we report this error?
             System.Diagnostics.Debug.WriteLine("PutValue failed");
             System.Diagnostics.Debug.WriteLine(String.Format("- Culprit aspect: {0}", ex.Munger.AspectName));
@@ -341,7 +365,8 @@ namespace BrightIdeasSoftware
         /// It cannot be a dotted name.
         /// </para>
         /// </remarks>
-        public string AspectName {
+        public string AspectName
+        {
             get { return aspectName; }
         }
         private readonly string aspectName;
@@ -355,13 +380,15 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        public Object GetValue(Object target) {
+        public Object GetValue(Object target)
+        {
             if (target == null)
                 return null;
 
             this.ResolveName(target, this.AspectName, 0);
 
-            try {
+            try
+            {
                 if (this.resolvedPropertyInfo != null)
                     return this.resolvedPropertyInfo.GetValue(target, null);
 
@@ -375,7 +402,9 @@ namespace BrightIdeasSoftware
                 // This covers things like dictionaries and DataRows.
                 if (this.indexerPropertyInfo != null)
                     return this.indexerPropertyInfo.GetValue(target, new object[] { this.AspectName });
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 // Lots of things can do wrong in these invocations
                 throw new MungerException(this, target, ex);
             }
@@ -390,35 +419,43 @@ namespace BrightIdeasSoftware
         /// <param name="target">The object that will be poked</param>
         /// <param name="value">The value that will be poked into the target</param>
         /// <returns>bool indicating if the put worked</returns>
-        public bool PutValue(object target, object value) {
+        public bool PutValue(object target, object value)
+        {
             if (target == null)
                 return false;
 
             this.ResolveName(target, this.AspectName, 1);
 
-            try {
-                if (this.resolvedPropertyInfo != null) {
+            try
+            {
+                if (this.resolvedPropertyInfo != null)
+                {
                     this.resolvedPropertyInfo.SetValue(target, value, null);
                     return true;
                 }
 
-                if (this.resolvedMethodInfo != null) {
+                if (this.resolvedMethodInfo != null)
+                {
                     this.resolvedMethodInfo.Invoke(target, new object[] { value });
                     return true;
                 }
 
-                if (this.resolvedFieldInfo != null) {
+                if (this.resolvedFieldInfo != null)
+                {
                     this.resolvedFieldInfo.SetValue(target, value);
                     return true;
                 }
 
                 // If that didn't work, try to use the indexer property. 
                 // This covers things like dictionaries and DataRows.
-                if (this.indexerPropertyInfo != null) {
+                if (this.indexerPropertyInfo != null)
+                {
                     this.indexerPropertyInfo.SetValue(target, value, new object[] { this.AspectName });
                     return true;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 // Lots of things can do wrong in these invocations
                 throw new MungerException(this, target, ex);
             }
@@ -430,7 +467,8 @@ namespace BrightIdeasSoftware
 
         #region Implementation
 
-        private void ResolveName(object target, string name, int numberMethodParameters) {
+        private void ResolveName(object target, string name, int numberMethodParameters)
+        {
 
             if (cachedTargetType == target.GetType() && cachedName == name && cachedNumberParameters == numberMethodParameters)
                 return;
@@ -446,33 +484,41 @@ namespace BrightIdeasSoftware
 
             const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance /*| BindingFlags.NonPublic*/;
 
-            foreach (PropertyInfo pinfo in target.GetType().GetProperties(flags)) {
-                if (pinfo.Name == name) {
+            foreach (PropertyInfo pinfo in target.GetType().GetProperties(flags))
+            {
+                if (pinfo.Name == name)
+                {
                     resolvedPropertyInfo = pinfo;
                     return;
                 }
-                
+
                 // See if we can find an string indexer property while we are here.
                 // We also need to allow for old style <object> keyed collections.
-                if (indexerPropertyInfo == null && pinfo.Name == "Item") {
+                if (indexerPropertyInfo == null && pinfo.Name == "Item")
+                {
                     ParameterInfo[] par = pinfo.GetGetMethod().GetParameters();
-                    if (par.Length > 0) {
-                         Type parameterType = par[0].ParameterType;
-                         if (parameterType == typeof(string) || parameterType == typeof(object))
-                              indexerPropertyInfo = pinfo;
+                    if (par.Length > 0)
+                    {
+                        Type parameterType = par[0].ParameterType;
+                        if (parameterType == typeof(string) || parameterType == typeof(object))
+                            indexerPropertyInfo = pinfo;
                     }
                 }
             }
 
-            foreach (FieldInfo info in target.GetType().GetFields(flags)) {
-                if (info.Name == name) {
+            foreach (FieldInfo info in target.GetType().GetFields(flags))
+            {
+                if (info.Name == name)
+                {
                     resolvedFieldInfo = info;
                     return;
                 }
             }
 
-            foreach (MethodInfo info in target.GetType().GetMethods(flags)) {
-                if (info.Name == name && info.GetParameters().Length == numberMethodParameters) {
+            foreach (MethodInfo info in target.GetType().GetMethods(flags))
+            {
+                if (info.Name == name && info.GetParameters().Length == numberMethodParameters)
+                {
                     resolvedMethodInfo = info;
                     return;
                 }
@@ -487,7 +533,7 @@ namespace BrightIdeasSoftware
         private PropertyInfo resolvedPropertyInfo;
         private MethodInfo resolvedMethodInfo;
         private PropertyInfo indexerPropertyInfo;
-        
+
         #endregion
     }
 
@@ -503,7 +549,8 @@ namespace BrightIdeasSoftware
         /// <param name="target"></param>
         /// <param name="ex"></param>
         public MungerException(SimpleMunger munger, object target, Exception ex)
-            : base("Munger failed", ex) {
+            : base("Munger failed", ex)
+        {
             this.munger = munger;
             this.target = target;
         }
@@ -511,7 +558,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Get the munger that raised the exception
         /// </summary>
-        public SimpleMunger Munger {
+        public SimpleMunger Munger
+        {
             get { return munger; }
         }
         private readonly SimpleMunger munger;
@@ -519,7 +567,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets the target that threw the exception
         /// </summary>
-        public object Target {
+        public object Target
+        {
             get { return target; }
         }
         private readonly object target;

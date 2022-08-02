@@ -28,11 +28,8 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Windows.Forms;
-using System.Drawing;
-
-namespace BrightIdeasSoftware {
+namespace BrightIdeasSoftware
+{
 
     #region Delegate declarations
 
@@ -126,7 +123,7 @@ namespace BrightIdeasSoftware {
     /// These delegates are used to get the tooltip for a column header
     /// </summary>
     public delegate String HeaderToolTipGetterDelegate(OLVColumn column);
-        
+
     /// <summary>
     /// These delegates are used to fetch the image selector that should be used
     /// to choose an image for this column.

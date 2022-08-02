@@ -35,10 +35,6 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
 namespace BrightIdeasSoftware
 {
     /// <summary>
@@ -60,14 +56,16 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Create a new OLVColumnAttribute
         /// </summary>
-        public OLVColumnAttribute() {
+        public OLVColumnAttribute()
+        {
         }
 
         /// <summary>
         /// Create a new OLVColumnAttribute with the given title
         /// </summary>
         /// <param name="title">The title of the column</param>
-        public OLVColumnAttribute(string title) {
+        public OLVColumnAttribute(string title)
+        {
             this.Title = title;
         }
 
@@ -78,7 +76,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public string AspectToStringFormat {
+        public string AspectToStringFormat
+        {
             get { return aspectToStringFormat; }
             set { aspectToStringFormat = value; }
         }
@@ -87,9 +86,11 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool CheckBoxes {
+        public bool CheckBoxes
+        {
             get { return checkBoxes; }
-            set {
+            set
+            {
                 checkBoxes = value;
                 this.IsCheckBoxesSet = true;
             }
@@ -100,7 +101,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public int DisplayIndex {
+        public int DisplayIndex
+        {
             get { return displayIndex; }
             set { displayIndex = value; }
         }
@@ -109,7 +111,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool FillsFreeSpace {
+        public bool FillsFreeSpace
+        {
             get { return fillsFreeSpace; }
             set { fillsFreeSpace = value; }
         }
@@ -118,9 +121,11 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public int FreeSpaceProportion {
+        public int FreeSpaceProportion
+        {
             get { return freeSpaceProportion; }
-            set {
+            set
+            {
                 freeSpaceProportion = value;
                 IsFreeSpaceProportionSet = true;
             }
@@ -132,7 +137,8 @@ namespace BrightIdeasSoftware
         /// An array of IComparables that mark the cutoff points for values when
         /// grouping on this column. 
         /// </summary>
-        public object[] GroupCutoffs {
+        public object[] GroupCutoffs
+        {
             get { return groupCutoffs; }
             set { groupCutoffs = value; }
         }
@@ -141,7 +147,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public string[] GroupDescriptions {
+        public string[] GroupDescriptions
+        {
             get { return groupDescriptions; }
             set { groupDescriptions = value; }
         }
@@ -150,7 +157,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public string GroupWithItemCountFormat {
+        public string GroupWithItemCountFormat
+        {
             get { return groupWithItemCountFormat; }
             set { groupWithItemCountFormat = value; }
         }
@@ -159,7 +167,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public string GroupWithItemCountSingularFormat {
+        public string GroupWithItemCountSingularFormat
+        {
             get { return groupWithItemCountSingularFormat; }
             set { groupWithItemCountSingularFormat = value; }
         }
@@ -168,7 +177,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool Hyperlink {
+        public bool Hyperlink
+        {
             get { return hyperlink; }
             set { hyperlink = value; }
         }
@@ -177,7 +187,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public string ImageAspectName {
+        public string ImageAspectName
+        {
             get { return imageAspectName; }
             set { imageAspectName = value; }
         }
@@ -186,9 +197,11 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool IsEditable {
+        public bool IsEditable
+        {
             get { return isEditable; }
-            set {
+            set
+            {
                 isEditable = value;
                 this.IsEditableSet = true;
             }
@@ -199,7 +212,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool IsVisible {
+        public bool IsVisible
+        {
             get { return isVisible; }
             set { isVisible = value; }
         }
@@ -208,7 +222,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool IsTileViewColumn {
+        public bool IsTileViewColumn
+        {
             get { return isTileViewColumn; }
             set { isTileViewColumn = value; }
         }
@@ -217,7 +232,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public int MaximumWidth {
+        public int MaximumWidth
+        {
             get { return maximumWidth; }
             set { maximumWidth = value; }
         }
@@ -226,7 +242,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public int MinimumWidth {
+        public int MinimumWidth
+        {
             get { return minimumWidth; }
             set { minimumWidth = value; }
         }
@@ -235,7 +252,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public String Name {
+        public String Name
+        {
             get { return name; }
             set { name = value; }
         }
@@ -244,9 +262,11 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public HorizontalAlignment TextAlign {
+        public HorizontalAlignment TextAlign
+        {
             get { return this.textAlign; }
-            set {
+            set
+            {
                 this.textAlign = value;
                 IsTextAlignSet = true;
             }
@@ -257,7 +277,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public String Tag {
+        public String Tag
+        {
             get { return tag; }
             set { tag = value; }
         }
@@ -266,7 +287,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public String Title {
+        public String Title
+        {
             get { return title; }
             set { title = value; }
         }
@@ -275,7 +297,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public String ToolTipText {
+        public String ToolTipText
+        {
             get { return toolTipText; }
             set { toolTipText = value; }
         }
@@ -284,9 +307,11 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool TriStateCheckBoxes {
+        public bool TriStateCheckBoxes
+        {
             get { return triStateCheckBoxes; }
-            set { 
+            set
+            {
                 triStateCheckBoxes = value;
                 this.IsTriStateCheckBoxesSet = true;
             }
@@ -297,7 +322,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public bool UseInitialLetterForGroup {
+        public bool UseInitialLetterForGroup
+        {
             get { return useInitialLetterForGroup; }
             set { useInitialLetterForGroup = value; }
         }
@@ -306,7 +332,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public int Width {
+        public int Width
+        {
             get { return width; }
             set { width = value; }
         }
@@ -321,7 +348,7 @@ namespace BrightIdeasSoftware
     [AttributeUsage(AttributeTargets.Property)]
     public class OLVChildrenAttribute : Attribute
     {
-        
+
     }
 
     /// <summary>

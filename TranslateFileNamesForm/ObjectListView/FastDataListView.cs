@@ -27,12 +27,9 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Data;
 using System.Drawing.Design;
 
 namespace BrightIdeasSoftware
@@ -56,7 +53,8 @@ namespace BrightIdeasSoftware
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (this.adapter != null) {
+            if (this.adapter != null)
+            {
                 this.adapter.Dispose();
                 this.adapter = null;
             }
@@ -102,7 +100,8 @@ namespace BrightIdeasSoftware
         /// </remarks>
         [Category("Data"),
         TypeConverter("System.Windows.Forms.Design.DataSourceConverter, System.Design")]
-        public virtual Object DataSource {
+        public virtual Object DataSource
+        {
             get { return this.Adapter.DataSource; }
             set { this.Adapter.DataSource = value; }
         }
@@ -114,7 +113,8 @@ namespace BrightIdeasSoftware
         [Category("Data"),
          Editor("System.Windows.Forms.Design.DataMemberListEditor, System.Design", typeof(UITypeEditor)),
          DefaultValue("")]
-        public virtual string DataMember {
+        public virtual string DataMember
+        {
             get { return this.Adapter.DataMember; }
             set { this.Adapter.DataMember = value; }
         }
@@ -127,8 +127,10 @@ namespace BrightIdeasSoftware
         /// Gets or sets the DataSourceAdaptor that does the bulk of the work needed
         /// for data binding.
         /// </summary>
-        protected DataSourceAdapter Adapter {
-            get {
+        protected DataSourceAdapter Adapter
+        {
+            get
+            {
                 if (adapter == null)
                     adapter = this.CreateDataSourceAdapter();
                 return adapter;
@@ -147,7 +149,8 @@ namespace BrightIdeasSoftware
         /// <returns>A DataSourceAdapter configured for this list</returns>
         /// <remarks>Subclasses should override this to create their
         /// own specialized adapters</remarks>
-        protected virtual DataSourceAdapter CreateDataSourceAdapter() {
+        protected virtual DataSourceAdapter CreateDataSourceAdapter()
+        {
             return new DataSourceAdapter(this);
         }
 

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
+﻿using GTranslate.Translators;
 using System.Diagnostics;
-using GTranslate.Translators;
-using Microsoft.VisualBasic.FileIO;
-using static TranslateFilenamesCore.TranslateFilenames;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using SearchOption = System.IO.SearchOption;
 
 namespace TranslateFilenamesCore
@@ -50,7 +42,7 @@ namespace TranslateFilenamesCore
                 return false;
             }
             if (PathToTranslate != null && PathToTranslate.Length > 0)
-                _options._path = new string (PathToTranslate);
+                _options._path = new string(PathToTranslate);
             if (_options._path == null || _options._path.Length == 0)
                 _options._path = Directory.GetCurrentDirectory();
 
@@ -323,8 +315,8 @@ namespace TranslateFilenamesCore
                 _options._programCommandLineName = _options._assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title;
                 _options._programVersion = _options._assembly.GetName().Version.ToString();
                 _options._programFileVersion = _options._assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version.ToString();
-                var Description = _options._assembly.GetCustomAttribute<AssemblyDescriptionAttribute>();  
-                if (Description != null) 
+                var Description = _options._assembly.GetCustomAttribute<AssemblyDescriptionAttribute>();
+                if (Description != null)
                     _options._programDescription = Description.Description;
                 else
                     _options._programDescription = new string("File name language translator");

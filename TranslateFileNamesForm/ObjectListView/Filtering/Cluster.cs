@@ -25,16 +25,14 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BrightIdeasSoftware {
+namespace BrightIdeasSoftware
+{
 
     /// <summary>
     /// Concrete implementation of the ICluster interface.
     /// </summary>
-    public class Cluster : ICluster {
+    public class Cluster : ICluster
+    {
 
         #region Life and death
 
@@ -42,7 +40,8 @@ namespace BrightIdeasSoftware {
         /// Create a cluster
         /// </summary>
         /// <param name="key">The key for the cluster</param>
-        public Cluster(object key) {
+        public Cluster(object key)
+        {
             this.Count = 1;
             this.ClusterKey = key;
         }
@@ -55,7 +54,8 @@ namespace BrightIdeasSoftware {
         /// Return a string representation of this cluster
         /// </summary>
         /// <returns></returns>
-        public override string ToString() {
+        public override string ToString()
+        {
             return this.DisplayLabel ?? "[empty]";
         }
 
@@ -66,7 +66,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets how many items belong to this cluster
         /// </summary>
-        public int Count {
+        public int Count
+        {
             get { return count; }
             set { count = value; }
         }
@@ -76,7 +77,8 @@ namespace BrightIdeasSoftware {
         /// Gets or sets the label that will be shown to the user to represent
         /// this cluster
         /// </summary>
-        public string DisplayLabel {
+        public string DisplayLabel
+        {
             get { return displayLabel; }
             set { displayLabel = value; }
         }
@@ -86,7 +88,8 @@ namespace BrightIdeasSoftware {
         /// Gets or sets the actual data object that all members of this cluster
         /// have commonly returned.
         /// </summary>
-        public object ClusterKey {
+        public object ClusterKey
+        {
             get { return clusterKey; }
             set { clusterKey = value; }
         }
@@ -101,7 +104,8 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public int CompareTo(object? other) {
+        public int CompareTo(object? other)
+        {
             if (other == null || other == System.DBNull.Value)
                 return 1;
 

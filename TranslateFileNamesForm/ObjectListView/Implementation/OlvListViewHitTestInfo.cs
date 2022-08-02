@@ -25,17 +25,14 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-
-namespace BrightIdeasSoftware {
+namespace BrightIdeasSoftware
+{
 
     /// <summary>
     /// An indication of where a hit was within ObjectListView cell
     /// </summary>
-    public enum HitTestLocation {
+    public enum HitTestLocation
+    {
         /// <summary>
         /// Nowhere
         /// </summary>
@@ -106,7 +103,8 @@ namespace BrightIdeasSoftware {
     /// A collection of ListViewHitTest constants
     /// </summary>
     [Flags]
-    public enum HitTestLocationEx {
+    public enum HitTestLocationEx
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -193,7 +191,8 @@ namespace BrightIdeasSoftware {
     /// </summary>
     /// <remarks>Custom renderers can use HitTestLocation.UserDefined and the UserData
     /// object to store more specific locations for use during event handlers.</remarks>
-    public class OlvListViewHitTestInfo {
+    public class OlvListViewHitTestInfo
+    {
 
         /// <summary>
         /// Create a OlvListViewHitTestInfo
@@ -208,7 +207,8 @@ namespace BrightIdeasSoftware {
             this.ColumnIndex = iColumn;
             this.ListView = olvListItem == null ? null : (ObjectListView)olvListItem.ListView;
 
-            switch (location) {
+            switch (location)
+            {
                 case ListViewHitTestLocations.StateImage:
                     this.HitTestLocation = HitTestLocation.CheckBox;
                     break;
@@ -232,7 +232,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Create a OlvListViewHitTestInfo when the header was hit
         /// </summary>
-        public OlvListViewHitTestInfo(ObjectListView olv, int iColumn, bool isOverCheckBox, int iDivider) {
+        public OlvListViewHitTestInfo(ObjectListView olv, int iColumn, bool isOverCheckBox, int iDivider)
+        {
             this.ListView = olv;
             this.ColumnIndex = iColumn;
             this.HeaderDividerIndex = iDivider;
@@ -286,7 +287,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the item that was hit
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             internal set { item = value; }
         }
@@ -295,7 +297,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the subitem that was hit
         /// </summary>
-        public OLVListSubItem SubItem {
+        public OLVListSubItem SubItem
+        {
             get { return subItem; }
             internal set { subItem = value; }
         }
@@ -304,7 +307,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the part of the subitem that was hit
         /// </summary>
-        public ListViewHitTestLocations Location {
+        public ListViewHitTestLocations Location
+        {
             get { return location; }
             internal set { location = value; }
         }
@@ -313,7 +317,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the ObjectListView that was tested
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return listView; }
             internal set { listView = value; }
         }
@@ -322,8 +327,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model object that was hit
         /// </summary>
-        public Object RowObject {
-            get {
+        public Object RowObject
+        {
+            get
+            {
                 return this.Item == null ? null : this.Item.RowObject;
             }
         }
@@ -331,14 +338,16 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the index of the row under the hit point or -1
         /// </summary>
-        public int RowIndex {
+        public int RowIndex
+        {
             get { return this.Item == null ? -1 : this.Item.Index; }
         }
 
         /// <summary>
         /// Gets the index of the column under the hit point
         /// </summary>
-        public int ColumnIndex {
+        public int ColumnIndex
+        {
             get { return columnIndex; }
             internal set { columnIndex = value; }
         }
@@ -347,7 +356,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the index of the header divider
         /// </summary>
-        public int HeaderDividerIndex {
+        public int HeaderDividerIndex
+        {
             get { return headerDividerIndex; }
             internal set { headerDividerIndex = value; }
         }
@@ -356,8 +366,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the column that was hit
         /// </summary>
-        public OLVColumn Column {
-            get {
+        public OLVColumn Column
+        {
+            get
+            {
                 int index = this.ColumnIndex;
                 return index < 0 || this.ListView == null ? null : this.ListView.GetColumn(index);
             }
@@ -374,7 +386,7 @@ namespace BrightIdeasSoftware {
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return string.Format("HitTestLocation: {0}, HitTestLocationEx: {1}, Item: {2}, SubItem: {3}, Location: {4}, Group: {5}, ColumnIndex: {6}", 
+            return string.Format("HitTestLocation: {0}, HitTestLocationEx: {1}, Item: {2}, SubItem: {3}, Location: {4}, Group: {5}, ColumnIndex: {6}",
                 this.HitTestLocation, this.HitTestLocationEx, this.item, this.subItem, this.location, this.Group, this.ColumnIndex);
         }
 

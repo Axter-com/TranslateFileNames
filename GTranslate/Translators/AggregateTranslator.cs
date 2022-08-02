@@ -1,8 +1,8 @@
-﻿using System;
+﻿using GTranslate.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GTranslate.Results;
 
 namespace GTranslate.Translators;
 

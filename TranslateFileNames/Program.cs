@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Diagnostics;
-using GTranslate.Translators;
-using TranslateFilenamesCore;
-
-
-namespace TranslateFilenamesConsole
+﻿namespace TranslateFilenamesConsole
 {
     public class Program
     {
@@ -24,7 +11,7 @@ namespace TranslateFilenamesConsole
 
     public class TranslateFilenamesConsole : TranslateFilenamesCore.TranslateFilenames
     {
-        public TranslateFilenamesConsole(string[] args): base(args, true, true)
+        public TranslateFilenamesConsole(string[] args) : base(args, true, true)
         {
         }
 

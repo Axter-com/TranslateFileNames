@@ -34,12 +34,8 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace BrightIdeasSoftware
 {
@@ -47,26 +43,31 @@ namespace BrightIdeasSoftware
     /// An interface that allows cell editors to specifically handle getting and setting
     /// values from ObjectListView
     /// </summary>
-    public interface IOlvEditor {
+    public interface IOlvEditor
+    {
         object Value { get; set; }
     }
 
-    public static class ControlUtilities {
+    public static class ControlUtilities
+    {
 
         /// <summary>
         /// Configure the given ComboBox so that the dropped down menu is auto-sized to
         /// be wide enough to show the widest item.
         /// </summary>
         /// <param name="dropDown"></param>
-        public static void AutoResizeDropDown(ComboBox dropDown) {
+        public static void AutoResizeDropDown(ComboBox dropDown)
+        {
             if (dropDown == null)
                 throw new ArgumentNullException("dropDown");
 
-            dropDown.DropDown += delegate(object sender, EventArgs args) {
+            dropDown.DropDown += delegate (object sender, EventArgs args)
+            {
 
                 // Calculate the maximum width of the drop down items
                 int newWidth = 0;
-                foreach (object item in dropDown.Items) {
+                foreach (object item in dropDown.Items)
+                {
                     newWidth = Math.Max(newWidth, TextRenderer.MeasureText(item.ToString(), dropDown.Font).Width);
                 }
 
@@ -86,7 +87,8 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="key"></param>
         /// <param name="description"></param>
-        public ComboBoxItem(Object key, String description) {
+        public ComboBoxItem(Object key, String description)
+        {
             this.key = key;
             this.description = description;
         }
@@ -95,7 +97,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public Object Key {
+        public Object Key
+        {
             get { return key; }
         }
         private readonly Object key;
@@ -107,10 +110,11 @@ namespace BrightIdeasSoftware
         /// A string that represents the current object.
         /// </returns>
         /// <filterpriority>2</filterpriority>
-        public override string ToString() {
+        public override string ToString()
+        {
             return this.description;
         }
-    } 
+    }
 
     //-----------------------------------------------------------------------
     // Cell editors
@@ -132,13 +136,16 @@ namespace BrightIdeasSoftware
         /// </summary>
         /// <param name="lv"></param>
         /// <param name="column"></param>
-        public AutoCompleteCellEditor(ObjectListView lv, OLVColumn column) {
+        public AutoCompleteCellEditor(ObjectListView lv, OLVColumn column)
+        {
             this.DropDownStyle = ComboBoxStyle.DropDown;
 
             Dictionary<String, bool> alreadySeen = new Dictionary<string, bool>();
-            for (int i = 0; i < Math.Min(lv.GetItemCount(), 1000); i++) {
+            for (int i = 0; i < Math.Min(lv.GetItemCount(), 1000); i++)
+            {
                 String str = column.GetStringValue(lv.GetModelObject(i));
-                if (!alreadySeen.ContainsKey(str)) {
+                if (!alreadySeen.ContainsKey(str))
+                {
                     this.Items.Add(str);
                     alreadySeen[str] = true;
                 }
@@ -162,7 +169,8 @@ namespace BrightIdeasSoftware
         /// 
         /// </summary>
         /// <param name="type"></param>
-        public EnumCellEditor(Type type) {
+        public EnumCellEditor(Type type)
+        {
             this.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ValueMember = "Key";
 
@@ -185,7 +193,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public IntUpDown() {
+        public IntUpDown()
+        {
             this.DecimalPlaces = 0;
             this.Minimum = -9999999;
             this.Maximum = 9999999;
@@ -194,7 +203,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets the value shown by this editor
         /// </summary>
-        public new int Value {
+        public new int Value
+        {
             get { return Decimal.ToInt32(base.Value); }
             set { base.Value = new Decimal(value); }
         }
@@ -209,13 +219,15 @@ namespace BrightIdeasSoftware
     [ToolboxItem(false)]
     internal class UintUpDown : NumericUpDown
     {
-        public UintUpDown() {
+        public UintUpDown()
+        {
             this.DecimalPlaces = 0;
             this.Minimum = 0;
             this.Maximum = 9999999;
         }
 
-        public new uint Value {
+        public new uint Value
+        {
             get { return Decimal.ToUInt32(base.Value); }
             set { base.Value = new Decimal(value); }
         }
@@ -230,7 +242,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public BooleanCellEditor() {
+        public BooleanCellEditor()
+        {
             this.DropDownStyle = ComboBoxStyle.DropDownList;
             this.ValueMember = "Key";
 
@@ -251,17 +264,21 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets the value shown by this editor
         /// </summary>
-        public bool? Value {
-            get {
-                switch (this.CheckState) {
+        public bool? Value
+        {
+            get
+            {
+                switch (this.CheckState)
+                {
                     case CheckState.Checked: return true;
                     case CheckState.Indeterminate: return null;
-                    case CheckState.Unchecked: 
+                    case CheckState.Unchecked:
                     default: return false;
                 }
             }
-            set {
-                if (value.HasValue) 
+            set
+            {
+                if (value.HasValue)
                     this.CheckState = value.Value ? CheckState.Checked : CheckState.Unchecked;
                 else
                     this.CheckState = CheckState.Indeterminate;
@@ -271,17 +288,22 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets how the checkbox will be aligned
         /// </summary>
-        public new HorizontalAlignment TextAlign {
-            get {
-                switch (this.CheckAlign) {
+        public new HorizontalAlignment TextAlign
+        {
+            get
+            {
+                switch (this.CheckAlign)
+                {
                     case ContentAlignment.MiddleRight: return HorizontalAlignment.Right;
                     case ContentAlignment.MiddleCenter: return HorizontalAlignment.Center;
-                    case ContentAlignment.MiddleLeft: 
+                    case ContentAlignment.MiddleLeft:
                     default: return HorizontalAlignment.Left;
                 }
             }
-            set {
-                switch (value) {
+            set
+            {
+                switch (value)
+                {
                     case HorizontalAlignment.Left:
                         this.CheckAlign = ContentAlignment.MiddleLeft;
                         break;
@@ -308,7 +330,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// 
         /// </summary>
-        public FloatCellEditor() {
+        public FloatCellEditor()
+        {
             this.DecimalPlaces = 2;
             this.Minimum = -9999999;
             this.Maximum = 9999999;
@@ -317,7 +340,8 @@ namespace BrightIdeasSoftware
         /// <summary>
         /// Gets or sets the value shown by this editor
         /// </summary>
-        public new double Value {
+        public new double Value
+        {
             get { return Convert.ToDouble(base.Value); }
             set { base.Value = Convert.ToDecimal(value); }
         }

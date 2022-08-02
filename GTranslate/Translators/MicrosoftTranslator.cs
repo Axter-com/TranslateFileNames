@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GTranslate.Extensions;
+using GTranslate.Results;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -9,8 +11,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using GTranslate.Extensions;
-using GTranslate.Results;
 
 namespace GTranslate.Translators;
 
@@ -90,40 +90,40 @@ public sealed class MicrosoftTranslator : ITranslator, IDisposable
     /// </summary>
     public static IReadOnlyDictionary<string, IReadOnlyCollection<string>> Scripts { get; }
         = new ReadOnlyDictionary<string, IReadOnlyCollection<string>>(new Dictionary<string, IReadOnlyCollection<string>>
-    {
-        ["ar"] = new[] { "Latn", "Arab" },
-        ["as"] = new[] { "Latn", "Beng" },
-        ["be"] = new[] { "Latn", "Cyrl" },
-        ["bg"] = new[] { "Latn", "Cyrl" },
-        ["bn"] = new[] { "Latn", "Beng" },
-        ["el"] = new[] { "Latn", "Grek" },
-        ["fa"] = new[] { "Latn", "Arab" },
-        ["gu"] = new[] { "Latn", "Gujr" },
-        ["he"] = new[] { "Latn", "Hebr" },
-        ["hi"] = new[] { "Latn", "Deva" },
-        ["ja"] = new[] { "Latn", "Jpan" },
-        ["kk"] = new[] { "Latn", "Cyrl" },
-        ["kn"] = new[] { "Latn", "Knda" },
-        ["ko"] = new[] { "Latn", "Kore" },
-        ["ky"] = new[] { "Latn", "Cyrl" },
-        ["mk"] = new[] { "Latn", "Cyrl" },
-        ["ml"] = new[] { "Latn", "Mlym" },
-        ["mn"] = new[] { "Latn", "Cyrl" },
-        ["mr"] = new[] { "Latn", "Deva" },
-        ["or"] = new[] { "Latn", "Orya" },
-        ["pa"] = new[] { "Latn", "Guru" },
-        ["ru"] = new[] { "Latn", "Cyrl" },
-        ["sd"] = new[] { "Latn", "Arab" },
-        ["si"] = new[] { "Latn", "Sinh" },
-        ["ta"] = new[] { "Latn", "Taml" },
-        ["te"] = new[] { "Latn", "Telu" },
-        ["tg"] = new[] { "Latn", "Cyrl" },
-        ["tt"] = new[] { "Latn", "Cyrl" },
-        ["uk"] = new[] { "Latn", "Cyrl" },
-        ["ur"] = new[] { "Latn", "Arab" },
-        ["zh-CN"] = new[] { "Latn", "Hans" }, // zh-Hans
-        ["zh-TW"] = new[] { "Latn", "Hant" } // zh-Hant
-    });
+        {
+            ["ar"] = new[] { "Latn", "Arab" },
+            ["as"] = new[] { "Latn", "Beng" },
+            ["be"] = new[] { "Latn", "Cyrl" },
+            ["bg"] = new[] { "Latn", "Cyrl" },
+            ["bn"] = new[] { "Latn", "Beng" },
+            ["el"] = new[] { "Latn", "Grek" },
+            ["fa"] = new[] { "Latn", "Arab" },
+            ["gu"] = new[] { "Latn", "Gujr" },
+            ["he"] = new[] { "Latn", "Hebr" },
+            ["hi"] = new[] { "Latn", "Deva" },
+            ["ja"] = new[] { "Latn", "Jpan" },
+            ["kk"] = new[] { "Latn", "Cyrl" },
+            ["kn"] = new[] { "Latn", "Knda" },
+            ["ko"] = new[] { "Latn", "Kore" },
+            ["ky"] = new[] { "Latn", "Cyrl" },
+            ["mk"] = new[] { "Latn", "Cyrl" },
+            ["ml"] = new[] { "Latn", "Mlym" },
+            ["mn"] = new[] { "Latn", "Cyrl" },
+            ["mr"] = new[] { "Latn", "Deva" },
+            ["or"] = new[] { "Latn", "Orya" },
+            ["pa"] = new[] { "Latn", "Guru" },
+            ["ru"] = new[] { "Latn", "Cyrl" },
+            ["sd"] = new[] { "Latn", "Arab" },
+            ["si"] = new[] { "Latn", "Sinh" },
+            ["ta"] = new[] { "Latn", "Taml" },
+            ["te"] = new[] { "Latn", "Telu" },
+            ["tg"] = new[] { "Latn", "Cyrl" },
+            ["tt"] = new[] { "Latn", "Cyrl" },
+            ["uk"] = new[] { "Latn", "Cyrl" },
+            ["ur"] = new[] { "Latn", "Arab" },
+            ["zh-CN"] = new[] { "Latn", "Hans" }, // zh-Hans
+            ["zh-TW"] = new[] { "Latn", "Hant" } // zh-Hant
+        });
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MicrosoftTranslator"/> class.

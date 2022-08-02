@@ -1,6 +1,4 @@
-﻿using System;
-
-public class ConsoleProgressBar
+﻿public class ConsoleProgressBar
 {
     private const ConsoleColor ForeColor = ConsoleColor.Green;
     private const ConsoleColor BkColor = ConsoleColor.Gray;

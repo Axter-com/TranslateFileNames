@@ -1,18 +1,11 @@
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using TranslateFilenamesCore;
-using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.Design.AxImporter;
-using static TranslateFilenamesCore.TranslateFilenames;
-using System.Runtime.InteropServices;
 using BrightIdeasSoftware;
-using System.ComponentModel;
 using System.Collections;
-using System.Security.Policy;
-using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using TranslateFilenamesCore;
+using static TranslateFilenamesCore.TranslateFilenames;
+using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
 
 namespace TranslateFileNamesForm
 {
@@ -31,6 +24,9 @@ namespace TranslateFileNamesForm
         public int QtyFilesToCheck = 0;
         public int QtyFilesRenameCandidate = 0;
         TranslateFilenamesFrm _translateFilenames;
+        private string _defaultMaximumTranslateDataLength;
+        private string _defaultMaxWorkerThreads;
+        private string _defaultTargetLanguage;
         #endregion
 
         public Form1()
@@ -47,8 +43,12 @@ namespace TranslateFileNamesForm
             fastObjListView1.ColumnsNotEditable.Add(4);
             TranslateFilenames_Options options = new TranslateFilenames_Options();
             MaxThread.Text = options._maxWorkerThreads.ToString();
-            MaxTranslateLen.Text    = options._maximumTranslateDataLength.ToString();
+            MaxTranslateLen.Text = options._maximumTranslateDataLength.ToString();
             TargetLanguage.Text = options._targetLang.ToString();
+
+            _defaultMaximumTranslateDataLength = options._maximumTranslateDataLength.ToString();
+            _defaultMaxWorkerThreads = options._maxWorkerThreads.ToString();
+            _defaultTargetLanguage = options._targetLang.ToString();
 #if !DEBUG
             TestButton.Enabled = false;
             TestButton.Visible = false;
@@ -220,7 +220,7 @@ namespace TranslateFileNamesForm
                 options._fileType = FileType.Text;
             if (checkBoxAppendLanguageName.Checked)  // ToDo: Change this to a combo box listing items in GTranslate_TranslateSourceText **switch**
                 options._appendLangName = 9;
-            if (checkBoxAppendOrginalName.Checked)
+            if (checkBoxAppendOriginalName.Checked)
                 options._appendOrgName = true;
             if (comboBoxFilesPerTransReq.SelectedIndex > 0)
             {
@@ -322,7 +322,7 @@ namespace TranslateFileNamesForm
                     whichItems = WhichItems.UnselectedItems;
                 int PrgBarCount;
                 int Count;
-                switch(whichItems)
+                switch (whichItems)
                 {
                     case WhichItems.SelectedItems:
                         PrgBarCount = sCount;
@@ -372,14 +372,16 @@ namespace TranslateFileNamesForm
                     ++QtyRenamed;
                     LastRenameSuccess = OrgName;
                 }
-            } catch (Exception e) 
+            }
+            catch (Exception e)
             {
                 string LastRenameInfo = (OrgName.Length > 0) ? "; LastFile='" + OrgName + "'; " : "; ";
                 if (LastRenameSuccess.Length > 0)
                     LastRenameInfo += "LastSuccess='" + LastRenameSuccess + "'; ";
                 Debug.WriteLine("ERROR: - RenameItems: Exception thrown. Rename-Count=" + QtyRenamed + LastRenameInfo + "Exception MSG=" + e.Message);
-            } finally 
-            { 
+            }
+            finally
+            {
                 UseWaitCursor = false;
                 pBar1.Visible = false;
                 fastObjListView1.Enabled = true;
@@ -412,7 +414,7 @@ namespace TranslateFileNamesForm
 
         private void FormatCell(object sender, FormatCellEventArgs e)
         {
-            if (e.ColumnIndex == 1) 
+            if (e.ColumnIndex == 1)
             {
                 e.SubItem.Font = new Font(fastObjListView1.Font, FontStyle.Bold);
                 e.SubItem.ForeColor = Color.DarkRed;
@@ -471,9 +473,8 @@ namespace TranslateFileNamesForm
             AddFilesToList(_path);
         }
 
-        private void linkLabelISO6391LangCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void OpenUrl(string url)
         {
-            string url = "https://wikipedia.org/wiki/List_of_ISO_639-1_codes";
             try
             {
                 Process.Start(url);
@@ -499,6 +500,82 @@ namespace TranslateFileNamesForm
                     throw;
                 }
             }
+        }
+
+        private void linkLabelISO6391LangCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenUrl("https://wikipedia.org/wiki/List_of_ISO_639-1_codes");
+        }
+
+        private void linkLabel2ISO6391LangCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenUrl("https://wikipedia.org/wiki/List_of_ISO_639-1_codes");
+        }
+
+        private void linkLabelFilter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelSearchRecursively_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelLongPathSupport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelAppendLangName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelAppendOriginalName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelFileType_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelMaxThreads_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelFilesPerTranslationReq_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabelMaxTranslateLen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void MaxTranslateLen_Validated(object sender, EventArgs e)
+        {
+            string text = ((System.Windows.Forms.TextBox)sender).Text;
+            if (Convert.ToInt32(text) == 0)
+                MaxTranslateLen.Text = _defaultMaximumTranslateDataLength;
+            else if (Convert.ToInt32(text) < 255)
+                MaxTranslateLen.Text = "255";
+            else if (Convert.ToInt32(text) > 10000)
+                MaxTranslateLen.Text = "10000";
+        }
+        private void MaxThread_Validated(object sender, EventArgs e)
+        {
+            string text = ((System.Windows.Forms.TextBox)sender).Text;
+            if (Convert.ToInt32(text) == 0)
+                MaxThread.Text = _defaultMaxWorkerThreads;
+            else if (Convert.ToInt32(text) < 4)
+                MaxThread.Text = "4";
+            else if (Convert.ToInt32(text) > 400)
+                MaxThread.Text = "400";
         }
     }
 
@@ -564,7 +641,7 @@ namespace TranslateFileNamesForm
             _fileName = fileName;
         }
 
-        public FileRowDetails(string fileName, string NewFilename, string SrcLanguage, 
+        public FileRowDetails(string fileName, string NewFilename, string SrcLanguage,
             string ParentPath, string FileExt)
         {
             Name = fileName;

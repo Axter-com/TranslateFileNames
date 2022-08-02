@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using GTranslate.Results;
+﻿using GTranslate.Results;
+using System.Threading.Tasks;
 
 namespace GTranslate.Translators;
 

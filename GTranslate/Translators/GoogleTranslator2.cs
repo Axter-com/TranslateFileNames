@@ -1,12 +1,12 @@
-﻿using System;
+﻿using GTranslate.Extensions;
+using GTranslate.Results;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using GTranslate.Extensions;
-using GTranslate.Results;
 
 namespace GTranslate.Translators;
 
@@ -109,7 +109,7 @@ public sealed class GoogleTranslator2 : ITranslator, IDisposable
 
         string target = root[1][1].GetString() ?? toLanguage.ISO6391;
         string source = root[1][3].GetString() ?? string.Empty;
-        
+
         if (source == "auto")
         {
             source = root.ElementAtOrDefault(2).GetStringOrDefault()

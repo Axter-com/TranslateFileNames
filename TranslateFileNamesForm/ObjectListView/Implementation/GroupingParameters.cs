@@ -25,17 +25,14 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-
-namespace BrightIdeasSoftware {
+namespace BrightIdeasSoftware
+{
 
     /// <summary>
     /// This class contains all the settings used when groups are created
     /// </summary>
-    public class GroupingParameters {
+    public class GroupingParameters
+    {
         /// <summary>
         /// Create a GroupingParameters
         /// </summary>
@@ -51,7 +48,8 @@ namespace BrightIdeasSoftware {
         /// <param name="sortItemsByPrimaryColumn"></param>
         public GroupingParameters(ObjectListView olv, OLVColumn groupByColumn, SortOrder groupByOrder,
             OLVColumn column, SortOrder order, OLVColumn secondaryColumn, SortOrder secondaryOrder,
-            string titleFormat, string titleSingularFormat, bool sortItemsByPrimaryColumn) {
+            string titleFormat, string titleSingularFormat, bool sortItemsByPrimaryColumn)
+        {
             this.ListView = olv;
             this.GroupByColumn = groupByColumn;
             this.GroupByOrder = groupByOrder;
@@ -67,7 +65,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the ObjectListView being grouped
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return this.listView; }
             set { this.listView = value; }
         }
@@ -76,7 +75,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the column used to create groups
         /// </summary>
-        public OLVColumn GroupByColumn {
+        public OLVColumn GroupByColumn
+        {
             get { return this.groupByColumn; }
             set { this.groupByColumn = value; }
         }
@@ -85,7 +85,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// In what order will the groups themselves be sorted?
         /// </summary>
-        public SortOrder GroupByOrder {
+        public SortOrder GroupByOrder
+        {
             get { return this.groupByOrder; }
             set { this.groupByOrder = value; }
         }
@@ -94,7 +95,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// If this is set, this comparer will be used to order the groups
         /// </summary>
-        public IComparer<OLVGroup> GroupComparer {
+        public IComparer<OLVGroup> GroupComparer
+        {
             get { return this.groupComparer; }
             set { this.groupComparer = value; }
         }
@@ -103,7 +105,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// If this is set, this comparer will be used to order items within each group
         /// </summary>
-        public IComparer<OLVListItem> ItemComparer {
+        public IComparer<OLVListItem> ItemComparer
+        {
             get { return this.itemComparer; }
             set { this.itemComparer = value; }
         }
@@ -112,7 +115,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the column that will be the primary sort
         /// </summary>
-        public OLVColumn PrimarySort {
+        public OLVColumn PrimarySort
+        {
             get { return this.primarySort; }
             set { this.primarySort = value; }
         }
@@ -121,7 +125,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the ordering for the primary sort
         /// </summary>
-        public SortOrder PrimarySortOrder {
+        public SortOrder PrimarySortOrder
+        {
             get { return this.primarySortOrder; }
             set { this.primarySortOrder = value; }
         }
@@ -130,7 +135,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the column used for secondary sorting
         /// </summary>
-        public OLVColumn SecondarySort {
+        public OLVColumn SecondarySort
+        {
             get { return this.secondarySort; }
             set { this.secondarySort = value; }
         }
@@ -139,7 +145,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the ordering for the secondary sort
         /// </summary>
-        public SortOrder SecondarySortOrder {
+        public SortOrder SecondarySortOrder
+        {
             get { return this.secondarySortOrder; }
             set { this.secondarySortOrder = value; }
         }
@@ -148,7 +155,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the title format used for groups with zero or more than one element
         /// </summary>
-        public string TitleFormat {
+        public string TitleFormat
+        {
             get { return this.titleFormat; }
             set { this.titleFormat = value; }
         }
@@ -157,7 +165,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the title format used for groups with only one element
         /// </summary>
-        public string TitleSingularFormat {
+        public string TitleSingularFormat
+        {
             get { return this.titleSingularFormat; }
             set { this.titleSingularFormat = value; }
         }
@@ -166,7 +175,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets whether the items should be sorted by the primary column
         /// </summary>
-        public bool SortItemsByPrimaryColumn {
+        public bool SortItemsByPrimaryColumn
+        {
             get { return this.sortItemsByPrimaryColumn; }
             set { this.sortItemsByPrimaryColumn = value; }
         }
@@ -179,7 +189,8 @@ namespace BrightIdeasSoftware {
         /// <param name="count"></param>
         /// <param name="hasCollapsibleGroups"></param>
         /// <returns></returns>
-        public OLVGroup CreateGroup(object key, int count, bool hasCollapsibleGroups) {
+        public OLVGroup CreateGroup(object key, int count, bool hasCollapsibleGroups)
+        {
             string title = GroupByColumn.ConvertGroupKeyToTitle(key);
             if (!String.IsNullOrEmpty(TitleFormat))
             {

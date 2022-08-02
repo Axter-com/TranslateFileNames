@@ -1,10 +1,10 @@
-﻿using System;
+﻿using GTranslate.Extensions;
+using GTranslate.Translators;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
-using GTranslate.Extensions;
-using GTranslate.Translators;
 
 namespace GTranslate;
 

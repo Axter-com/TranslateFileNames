@@ -51,14 +51,11 @@
  * If you wish to use this code in a closed source application, please contact phillip.piper@gmail.com.
  */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
-namespace BrightIdeasSoftware {
+namespace BrightIdeasSoftware
+{
     /// <summary>
     /// The callbacks for CellEditing events
     /// </summary>
@@ -68,7 +65,8 @@ namespace BrightIdeasSoftware {
     /// </remarks>
     public delegate void CellEditEventHandler(object sender, CellEditEventArgs e);
 
-    public partial class ObjectListView {
+    public partial class ObjectListView
+    {
         //-----------------------------------------------------------------------------------
 
         #region Events
@@ -408,7 +406,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnAboutToCreateGroups(CreateGroupsEventArgs e) {
+        protected virtual void OnAboutToCreateGroups(CreateGroupsEventArgs e)
+        {
             if (this.AboutToCreateGroups != null)
                 this.AboutToCreateGroups(this, e);
         }
@@ -417,7 +416,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnBeforeCreatingGroups(CreateGroupsEventArgs e) {
+        protected virtual void OnBeforeCreatingGroups(CreateGroupsEventArgs e)
+        {
             if (this.BeforeCreatingGroups != null)
                 this.BeforeCreatingGroups(this, e);
         }
@@ -426,7 +426,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnAfterCreatingGroups(CreateGroupsEventArgs e) {
+        protected virtual void OnAfterCreatingGroups(CreateGroupsEventArgs e)
+        {
             if (this.AfterCreatingGroups != null)
                 this.AfterCreatingGroups(this, e);
         }
@@ -435,7 +436,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnAfterSearching(AfterSearchingEventArgs e) {
+        protected virtual void OnAfterSearching(AfterSearchingEventArgs e)
+        {
             if (this.AfterSearching != null)
                 this.AfterSearching(this, e);
         }
@@ -444,7 +446,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnAfterSorting(AfterSortingEventArgs e) {
+        protected virtual void OnAfterSorting(AfterSortingEventArgs e)
+        {
             if (this.AfterSorting != null)
                 this.AfterSorting(this, e);
         }
@@ -453,7 +456,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnBeforeSearching(BeforeSearchingEventArgs e) {
+        protected virtual void OnBeforeSearching(BeforeSearchingEventArgs e)
+        {
             if (this.BeforeSearching != null)
                 this.BeforeSearching(this, e);
         }
@@ -462,7 +466,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnBeforeSorting(BeforeSortingEventArgs e) {
+        protected virtual void OnBeforeSorting(BeforeSortingEventArgs e)
+        {
             if (this.BeforeSorting != null)
                 this.BeforeSorting(this, e);
         }
@@ -471,7 +476,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnButtonClick(CellClickEventArgs args) {
+        protected virtual void OnButtonClick(CellClickEventArgs args)
+        {
             if (this.ButtonClick != null)
                 this.ButtonClick(this, args);
         }
@@ -480,7 +486,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnCanDrop(OlvDropEventArgs args) {
+        protected virtual void OnCanDrop(OlvDropEventArgs args)
+        {
             if (this.CanDrop != null)
                 this.CanDrop(this, args);
         }
@@ -489,7 +496,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnCellClick(CellClickEventArgs args) {
+        protected virtual void OnCellClick(CellClickEventArgs args)
+        {
             if (this.CellClick != null)
                 this.CellClick(this, args);
         }
@@ -498,7 +506,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnCellOver(CellOverEventArgs args) {
+        protected virtual void OnCellOver(CellOverEventArgs args)
+        {
             if (this.CellOver != null)
                 this.CellOver(this, args);
         }
@@ -507,7 +516,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnCellRightClick(CellRightClickEventArgs args) {
+        protected virtual void OnCellRightClick(CellRightClickEventArgs args)
+        {
             if (this.CellRightClick != null)
                 this.CellRightClick(this, args);
         }
@@ -516,7 +526,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnCellToolTip(ToolTipShowingEventArgs args) {
+        protected virtual void OnCellToolTip(ToolTipShowingEventArgs args)
+        {
             if (this.CellToolTipShowing != null)
                 this.CellToolTipShowing(this, args);
         }
@@ -525,7 +536,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnSubItemChecking(SubItemCheckingEventArgs args) {
+        protected virtual void OnSubItemChecking(SubItemCheckingEventArgs args)
+        {
             if (this.SubItemChecking != null)
                 this.SubItemChecking(this, args);
         }
@@ -534,7 +546,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnColumnRightClick(ColumnRightClickEventArgs e) {
+        protected virtual void OnColumnRightClick(ColumnRightClickEventArgs e)
+        {
             if (this.ColumnRightClick != null)
                 this.ColumnRightClick(this, e);
         }
@@ -543,7 +556,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnDropped(OlvDropEventArgs args) {
+        protected virtual void OnDropped(OlvDropEventArgs args)
+        {
             if (this.Dropped != null)
                 this.Dropped(this, args);
         }
@@ -552,7 +566,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        internal protected virtual void OnFilter(FilterEventArgs e) {
+        internal protected virtual void OnFilter(FilterEventArgs e)
+        {
             if (this.Filter != null)
                 this.Filter(this, e);
         }
@@ -561,7 +576,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnFormatCell(FormatCellEventArgs args) {
+        protected virtual void OnFormatCell(FormatCellEventArgs args)
+        {
             if (this.FormatCell != null)
                 this.FormatCell(this, args);
         }
@@ -570,7 +586,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnFormatRow(FormatRowEventArgs args) {
+        protected virtual void OnFormatRow(FormatRowEventArgs args)
+        {
             if (this.FormatRow != null)
                 this.FormatRow(this, args);
         }
@@ -579,7 +596,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnFreezing(FreezeEventArgs args) {
+        protected virtual void OnFreezing(FreezeEventArgs args)
+        {
             if (this.Freezing != null)
                 this.Freezing(this, args);
         }
@@ -588,7 +606,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnGroupExpandingCollapsing(GroupExpandingCollapsingEventArgs args) {
+        protected virtual void OnGroupExpandingCollapsing(GroupExpandingCollapsingEventArgs args)
+        {
             if (this.GroupExpandingCollapsing != null)
                 this.GroupExpandingCollapsing(this, args);
         }
@@ -597,7 +616,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnGroupStateChanged(GroupStateChangedEventArgs args) {
+        protected virtual void OnGroupStateChanged(GroupStateChangedEventArgs args)
+        {
             if (this.GroupStateChanged != null)
                 this.GroupStateChanged(this, args);
         }
@@ -606,7 +626,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnHeaderCheckBoxChanging(HeaderCheckBoxChangingEventArgs args) {
+        protected virtual void OnHeaderCheckBoxChanging(HeaderCheckBoxChangingEventArgs args)
+        {
             if (this.HeaderCheckBoxChanging != null)
                 this.HeaderCheckBoxChanging(this, args);
         }
@@ -615,7 +636,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnHeaderToolTip(ToolTipShowingEventArgs args) {
+        protected virtual void OnHeaderToolTip(ToolTipShowingEventArgs args)
+        {
             if (this.HeaderToolTipShowing != null)
                 this.HeaderToolTipShowing(this, args);
         }
@@ -624,7 +646,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnHotItemChanged(HotItemChangedEventArgs e) {
+        protected virtual void OnHotItemChanged(HotItemChangedEventArgs e)
+        {
             if (this.HotItemChanged != null)
                 this.HotItemChanged(this, e);
         }
@@ -633,7 +656,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnHyperlinkClicked(HyperlinkClickedEventArgs e) {
+        protected virtual void OnHyperlinkClicked(HyperlinkClickedEventArgs e)
+        {
             if (this.HyperlinkClicked != null)
                 this.HyperlinkClicked(this, e);
         }
@@ -642,7 +666,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnGroupTaskClicked(GroupTaskClickedEventArgs e) {
+        protected virtual void OnGroupTaskClicked(GroupTaskClickedEventArgs e)
+        {
             if (this.GroupTaskClicked != null)
                 this.GroupTaskClicked(this, e);
         }
@@ -651,7 +676,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnIsHyperlink(IsHyperlinkEventArgs e) {
+        protected virtual void OnIsHyperlink(IsHyperlinkEventArgs e)
+        {
             if (this.IsHyperlink != null)
                 this.IsHyperlink(this, e);
         }
@@ -660,7 +686,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnItemsAdding(ItemsAddingEventArgs e) {
+        protected virtual void OnItemsAdding(ItemsAddingEventArgs e)
+        {
             if (this.ItemsAdding != null)
                 this.ItemsAdding(this, e);
         }
@@ -669,7 +696,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnItemsChanged(ItemsChangedEventArgs e) {
+        protected virtual void OnItemsChanged(ItemsChangedEventArgs e)
+        {
             if (this.ItemsChanged != null)
                 this.ItemsChanged(this, e);
         }
@@ -678,7 +706,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnItemsChanging(ItemsChangingEventArgs e) {
+        protected virtual void OnItemsChanging(ItemsChangingEventArgs e)
+        {
             if (this.ItemsChanging != null)
                 this.ItemsChanging(this, e);
         }
@@ -687,7 +716,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnItemsRemoving(ItemsRemovingEventArgs e) {
+        protected virtual void OnItemsRemoving(ItemsRemovingEventArgs e)
+        {
             if (this.ItemsRemoving != null)
                 this.ItemsRemoving(this, e);
         }
@@ -696,7 +726,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnModelCanDrop(ModelDropEventArgs args) {
+        protected virtual void OnModelCanDrop(ModelDropEventArgs args)
+        {
             if (this.ModelCanDrop != null)
                 this.ModelCanDrop(this, args);
         }
@@ -705,7 +736,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="args"></param>
-        protected virtual void OnModelDropped(ModelDropEventArgs args) {
+        protected virtual void OnModelDropped(ModelDropEventArgs args)
+        {
             if (this.ModelDropped != null)
                 this.ModelDropped(this, args);
         }
@@ -714,7 +746,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnSelectionChanged(EventArgs e) {
+        protected virtual void OnSelectionChanged(EventArgs e)
+        {
             if (this.SelectionChanged != null)
                 this.SelectionChanged(this, e);
         }
@@ -723,7 +756,8 @@ namespace BrightIdeasSoftware {
         /// 
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnScroll(ScrollEventArgs e) {
+        protected virtual void OnScroll(ScrollEventArgs e)
+        {
             if (this.Scroll != null)
                 this.Scroll(this, e);
         }
@@ -732,7 +766,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Tell the world when a cell is about to be edited.
         /// </summary>
-        protected virtual void OnCellEditStarting(CellEditEventArgs e) {
+        protected virtual void OnCellEditStarting(CellEditEventArgs e)
+        {
             if (this.CellEditStarting != null)
                 this.CellEditStarting(this, e);
         }
@@ -740,7 +775,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Tell the world when a cell is about to finish being edited.
         /// </summary>
-        protected virtual void OnCellEditorValidating(CellEditEventArgs e) {
+        protected virtual void OnCellEditorValidating(CellEditEventArgs e)
+        {
             // Hack. ListView is an imperfect control container. It does not manage validation
             // perfectly. If the ListView is part of a TabControl, and the cell editor loses
             // focus by the user clicking on another tab, the TabControl processes the click
@@ -761,9 +797,12 @@ namespace BrightIdeasSoftware {
             // Also, this timed response stops us from sending a series of validation events
             // if the user clicks and holds on the OLV scroll bar.
             //System.Diagnostics.Debug.WriteLine(Environment.TickCount - lastValidatingEvent);
-            if ((Environment.TickCount - lastValidatingEvent) < 100) {
+            if ((Environment.TickCount - lastValidatingEvent) < 100)
+            {
                 e.Cancel = true;
-            } else {
+            }
+            else
+            {
                 lastValidatingEvent = Environment.TickCount;
                 if (this.CellEditValidating != null)
                     this.CellEditValidating(this, e);
@@ -777,7 +816,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Tell the world when a cell is about to finish being edited.
         /// </summary>
-        protected virtual void OnCellEditFinishing(CellEditEventArgs e) {
+        protected virtual void OnCellEditFinishing(CellEditEventArgs e)
+        {
             if (this.CellEditFinishing != null)
                 this.CellEditFinishing(this, e);
         }
@@ -785,7 +825,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Tell the world when a cell has finished being edited.
         /// </summary>
-        protected virtual void OnCellEditFinished(CellEditEventArgs e) {
+        protected virtual void OnCellEditFinished(CellEditEventArgs e)
+        {
             if (this.CellEditFinished != null)
                 this.CellEditFinished(this, e);
         }
@@ -793,7 +834,8 @@ namespace BrightIdeasSoftware {
         #endregion
     }
 
-    public partial class TreeListView {
+    public partial class TreeListView
+    {
 
         #region Events
 
@@ -833,7 +875,8 @@ namespace BrightIdeasSoftware {
         /// Trigger the expanding event
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnExpanding(TreeBranchExpandingEventArgs e) {
+        protected virtual void OnExpanding(TreeBranchExpandingEventArgs e)
+        {
             if (this.Expanding != null)
                 this.Expanding(this, e);
         }
@@ -842,7 +885,8 @@ namespace BrightIdeasSoftware {
         /// Trigger the collapsing event
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnCollapsing(TreeBranchCollapsingEventArgs e) {
+        protected virtual void OnCollapsing(TreeBranchCollapsingEventArgs e)
+        {
             if (this.Collapsing != null)
                 this.Collapsing(this, e);
         }
@@ -851,7 +895,8 @@ namespace BrightIdeasSoftware {
         /// Trigger the expanded event
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnExpanded(TreeBranchExpandedEventArgs e) {
+        protected virtual void OnExpanded(TreeBranchExpandedEventArgs e)
+        {
             if (this.Expanded != null)
                 this.Expanded(this, e);
         }
@@ -860,7 +905,8 @@ namespace BrightIdeasSoftware {
         /// Trigger the collapsed event
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnCollapsed(TreeBranchCollapsedEventArgs e) {
+        protected virtual void OnCollapsed(TreeBranchCollapsedEventArgs e)
+        {
             if (this.Collapsed != null)
                 this.Collapsed(this, e);
         }
@@ -875,7 +921,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Let the world know that a cell edit operation is beginning or ending
     /// </summary>
-    public class CellEditEventArgs : EventArgs {
+    public class CellEditEventArgs : EventArgs
+    {
         /// <summary>
         /// Create an event args
         /// </summary>
@@ -884,7 +931,8 @@ namespace BrightIdeasSoftware {
         /// <param name="cellBounds"></param>
         /// <param name="item"></param>
         /// <param name="subItemIndex"></param>
-        public CellEditEventArgs(OLVColumn column, Control control, Rectangle cellBounds, OLVListItem item, int subItemIndex) {
+        public CellEditEventArgs(OLVColumn column, Control control, Rectangle cellBounds, OLVListItem item, int subItemIndex)
+        {
             this.Control = control;
             this.column = column;
             this.cellBounds = cellBounds;
@@ -918,7 +966,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The column of the cell that is going to be or has been edited.
         /// </summary>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
         }
 
@@ -927,7 +976,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The model object of the row of the cell that is going to be or has been edited.
         /// </summary>
-        public Object RowObject {
+        public Object RowObject
+        {
             get { return this.rowObject; }
         }
 
@@ -936,7 +986,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The listview item of the cell that is going to be or has been edited.
         /// </summary>
-        public OLVListItem ListViewItem {
+        public OLVListItem ListViewItem
+        {
             get { return this.listViewItem; }
         }
 
@@ -946,7 +997,8 @@ namespace BrightIdeasSoftware {
         /// The data value of the cell as it stands in the control.
         /// </summary>
         /// <remarks>Only validate during Validating and Finishing events.</remarks>
-        public Object NewValue {
+        public Object NewValue
+        {
             get { return this.newValue; }
             set { this.newValue = value; }
         }
@@ -956,7 +1008,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The index of the cell that is going to be or has been edited.
         /// </summary>
-        public int SubItemIndex {
+        public int SubItemIndex
+        {
             get { return this.subItemIndex; }
         }
 
@@ -965,7 +1018,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The data value of the cell before the edit operation began.
         /// </summary>
-        public Object Value {
+        public Object Value
+        {
             get { return this.value; }
         }
 
@@ -974,7 +1028,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The bounds of the cell that is going to be or has been edited.
         /// </summary>
-        public Rectangle CellBounds {
+        public Rectangle CellBounds
+        {
             get { return this.cellBounds; }
         }
 
@@ -986,7 +1041,8 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <remarks>If the control is expensive to create, you might want to cache it and reuse for
         /// for various cells. If so, you don't want ObjectListView to dispose of the control automatically</remarks>
-        public bool AutoDispose {
+        public bool AutoDispose
+        {
             get { return autoDispose; }
             set { autoDispose = value; }
         }
@@ -997,7 +1053,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Event blocks for events that can be cancelled
     /// </summary>
-    public class CancellableEventArgs : EventArgs {
+    public class CancellableEventArgs : EventArgs
+    {
         /// <summary>
         /// Has this event been cancelled by the event handler?
         /// </summary>
@@ -1007,7 +1064,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// BeforeSorting
     /// </summary>
-    public class BeforeSortingEventArgs : CancellableEventArgs {
+    public class BeforeSortingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create BeforeSortingEventArgs
         /// </summary>
@@ -1015,7 +1073,8 @@ namespace BrightIdeasSoftware {
         /// <param name="order"></param>
         /// <param name="column2"></param>
         /// <param name="order2"></param>
-        public BeforeSortingEventArgs(OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2) {
+        public BeforeSortingEventArgs(OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2)
+        {
             this.ColumnToGroupBy = column;
             this.GroupByOrder = order;
             this.ColumnToSort = column;
@@ -1033,7 +1092,8 @@ namespace BrightIdeasSoftware {
         /// <param name="order"></param>
         /// <param name="column2"></param>
         /// <param name="order2"></param>
-        public BeforeSortingEventArgs(OLVColumn groupColumn, SortOrder groupOrder, OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2) {
+        public BeforeSortingEventArgs(OLVColumn groupColumn, SortOrder groupOrder, OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2)
+        {
             this.ColumnToGroupBy = groupColumn;
             this.GroupByOrder = groupOrder;
             this.ColumnToSort = column;
@@ -1081,7 +1141,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Sorting has just occurred.
     /// </summary>
-    public class AfterSortingEventArgs : EventArgs {
+    public class AfterSortingEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a AfterSortingEventArgs
         /// </summary>
@@ -1091,7 +1152,8 @@ namespace BrightIdeasSoftware {
         /// <param name="order"></param>
         /// <param name="column2"></param>
         /// <param name="order2"></param>
-        public AfterSortingEventArgs(OLVColumn groupColumn, SortOrder groupOrder, OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2) {
+        public AfterSortingEventArgs(OLVColumn groupColumn, SortOrder groupOrder, OLVColumn column, SortOrder order, OLVColumn column2, SortOrder order2)
+        {
             this.columnToGroupBy = groupColumn;
             this.groupByOrder = groupOrder;
             this.columnToSort = column;
@@ -1104,7 +1166,8 @@ namespace BrightIdeasSoftware {
         /// Create a AfterSortingEventArgs
         /// </summary>
         /// <param name="args"></param>
-        public AfterSortingEventArgs(BeforeSortingEventArgs args) {
+        public AfterSortingEventArgs(BeforeSortingEventArgs args)
+        {
             this.columnToGroupBy = args.ColumnToGroupBy;
             this.groupByOrder = args.GroupByOrder;
             this.columnToSort = args.ColumnToSort;
@@ -1116,7 +1179,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What column was used for grouping?
         /// </summary>
-        public OLVColumn ColumnToGroupBy {
+        public OLVColumn ColumnToGroupBy
+        {
             get { return columnToGroupBy; }
         }
 
@@ -1125,7 +1189,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What ordering was used for grouping?
         /// </summary>
-        public SortOrder GroupByOrder {
+        public SortOrder GroupByOrder
+        {
             get { return groupByOrder; }
         }
 
@@ -1134,7 +1199,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What column was used for sorting?
         /// </summary>
-        public OLVColumn ColumnToSort {
+        public OLVColumn ColumnToSort
+        {
             get { return columnToSort; }
         }
 
@@ -1143,7 +1209,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What ordering was used for sorting?
         /// </summary>
-        public SortOrder SortOrder {
+        public SortOrder SortOrder
+        {
             get { return sortOrder; }
         }
 
@@ -1152,7 +1219,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What column was used for secondary sorting?
         /// </summary>
-        public OLVColumn SecondaryColumnToSort {
+        public OLVColumn SecondaryColumnToSort
+        {
             get { return secondaryColumnToSort; }
         }
 
@@ -1161,7 +1229,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// What order was used for secondary sorting?
         /// </summary>
-        public SortOrder SecondarySortOrder {
+        public SortOrder SecondarySortOrder
+        {
             get { return secondarySortOrder; }
         }
 
@@ -1172,12 +1241,14 @@ namespace BrightIdeasSoftware {
     /// This event is triggered when the contents of a list have changed
     /// and we want the world to have a chance to filter the list.
     /// </summary>
-    public class FilterEventArgs : EventArgs {
+    public class FilterEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a FilterEventArgs
         /// </summary>
         /// <param name="objects"></param>
-        public FilterEventArgs(IEnumerable objects) {
+        public FilterEventArgs(IEnumerable objects)
+        {
             this.Objects = objects;
         }
 
@@ -1196,7 +1267,8 @@ namespace BrightIdeasSoftware {
     /// This event is triggered after the items in the list have been changed,
     /// either through SetObjects, AddObjects or RemoveObjects.
     /// </summary>
-    public class ItemsChangedEventArgs : EventArgs {
+    public class ItemsChangedEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a ItemsChangedEventArgs
         /// </summary>
@@ -1207,7 +1279,8 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <param name="oldObjectCount"></param>
         /// <param name="newObjectCount"></param>
-        public ItemsChangedEventArgs(int oldObjectCount, int newObjectCount) {
+        public ItemsChangedEventArgs(int oldObjectCount, int newObjectCount)
+        {
             this.oldObjectCount = oldObjectCount;
             this.newObjectCount = newObjectCount;
         }
@@ -1215,7 +1288,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets how many items were in the list before it changed
         /// </summary>
-        public int OldObjectCount {
+        public int OldObjectCount
+        {
             get { return oldObjectCount; }
         }
 
@@ -1224,7 +1298,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets how many objects are in the list after the change.
         /// </summary>
-        public int NewObjectCount {
+        public int NewObjectCount
+        {
             get { return newObjectCount; }
         }
 
@@ -1234,12 +1309,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event is triggered by AddObjects before any change has been made to the list.
     /// </summary>
-    public class ItemsAddingEventArgs : CancellableEventArgs {
+    public class ItemsAddingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create an ItemsAddingEventArgs
         /// </summary>
         /// <param name="objectsToAdd"></param>
-        public ItemsAddingEventArgs(ICollection objectsToAdd) {
+        public ItemsAddingEventArgs(ICollection objectsToAdd)
+        {
             this.ObjectsToAdd = objectsToAdd;
         }
 
@@ -1248,7 +1325,8 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <param name="index"></param>
         /// <param name="objectsToAdd"></param>
-        public ItemsAddingEventArgs(int index, ICollection objectsToAdd) {
+        public ItemsAddingEventArgs(int index, ICollection objectsToAdd)
+        {
             this.Index = index;
             this.ObjectsToAdd = objectsToAdd;
         }
@@ -1270,13 +1348,15 @@ namespace BrightIdeasSoftware {
     /// <remarks>
     /// When used with a virtual list, OldObjects will always be null.
     /// </remarks>
-    public class ItemsChangingEventArgs : CancellableEventArgs {
+    public class ItemsChangingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create ItemsChangingEventArgs
         /// </summary>
         /// <param name="oldObjects"></param>
         /// <param name="newObjects"></param>
-        public ItemsChangingEventArgs(IEnumerable oldObjects, IEnumerable newObjects) {
+        public ItemsChangingEventArgs(IEnumerable oldObjects, IEnumerable newObjects)
+        {
             this.oldObjects = oldObjects;
             this.NewObjects = newObjects;
         }
@@ -1285,7 +1365,8 @@ namespace BrightIdeasSoftware {
         /// Gets the objects that were in the list before it change.
         /// For virtual lists, this will always be null.
         /// </summary>
-        public IEnumerable OldObjects {
+        public IEnumerable OldObjects
+        {
             get { return oldObjects; }
         }
 
@@ -1300,12 +1381,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event is triggered by RemoveObjects before any change has been made to the list.
     /// </summary>
-    public class ItemsRemovingEventArgs : CancellableEventArgs {
+    public class ItemsRemovingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create an ItemsRemovingEventArgs
         /// </summary>
         /// <param name="objectsToRemove"></param>
-        public ItemsRemovingEventArgs(ICollection objectsToRemove) {
+        public ItemsRemovingEventArgs(ICollection objectsToRemove)
+        {
             this.ObjectsToRemove = objectsToRemove;
         }
 
@@ -1318,13 +1401,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Triggered after the user types into a list
     /// </summary>
-    public class AfterSearchingEventArgs : EventArgs {
+    public class AfterSearchingEventArgs : EventArgs
+    {
         /// <summary>
         /// Create an AfterSearchingEventArgs
         /// </summary>
         /// <param name="stringToFind"></param>
         /// <param name="indexSelected"></param>
-        public AfterSearchingEventArgs(string stringToFind, int indexSelected) {
+        public AfterSearchingEventArgs(string stringToFind, int indexSelected)
+        {
             this.stringToFind = stringToFind;
             this.indexSelected = indexSelected;
         }
@@ -1332,7 +1417,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the string that was actually searched for
         /// </summary>
-        public string StringToFind {
+        public string StringToFind
+        {
             get { return this.stringToFind; }
         }
 
@@ -1347,7 +1433,8 @@ namespace BrightIdeasSoftware {
         /// Gets the index of the row that was selected by the search.
         /// -1 means that no row was matched
         /// </summary>
-        public int IndexSelected {
+        public int IndexSelected
+        {
             get { return this.indexSelected; }
         }
 
@@ -1357,13 +1444,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Triggered when the user types into a list
     /// </summary>
-    public class BeforeSearchingEventArgs : CancellableEventArgs {
+    public class BeforeSearchingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create BeforeSearchingEventArgs
         /// </summary>
         /// <param name="stringToFind"></param>
         /// <param name="startSearchFrom"></param>
-        public BeforeSearchingEventArgs(string stringToFind, int startSearchFrom) {
+        public BeforeSearchingEventArgs(string stringToFind, int startSearchFrom)
+        {
             this.StringToFind = stringToFind;
             this.StartSearchFrom = startSearchFrom;
         }
@@ -1385,11 +1474,13 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// The parameter block when telling the world about a cell based event
     /// </summary>
-    public class CellEventArgs : EventArgs {
+    public class CellEventArgs : EventArgs
+    {
         /// <summary>
         /// Gets the ObjectListView that is the source of the event
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return this.listView; }
             internal set { this.listView = value; }
         }
@@ -1400,7 +1491,8 @@ namespace BrightIdeasSoftware {
         /// Gets the model object under the cell
         /// </summary>
         /// <remarks>This is null for events triggered by the header.</remarks>
-        public object Model {
+        public object Model
+        {
             get { return this.model; }
             internal set { this.model = value; }
         }
@@ -1411,7 +1503,8 @@ namespace BrightIdeasSoftware {
         /// Gets the row index of the cell
         /// </summary>
         /// <remarks>This is -1 for events triggered by the header.</remarks>
-        public int RowIndex {
+        public int RowIndex
+        {
             get { return this.rowIndex; }
             internal set { this.rowIndex = value; }
         }
@@ -1422,7 +1515,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column index of the cell
         /// </summary>
         /// <remarks>This is -1 when the view is not in details view.</remarks>
-        public int ColumnIndex {
+        public int ColumnIndex
+        {
             get { return this.columnIndex; }
             internal set { this.columnIndex = value; }
         }
@@ -1433,7 +1527,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column of the cell 
         /// </summary>
         /// <remarks>This is null when the view is not in details view.</remarks>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
             internal set { this.column = value; }
         }
@@ -1443,7 +1538,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the location of the mouse at the time of the event
         /// </summary>
-        public Point Location {
+        public Point Location
+        {
             get { return this.location; }
             internal set { this.location = value; }
         }
@@ -1453,7 +1549,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the state of the modifier keys at the time of the event
         /// </summary>
-        public Keys ModifierKeys {
+        public Keys ModifierKeys
+        {
             get { return this.modifierKeys; }
             internal set { this.modifierKeys = value; }
         }
@@ -1463,7 +1560,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the item of the cell
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             internal set { this.item = value; }
         }
@@ -1475,7 +1573,8 @@ namespace BrightIdeasSoftware {
         /// </summary>
         /// <remarks>This is null when the view is not in details view and 
         /// for event triggered by the header</remarks>
-        public OLVListSubItem SubItem {
+        public OLVListSubItem SubItem
+        {
             get { return subItem; }
             internal set { this.subItem = value; }
         }
@@ -1485,7 +1584,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the HitTest object that determined which cell was hit
         /// </summary>
-        public OlvListViewHitTestInfo HitTest {
+        public OlvListViewHitTestInfo HitTest
+        {
             get { return hitTest; }
             internal set { hitTest = value; }
         }
@@ -1502,11 +1602,13 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Tells the world that a cell was clicked
     /// </summary>
-    public class CellClickEventArgs : CellEventArgs {
+    public class CellClickEventArgs : CellEventArgs
+    {
         /// <summary>
         /// Gets or sets the number of clicks associated with this event
         /// </summary>
-        public int ClickCount {
+        public int ClickCount
+        {
             get { return this.clickCount; }
             set { this.clickCount = value; }
         }
@@ -1517,7 +1619,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Tells the world that a cell was right clicked
     /// </summary>
-    public class CellRightClickEventArgs : CellEventArgs {
+    public class CellRightClickEventArgs : CellEventArgs
+    {
         /// <summary>
         /// Gets or sets the menu that should be displayed as a result of this event.
         /// </summary>
@@ -1534,12 +1637,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Tells the world that the frozen-ness of the ObjectListView has changed.
     /// </summary>
-    public class FreezeEventArgs : EventArgs {
+    public class FreezeEventArgs : EventArgs
+    {
         /// <summary>
         /// Make a FreezeEventArgs
         /// </summary>
         /// <param name="freeze"></param>
-        public FreezeEventArgs(int freeze) {
+        public FreezeEventArgs(int freeze)
+        {
             this.FreezeLevel = freeze;
         }
 
@@ -1547,7 +1652,8 @@ namespace BrightIdeasSoftware {
         /// How frozen is the control? 0 means that the control is unfrozen, 
         /// more than 0 indicates froze.
         /// </summary>
-        public int FreezeLevel {
+        public int FreezeLevel
+        {
             get { return this.freezeLevel; }
             set { this.freezeLevel = value; }
         }
@@ -1558,11 +1664,13 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// The parameter block when telling the world that a tool tip is about to be shown.
     /// </summary>
-    public class ToolTipShowingEventArgs : CellEventArgs {
+    public class ToolTipShowingEventArgs : CellEventArgs
+    {
         /// <summary>
         /// Gets the tooltip control that is triggering the tooltip event
         /// </summary>
-        public ToolTipControl ToolTipControl {
+        public ToolTipControl ToolTipControl
+        {
             get { return this.toolTipControl; }
             internal set { this.toolTipControl = value; }
         }
@@ -1623,13 +1731,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Common information to all hyperlink events
     /// </summary>
-    public class HyperlinkEventArgs : EventArgs {
+    public class HyperlinkEventArgs : EventArgs
+    {
         //TODO: Unified with CellEventArgs
 
         /// <summary>
         /// Gets the ObjectListView that is the source of the event
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return this.listView; }
             internal set { this.listView = value; }
         }
@@ -1639,7 +1749,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model object under the cell
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return this.model; }
             internal set { this.model = value; }
         }
@@ -1649,7 +1760,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the row index of the cell
         /// </summary>
-        public int RowIndex {
+        public int RowIndex
+        {
             get { return this.rowIndex; }
             internal set { this.rowIndex = value; }
         }
@@ -1660,7 +1772,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column index of the cell
         /// </summary>
         /// <remarks>This is -1 when the view is not in details view.</remarks>
-        public int ColumnIndex {
+        public int ColumnIndex
+        {
             get { return this.columnIndex; }
             internal set { this.columnIndex = value; }
         }
@@ -1671,7 +1784,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column of the cell 
         /// </summary>
         /// <remarks>This is null when the view is not in details view.</remarks>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
             internal set { this.column = value; }
         }
@@ -1681,7 +1795,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the item of the cell
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             internal set { this.item = value; }
         }
@@ -1692,7 +1807,8 @@ namespace BrightIdeasSoftware {
         /// Gets the subitem of the cell
         /// </summary>
         /// <remarks>This is null when the view is not in details view</remarks>
-        public OLVListSubItem SubItem {
+        public OLVListSubItem SubItem
+        {
             get { return subItem; }
             internal set { this.subItem = value; }
         }
@@ -1702,7 +1818,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the ObjectListView that is the source of the event
         /// </summary>
-        public string Url {
+        public string Url
+        {
             get { return this.url; }
             internal set { this.url = value; }
         }
@@ -1713,7 +1830,8 @@ namespace BrightIdeasSoftware {
         /// Gets or set if this event completely handled. If it was, no further processing
         /// will be done for it.
         /// </summary>
-        public bool Handled {
+        public bool Handled
+        {
             get { return handled; }
             set { handled = value; }
         }
@@ -1725,11 +1843,13 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// 
     /// </summary>
-    public class IsHyperlinkEventArgs : EventArgs {
+    public class IsHyperlinkEventArgs : EventArgs
+    {
         /// <summary>
         /// Gets the ObjectListView that is the source of the event
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return this.listView; }
             internal set { this.listView = value; }
         }
@@ -1739,7 +1859,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model object under the cell
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return this.model; }
             internal set { this.model = value; }
         }
@@ -1750,7 +1871,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column of the cell 
         /// </summary>
         /// <remarks>This is null when the view is not in details view.</remarks>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
             internal set { this.column = value; }
         }
@@ -1760,7 +1882,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the text of the cell 
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return this.text; }
             internal set { this.text = value; }
         }
@@ -1771,7 +1894,8 @@ namespace BrightIdeasSoftware {
         /// Gets or sets whether or not this cell is a hyperlink.
         /// Defaults to true for enabled rows and false for disabled rows. 
         /// </summary>
-        public bool IsHyperlink {
+        public bool IsHyperlink
+        {
             get { return this.isHyperlink; }
             set { this.isHyperlink = value; }
         }
@@ -1787,13 +1911,15 @@ namespace BrightIdeasSoftware {
 
     /// <summary>
     /// </summary>
-    public class FormatRowEventArgs : EventArgs {
+    public class FormatRowEventArgs : EventArgs
+    {
         //TODO: Unified with CellEventArgs
 
         /// <summary>
         /// Gets the ObjectListView that is the source of the event
         /// </summary>
-        public ObjectListView ListView {
+        public ObjectListView ListView
+        {
             get { return this.listView; }
             internal set { this.listView = value; }
         }
@@ -1803,7 +1929,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the item of the cell
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             internal set { this.item = value; }
         }
@@ -1813,14 +1940,16 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model object under the cell
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return this.Item.RowObject; }
         }
 
         /// <summary>
         /// Gets the row index of the cell
         /// </summary>
-        public int RowIndex {
+        public int RowIndex
+        {
             get { return this.rowIndex; }
             internal set { this.rowIndex = value; }
         }
@@ -1830,7 +1959,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the display index of the row
         /// </summary>
-        public int DisplayIndex {
+        public int DisplayIndex
+        {
             get { return this.displayIndex; }
             internal set { this.displayIndex = value; }
         }
@@ -1840,7 +1970,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Should events be triggered for each cell in this row?
         /// </summary>
-        public bool UseCellFormatEvents {
+        public bool UseCellFormatEvents
+        {
             get { return useCellFormatEvents; }
             set { useCellFormatEvents = value; }
         }
@@ -1851,12 +1982,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Parameter block for FormatCellEvent
     /// </summary>
-    public class FormatCellEventArgs : FormatRowEventArgs {
+    public class FormatCellEventArgs : FormatRowEventArgs
+    {
         /// <summary>
         /// Gets the column index of the cell
         /// </summary>
         /// <remarks>This is -1 when the view is not in details view.</remarks>
-        public int ColumnIndex {
+        public int ColumnIndex
+        {
             get { return this.columnIndex; }
             internal set { this.columnIndex = value; }
         }
@@ -1867,7 +2000,8 @@ namespace BrightIdeasSoftware {
         /// Gets the column of the cell 
         /// </summary>
         /// <remarks>This is null when the view is not in details view.</remarks>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
             internal set { this.column = value; }
         }
@@ -1878,7 +2012,8 @@ namespace BrightIdeasSoftware {
         /// Gets the subitem of the cell
         /// </summary>
         /// <remarks>This is null when the view is not in details view</remarks>
-        public OLVListSubItem SubItem {
+        public OLVListSubItem SubItem
+        {
             get { return subItem; }
             internal set { this.subItem = value; }
         }
@@ -1889,7 +2024,8 @@ namespace BrightIdeasSoftware {
         /// Gets the model value that is being displayed by the cell.
         /// </summary>
         /// <remarks>This is null when the view is not in details view</remarks>
-        public object CellValue {
+        public object CellValue
+        {
             get { return this.SubItem == null ? null : this.SubItem.ModelValue; }
         }
     }
@@ -1897,11 +2033,13 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// The event args when a hyperlink is clicked
     /// </summary>
-    public class HyperlinkClickedEventArgs : CellEventArgs {
+    public class HyperlinkClickedEventArgs : CellEventArgs
+    {
         /// <summary>
         /// Gets the url that was associated with this cell.
         /// </summary>
-        public string Url {
+        public string Url
+        {
             get { return url; }
             set { url = value; }
         }
@@ -1913,12 +2051,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// The event args when the check box in a column header is changing
     /// </summary>
-    public class HeaderCheckBoxChangingEventArgs : CancelEventArgs {
+    public class HeaderCheckBoxChangingEventArgs : CancelEventArgs
+    {
 
         /// <summary>
         /// Get the column whose checkbox is changing
         /// </summary>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return column; }
             internal set { column = value; }
         }
@@ -1928,7 +2068,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Get or set the new state that should be used by the column
         /// </summary>
-        public CheckState NewCheckState {
+        public CheckState NewCheckState
+        {
             get { return newCheckState; }
             set { newCheckState = value; }
         }
@@ -1939,12 +2080,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// The event args when the hot item changed
     /// </summary>
-    public class HotItemChangedEventArgs : EventArgs {
+    public class HotItemChangedEventArgs : EventArgs
+    {
         /// <summary>
         /// Gets or set if this event completely handled. If it was, no further processing
         /// will be done for it.
         /// </summary>
-        public bool Handled {
+        public bool Handled
+        {
             get { return handled; }
             set { handled = value; }
         }
@@ -1954,7 +2097,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the part of the cell that the mouse is over
         /// </summary>
-        public HitTestLocation HotCellHitLocation {
+        public HitTestLocation HotCellHitLocation
+        {
             get { return newHotCellHitLocation; }
             internal set { newHotCellHitLocation = value; }
         }
@@ -1964,7 +2108,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets an extended indication of the part of item/subitem/group that the mouse is currently over
         /// </summary>
-        public virtual HitTestLocationEx HotCellHitLocationEx {
+        public virtual HitTestLocationEx HotCellHitLocationEx
+        {
             get { return this.hotCellHitLocationEx; }
             internal set { this.hotCellHitLocationEx = value; }
         }
@@ -1975,7 +2120,8 @@ namespace BrightIdeasSoftware {
         /// Gets the index of the column that the mouse is over
         /// </summary>
         /// <remarks>In non-details view, this will always be 0.</remarks>
-        public int HotColumnIndex {
+        public int HotColumnIndex
+        {
             get { return newHotColumnIndex; }
             internal set { newHotColumnIndex = value; }
         }
@@ -1985,7 +2131,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the index of the row that the mouse is over
         /// </summary>
-        public int HotRowIndex {
+        public int HotRowIndex
+        {
             get { return newHotRowIndex; }
             internal set { newHotRowIndex = value; }
         }
@@ -1995,7 +2142,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the group that the mouse is over
         /// </summary>
-        public OLVGroup HotGroup {
+        public OLVGroup HotGroup
+        {
             get { return hotGroup; }
             internal set { hotGroup = value; }
         }
@@ -2005,7 +2153,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the part of the cell that the mouse used to be over
         /// </summary>
-        public HitTestLocation OldHotCellHitLocation {
+        public HitTestLocation OldHotCellHitLocation
+        {
             get { return oldHotCellHitLocation; }
             internal set { oldHotCellHitLocation = value; }
         }
@@ -2015,7 +2164,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets an extended indication of the part of item/subitem/group that the mouse used to be over
         /// </summary>
-        public virtual HitTestLocationEx OldHotCellHitLocationEx {
+        public virtual HitTestLocationEx OldHotCellHitLocationEx
+        {
             get { return this.oldHotCellHitLocationEx; }
             internal set { this.oldHotCellHitLocationEx = value; }
         }
@@ -2025,7 +2175,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the index of the column that the mouse used to be over
         /// </summary>
-        public int OldHotColumnIndex {
+        public int OldHotColumnIndex
+        {
             get { return oldHotColumnIndex; }
             internal set { oldHotColumnIndex = value; }
         }
@@ -2035,7 +2186,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the index of the row that the mouse used to be over
         /// </summary>
-        public int OldHotRowIndex {
+        public int OldHotRowIndex
+        {
             get { return oldHotRowIndex; }
             internal set { oldHotRowIndex = value; }
         }
@@ -2045,7 +2197,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the group that the mouse used to be over
         /// </summary>
-        public OLVGroup OldHotGroup {
+        public OLVGroup OldHotGroup
+        {
             get { return oldHotGroup; }
             internal set { oldHotGroup = value; }
         }
@@ -2059,7 +2212,8 @@ namespace BrightIdeasSoftware {
         /// A string that represents the current object.
         /// </returns>
         /// <filterpriority>2</filterpriority>
-        public override string ToString() {
+        public override string ToString()
+        {
             return string.Format("NewHotCellHitLocation: {0}, HotCellHitLocationEx: {1}, NewHotColumnIndex: {2}, NewHotRowIndex: {3}, HotGroup: {4}", this.newHotCellHitLocation, this.hotCellHitLocationEx, this.newHotColumnIndex, this.newHotRowIndex, this.hotGroup);
         }
     }
@@ -2067,7 +2221,8 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Let the world know that a checkbox on a subitem is changing
     /// </summary>
-    public class SubItemCheckingEventArgs : CancellableEventArgs {
+    public class SubItemCheckingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create a new event block
         /// </summary>
@@ -2076,7 +2231,8 @@ namespace BrightIdeasSoftware {
         /// <param name="subItemIndex"></param>
         /// <param name="currentValue"></param>
         /// <param name="newValue"></param>
-        public SubItemCheckingEventArgs(OLVColumn column, OLVListItem item, int subItemIndex, CheckState currentValue, CheckState newValue) {
+        public SubItemCheckingEventArgs(OLVColumn column, OLVListItem item, int subItemIndex, CheckState currentValue, CheckState newValue)
+        {
             this.column = column;
             this.listViewItem = item;
             this.subItemIndex = subItemIndex;
@@ -2087,7 +2243,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The column of the cell that is having its checkbox changed.
         /// </summary>
-        public OLVColumn Column {
+        public OLVColumn Column
+        {
             get { return this.column; }
         }
 
@@ -2096,14 +2253,16 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The model object of the row of the cell that is having its checkbox changed.
         /// </summary>
-        public Object RowObject {
+        public Object RowObject
+        {
             get { return this.listViewItem.RowObject; }
         }
 
         /// <summary>
         /// The listview item of the cell that is having its checkbox changed.
         /// </summary>
-        public OLVListItem ListViewItem {
+        public OLVListItem ListViewItem
+        {
             get { return this.listViewItem; }
         }
 
@@ -2112,7 +2271,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The current check state of the cell.
         /// </summary>
-        public CheckState CurrentValue {
+        public CheckState CurrentValue
+        {
             get { return this.currentValue; }
         }
 
@@ -2121,7 +2281,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The proposed new check state of the cell.
         /// </summary>
-        public CheckState NewValue {
+        public CheckState NewValue
+        {
             get { return this.newValue; }
             set { this.newValue = value; }
         }
@@ -2131,7 +2292,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// The index of the cell that is going to be or has been edited.
         /// </summary>
-        public int SubItemIndex {
+        public int SubItemIndex
+        {
             get { return this.subItemIndex; }
         }
 
@@ -2141,19 +2303,22 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when groups are created for a list.
     /// </summary>
-    public class CreateGroupsEventArgs : EventArgs {
+    public class CreateGroupsEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a CreateGroupsEventArgs
         /// </summary>
         /// <param name="parms"></param>
-        public CreateGroupsEventArgs(GroupingParameters parms) {
+        public CreateGroupsEventArgs(GroupingParameters parms)
+        {
             this.parameters = parms;
         }
 
         /// <summary>
         /// Gets the settings that control the creation of groups
         /// </summary>
-        public GroupingParameters Parameters {
+        public GroupingParameters Parameters
+        {
             get { return this.parameters; }
         }
 
@@ -2162,7 +2327,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets or sets the groups that should be used
         /// </summary>
-        public IList<OLVGroup> Groups {
+        public IList<OLVGroup> Groups
+        {
             get { return this.groups; }
             set { this.groups = value; }
         }
@@ -2172,7 +2338,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Has this event been cancelled by the event handler?
         /// </summary>
-        public bool Canceled {
+        public bool Canceled
+        {
             get { return canceled; }
             set { canceled = value; }
         }
@@ -2184,19 +2351,22 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when the text of a group task is clicked
     /// </summary>
-    public class GroupTaskClickedEventArgs : EventArgs {
+    public class GroupTaskClickedEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a GroupTaskClickedEventArgs
         /// </summary>
         /// <param name="group"></param>
-        public GroupTaskClickedEventArgs(OLVGroup group) {
+        public GroupTaskClickedEventArgs(OLVGroup group)
+        {
             this.group = group;
         }
 
         /// <summary>
         /// Gets which group was clicked
         /// </summary>
-        public OLVGroup Group {
+        public OLVGroup Group
+        {
             get { return this.group; }
         }
 
@@ -2206,12 +2376,14 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when a group is about to expand or collapse
     /// </summary>
-    public class GroupExpandingCollapsingEventArgs : CancellableEventArgs {
+    public class GroupExpandingCollapsingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create a GroupExpandingCollapsingEventArgs
         /// </summary>
         /// <param name="group"> </param>
-        public GroupExpandingCollapsingEventArgs(OLVGroup group) {
+        public GroupExpandingCollapsingEventArgs(OLVGroup group)
+        {
             if (group == null) throw new ArgumentNullException("group");
             this.olvGroup = group;
         }
@@ -2219,7 +2391,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets which group is expanding/collapsing
         /// </summary>
-        public OLVGroup Group {
+        public OLVGroup Group
+        {
             get { return this.olvGroup; }
         }
 
@@ -2229,7 +2402,8 @@ namespace BrightIdeasSoftware {
         /// Gets whether this event is going to expand the group.
         /// If this is false, the group must be collapsing.
         /// </summary>
-        public bool IsExpanding {
+        public bool IsExpanding
+        {
             get { return this.Group.Collapsed; }
         }
     }
@@ -2237,14 +2411,16 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when the state of group has changed (collapsed, selected)
     /// </summary>
-    public class GroupStateChangedEventArgs : EventArgs {
+    public class GroupStateChangedEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a GroupStateChangedEventArgs
         /// </summary>
         /// <param name="group"></param>
         /// <param name="oldState"> </param>
         /// <param name="newState"> </param>
-        public GroupStateChangedEventArgs(OLVGroup group, GroupState oldState, GroupState newState) {
+        public GroupStateChangedEventArgs(OLVGroup group, GroupState oldState, GroupState newState)
+        {
             this.group = group;
             this.oldState = oldState;
             this.newState = newState;
@@ -2253,8 +2429,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was collapsed by this event
         /// </summary>
-        public bool Collapsed {
-            get {
+        public bool Collapsed
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_COLLAPSED) != GroupState.LVGS_COLLAPSED) &&
                        ((newState & GroupState.LVGS_COLLAPSED) == GroupState.LVGS_COLLAPSED);
             }
@@ -2263,8 +2441,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was focused by this event
         /// </summary>
-        public bool Focused {
-            get {
+        public bool Focused
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_FOCUSED) != GroupState.LVGS_FOCUSED) &&
                        ((newState & GroupState.LVGS_FOCUSED) == GroupState.LVGS_FOCUSED);
             }
@@ -2273,8 +2453,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was selected by this event
         /// </summary>
-        public bool Selected {
-            get {
+        public bool Selected
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_SELECTED) != GroupState.LVGS_SELECTED) &&
                        ((newState & GroupState.LVGS_SELECTED) == GroupState.LVGS_SELECTED);
             }
@@ -2283,8 +2465,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was uncollapsed by this event
         /// </summary>
-        public bool Uncollapsed {
-            get {
+        public bool Uncollapsed
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_COLLAPSED) == GroupState.LVGS_COLLAPSED) &&
                        ((newState & GroupState.LVGS_COLLAPSED) != GroupState.LVGS_COLLAPSED);
             }
@@ -2293,8 +2477,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was unfocused by this event
         /// </summary>
-        public bool Unfocused {
-            get {
+        public bool Unfocused
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_FOCUSED) == GroupState.LVGS_FOCUSED) &&
                        ((newState & GroupState.LVGS_FOCUSED) != GroupState.LVGS_FOCUSED);
             }
@@ -2303,8 +2489,10 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets whether the group was unselected by this event
         /// </summary>
-        public bool Unselected {
-            get {
+        public bool Unselected
+        {
+            get
+            {
                 return ((oldState & GroupState.LVGS_SELECTED) == GroupState.LVGS_SELECTED) &&
                        ((newState & GroupState.LVGS_SELECTED) != GroupState.LVGS_SELECTED);
             }
@@ -2313,7 +2501,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets which group had its state changed
         /// </summary>
-        public OLVGroup Group {
+        public OLVGroup Group
+        {
             get { return this.group; }
         }
 
@@ -2322,7 +2511,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the previous state of the group
         /// </summary>
-        public GroupState OldState {
+        public GroupState OldState
+        {
             get { return this.oldState; }
         }
 
@@ -2332,7 +2522,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the new state of the group
         /// </summary>
-        public GroupState NewState {
+        public GroupState NewState
+        {
             get { return this.newState; }
         }
 
@@ -2342,13 +2533,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when a branch of a tree is about to be expanded
     /// </summary>
-    public class TreeBranchExpandingEventArgs : CancellableEventArgs {
+    public class TreeBranchExpandingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create a new event args
         /// </summary>
         /// <param name="model"></param>
         /// <param name="item"></param>
-        public TreeBranchExpandingEventArgs(object model, OLVListItem item) {
+        public TreeBranchExpandingEventArgs(object model, OLVListItem item)
+        {
             this.Model = model;
             this.Item = item;
         }
@@ -2356,7 +2549,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model that is about to expand. If null, all branches are going to be expanded.
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return model; }
             private set { model = value; }
         }
@@ -2366,7 +2560,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the OLVListItem that is about to be expanded
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             private set { item = value; }
         }
@@ -2378,13 +2573,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when a branch of a tree has just been expanded
     /// </summary>
-    public class TreeBranchExpandedEventArgs : EventArgs {
+    public class TreeBranchExpandedEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a new event args
         /// </summary>
         /// <param name="model"></param>
         /// <param name="item"></param>
-        public TreeBranchExpandedEventArgs(object model, OLVListItem item) {
+        public TreeBranchExpandedEventArgs(object model, OLVListItem item)
+        {
             this.Model = model;
             this.Item = item;
         }
@@ -2392,7 +2589,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model that is was expanded. If null, all branches were expanded.
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return model; }
             private set { model = value; }
         }
@@ -2402,7 +2600,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the OLVListItem that was expanded
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             private set { item = value; }
         }
@@ -2414,13 +2613,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when a branch of a tree is about to be collapsed
     /// </summary>
-    public class TreeBranchCollapsingEventArgs : CancellableEventArgs {
+    public class TreeBranchCollapsingEventArgs : CancellableEventArgs
+    {
         /// <summary>
         /// Create a new event args
         /// </summary>
         /// <param name="model"></param>
         /// <param name="item"></param>
-        public TreeBranchCollapsingEventArgs(object model, OLVListItem item) {
+        public TreeBranchCollapsingEventArgs(object model, OLVListItem item)
+        {
             this.Model = model;
             this.Item = item;
         }
@@ -2428,7 +2629,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model that is about to collapse. If this is null, all models are going to collapse.
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return model; }
             private set { model = value; }
         }
@@ -2438,7 +2640,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the OLVListItem that is about to be collapsed. Can be null
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             private set { item = value; }
         }
@@ -2450,13 +2653,15 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// This event argument block is used when a branch of a tree has just been collapsed
     /// </summary>
-    public class TreeBranchCollapsedEventArgs : EventArgs {
+    public class TreeBranchCollapsedEventArgs : EventArgs
+    {
         /// <summary>
         /// Create a new event args
         /// </summary>
         /// <param name="model"></param>
         /// <param name="item"></param>
-        public TreeBranchCollapsedEventArgs(object model, OLVListItem item) {
+        public TreeBranchCollapsedEventArgs(object model, OLVListItem item)
+        {
             this.Model = model;
             this.Item = item;
         }
@@ -2464,7 +2669,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the model that is was collapsed. If null, all branches were collapsed
         /// </summary>
-        public object Model {
+        public object Model
+        {
             get { return model; }
             private set { model = value; }
         }
@@ -2474,7 +2680,8 @@ namespace BrightIdeasSoftware {
         /// <summary>
         /// Gets the OLVListItem that was collapsed
         /// </summary>
-        public OLVListItem Item {
+        public OLVListItem Item
+        {
             get { return item; }
             private set { item = value; }
         }
@@ -2486,8 +2693,10 @@ namespace BrightIdeasSoftware {
     /// <summary>
     /// Tells the world that a column header was right clicked
     /// </summary>
-    public class ColumnRightClickEventArgs : ColumnClickEventArgs {
-        public ColumnRightClickEventArgs(int columnIndex, ToolStripDropDown menu, Point location) : base(columnIndex) {
+    public class ColumnRightClickEventArgs : ColumnClickEventArgs
+    {
+        public ColumnRightClickEventArgs(int columnIndex, ToolStripDropDown menu, Point location) : base(columnIndex)
+        {
             MenuStrip = menu;
             Location = location;
         }
