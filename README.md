@@ -27,6 +27,13 @@ Example use-case:
 -  [Target Language](README.md#Target-Language)
 -  [Source Language](README.md#Source-Language)
 -  [Filter](README.md#Filter)
+-  
+[Console Program](README.md#Console-Program)
+
+[Author](README.md#Author)
+
+[License](README.md#License)
+
 
 ## Features
 
@@ -136,7 +143,7 @@ For most use cases, this value should be left empty.  If populated, use [ISO 639
 -  TranslateFileNames "C:\Users\jane-doe\Pictures" -r -ext *.jpg
 
 
-# Authors
+# Author
 
 * **David Maisonave** - [David-Maisonave](https://github.com/David-Maisonave)
 
