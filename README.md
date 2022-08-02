@@ -138,6 +138,8 @@ The list view has multiple columns, and the list can be sorted by any column by 
 
 
 
+## Option Window Screenshot
+
 
 [![Screenshot2](doc/screenshot2.png)](https://github.com/David-Maisonave/TranslateFileNames)
 
