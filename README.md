@@ -132,6 +132,13 @@ This is empty by default. When this value is empty, the translation works in "Au
 
 For most use cases, this value should be left empty.  If populated, use [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) link to get desired language code.
 
+#### Sortable File List
+
+The list view has multiple columns, and the list can be sorted by any column by clicking on the column header.
+
+
+
+
 [![Screenshot2](doc/screenshot2.png)](https://github.com/David-Maisonave/TranslateFileNames)
 
 # Console Program
