@@ -2,6 +2,12 @@
 # Translate File Names
 Includes both a windows GUI and a command line utility to translate and rename files from their source language to the set language. By default, the set language is the local system TwoLetterISOLanguageName.
 
+# Content
+
+![Features](#Features)
+
+
+
 ## What does it do?
 
 The program renames all the files from their source language to the specified target language (default: locale).
@@ -11,9 +17,9 @@ Example use-case:
 	Translate names of songs ripped from an imported foreign album.
 
 
-# Features
+## Features
 
-#### 1. Translates all file names in selected folder.
+#### 1. Translates all file names in folder
 
 Scans all files in selected folder, and only displays files having names in different language from the targetted language.
 
