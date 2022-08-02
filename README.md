@@ -5,7 +5,7 @@ Includes both a windows GUI and a command line utility to translate and rename f
 
 ## What does it do?
 
-The program renames all the files from their source language to the specified target language (default: locale).
+This program renames all files in a folder from their source language to the specified target language (default: locale).
 
 Example use-case:
 	Translate foreign movie *.mp4 file names.
