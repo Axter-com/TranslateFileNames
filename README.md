@@ -27,7 +27,7 @@ Example use-case:
 -  [Target Language](README.md#Target-Language)
 -  [Source Language](README.md#Source-Language)
 -  [Filter](README.md#Filter)
--  
+
 [Console Program](README.md#Console-Program)
 
 [Author](README.md#Author)
@@ -135,8 +135,6 @@ For most use cases, this value should be left empty.  If populated, use [ISO 639
 #### Sortable File List
 
 The list view has multiple columns, and the list can be sorted by any column by clicking on the column header.
-
-
 
 ## Option Window Screenshot
 
