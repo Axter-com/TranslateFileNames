@@ -1,3 +1,4 @@
+[![Screenshot1](doc/screenshot1.png)](https://github.com/David-Maisonave/TranslateFileNames)
 # Translate File Names
 Includes both a windows GUI and a command line utility to translate and rename files from their source language to the set language. By default, the set language is the local system TwoLetterISOLanguageName.
 
@@ -8,9 +9,6 @@ The program renames all the files from their source language to the specified ta
 Example use-case:
 	Translate foreign movie *.mp4 file names.
 	Translate names of songs ripped from an imported foreign album.
-
-## Screenshot
-[![Screenshot1](doc/screenshot1.png)](https://github.com/David-Maisonave/TranslateFileNames)
 
 ## Command Line Example Usage:
 
