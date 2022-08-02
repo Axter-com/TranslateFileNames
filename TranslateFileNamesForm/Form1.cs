@@ -123,6 +123,7 @@ namespace TranslateFileNamesForm
                 FilterText.Visible = true;
                 labelFilter.Visible = true;
                 RefreshList.Visible = true;
+                linkLabelFilter.Visible = true;
             }
             else
                 SetupProgressBar(QtyFilesToCheck);
@@ -146,6 +147,7 @@ namespace TranslateFileNamesForm
             FilterText.Visible = false;
             labelFilter.Visible = false;
             RefreshList.Visible = false;
+            linkLabelFilter.Visible = false;
         }
 
         private void ClearList_Click(object sender, EventArgs e)
@@ -514,47 +516,47 @@ namespace TranslateFileNamesForm
 
         private void linkLabelFilter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Filter");
         }
 
         private void linkLabelSearchRecursively_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Search-Recursively");
         }
 
         private void linkLabelLongPathSupport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Long-Path-Support");
         }
 
         private void linkLabelAppendLangName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Append-Language-Name");
         }
 
         private void linkLabelAppendOriginalName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Append-Original-Name");
         }
 
         private void linkLabelFileType_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#File-Type");
         }
 
         private void linkLabelMaxThreads_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Max-Threads");
         }
 
         private void linkLabelFilesPerTranslationReq_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Files-Per-Translation-Req");
         }
 
         private void linkLabelMaxTranslateLen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenUrl("https://github.com/David-Maisonave/TranslateFileNames#Max-Translation-Len");
         }
 
         private void MaxTranslateLen_Validated(object sender, EventArgs e)
