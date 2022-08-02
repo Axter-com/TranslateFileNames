@@ -13,7 +13,7 @@ Example use-case:
 
 # Features
 
-### 1. Translates all file names in selected folder.
+#### 1. Translates all file names in selected folder.
 
 Scans all files in selected folder, and only displays files having names in different language from the targetted language.
 
@@ -41,41 +41,41 @@ File renaming does not occur untill one of the following options is selected.
 
 
 
-### 2.  Modify translated name
+#### 2.  Modify translated name
 
 The translated name on the list, can be edited before performing the rename action.
 
-### 3.  Search Recursively
+#### 3.  Search Recursively
 
 By default, only the files on the root directory are scanned, but by selecting this option, the scan will also search all sub folders.
 
-### 4.  Long Path Support
+#### 4.  Long Path Support
 
 By selecting this option, the rename will occur even if the full path is longer then 255 characters.
 
-### 5.  Append Original Name 
+#### 5.  Append Original Name 
 
 When selected, this options includes the original file name when renaming the file.  Example: TranslatedName(OriginalName).gif
 
-### 6.  Append Language Name
+#### 6.  Append Language Name
 
 When selected, appends the source language name to the renamed file. Example: TranslatedName_[Russian].gif
 
-### 7.  File Type
+#### 7.  File Type
 
 This option can be used to scan only file a specific file extension. Example: .gif
 
-### 8.  Max Threads
+#### 8.  Max Threads
 
 By default the programs uses the ProcessorCount to determine the maximum threads to use.  This options allows the end user to override that option.  The minimum value is 4, and the maximum value is 400.
 
-### 9.  Max Translation Len
+#### 9.  Max Translation Len
 
 The translation length is used when the program translates many files in a single translation request.  This happens if there are many files (over 100), or if the user selects option to translate many files per request.
 
 This value is set to 10000 by default.  The minimum value is 255, and the maximum value is 10,000.
 
-### 10  Files-Per-Translation-Req
+#### 10  Files-Per-Translation-Req
 
 This options determines if one file is used per translation request, or if many files are used per translation request. The following are the possible options to select from the combobox window.
 
@@ -92,20 +92,20 @@ This options determines if one file is used per translation request, or if many 
 		Multiple files are sent per translation request. This is the perferred option if the files are all in either the source language or the target language.
 
 
-### 11  Target Language
+#### 11  Target Language
 
 This setting is an [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter code.
 By default, the target language is set to the operating system language settings. (CurrentCulture.TwoLetterISOLanguageName)
 
 Use this option to override the target language.  See [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) link to get desired language code.
 
-### 12  Source Language
+#### 12  Source Language
 
 This is empty by default. When this value is empty, the translation works in "Auto" mode, which lets the translator determine the source language.
 
 For most use cases, this value should be left empty.  If populated, use [ISO 639-1](https://wikipedia.org/wiki/List_of_ISO_639-1_codes) link to get desired language code.
 
-### 13  Filter
+#### 13  Filter
 
 This option allows user to use keywords to find or filter the list to only items having the keyword(s).
 
@@ -115,7 +115,7 @@ When this option is used, and the "Rename All" option is selected, only the resu
 
 # Console Program
 
-## Command Line Example Usage:
+#### Command Line Example Usage:
 
 -  TranslateFileNames -r
 
