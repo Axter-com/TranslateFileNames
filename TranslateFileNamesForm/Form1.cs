@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TranslateFilenamesCore;
+using static System.Net.Mime.MediaTypeNames;
 using static TranslateFilenamesCore.TranslateFilenames;
 using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
 
@@ -27,6 +28,8 @@ namespace TranslateFileNamesForm
         private string _defaultMaximumTranslateDataLength;
         private string _defaultMaxWorkerThreads;
         private string _defaultTargetLanguage;
+        private List<string> _langNames = new List<string>();
+        private List<string> _langId = new List<string>();
         #endregion
 
         public Form1()
@@ -48,7 +51,30 @@ namespace TranslateFileNamesForm
 
             _defaultMaximumTranslateDataLength = options._maximumTranslateDataLength.ToString();
             _defaultMaxWorkerThreads = options._maxWorkerThreads.ToString();
-            _defaultTargetLanguage = options._targetLang.ToString();
+            _defaultTargetLanguage = options._targetLang;
+            string LangName = "", LangID = "";
+            foreach (var LangId in ISO_LanguageCodes.LanguageNameToID)
+            {
+                if (LangName.Length == 0)
+                    LangName = LangId.ToString();
+                else 
+                {
+                    LangID = LangId.ToString();
+                    _langNames.Add(LangName);
+                    _langId.Add(LangID);
+                    LangName = "";
+                }
+            }
+
+            foreach (string lang in _langNames)
+            {
+                comboBoxTargetLanguage.Items.Add(lang);
+            }
+            int index = _langId.IndexOf(options._targetLang);
+            if (index != -1)
+                comboBoxTargetLanguage.Text = _langNames[index];
+            comboBoxFilesPerTransReq.SelectedIndex = 0;
+
 #if !DEBUG
             TestButton.Enabled = false;
             TestButton.Visible = false;
@@ -562,22 +588,58 @@ namespace TranslateFileNamesForm
         private void MaxTranslateLen_Validated(object sender, EventArgs e)
         {
             string text = ((System.Windows.Forms.TextBox)sender).Text;
-            if (Convert.ToInt32(text) == 0)
+            try 
+            {
+                if (Convert.ToInt32(text) == 0)
+                    MaxTranslateLen.Text = _defaultMaximumTranslateDataLength;
+                else if (Convert.ToInt32(text) < 255)
+                    MaxTranslateLen.Text = "255";
+                else if (Convert.ToInt32(text) > 10000)
+                    MaxTranslateLen.Text = "10000";
+            }
+            catch(Exception)
+            {   // If anything goes wrong, set to default value
                 MaxTranslateLen.Text = _defaultMaximumTranslateDataLength;
-            else if (Convert.ToInt32(text) < 255)
-                MaxTranslateLen.Text = "255";
-            else if (Convert.ToInt32(text) > 10000)
-                MaxTranslateLen.Text = "10000";
+            }
         }
         private void MaxThread_Validated(object sender, EventArgs e)
         {
             string text = ((System.Windows.Forms.TextBox)sender).Text;
-            if (Convert.ToInt32(text) == 0)
+            try
+            {
+                if (Convert.ToInt32(text) == 0)
+                    MaxThread.Text = _defaultMaxWorkerThreads;
+                else if (Convert.ToInt32(text) < 4)
+                    MaxThread.Text = "4";
+                else if (Convert.ToInt32(text) > 400)
+                    MaxThread.Text = "400";
+            }
+            catch(Exception)
+            {   // If anything goes wrong, set to default value
                 MaxThread.Text = _defaultMaxWorkerThreads;
-            else if (Convert.ToInt32(text) < 4)
-                MaxThread.Text = "4";
-            else if (Convert.ToInt32(text) > 400)
-                MaxThread.Text = "400";
+            }
+        }
+
+        private void comboBoxTargetLanguage_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string text = ((System.Windows.Forms.ComboBox)sender).Text;
+            if (text != null && text.Length > 0)
+            {
+                if (text.Length == 2)
+                {
+                        TargetLanguage.Text = text;
+                        TargetLanguage.Update();
+                }
+                else 
+                {
+                    int index = _langNames.IndexOf(text);
+                    if (index != -1)
+                    {
+                        TargetLanguage.Text = _langId[index];
+                        TargetLanguage.Update();
+                    }
+                }
+            }
         }
     }
 

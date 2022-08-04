@@ -81,6 +81,7 @@ namespace TranslateFileNamesForm
             this.linkLabelMaxTranslateLen = new System.Windows.Forms.LinkLabel();
             this.linkLabelFilesPerTranslationReq = new System.Windows.Forms.LinkLabel();
             this.linkLabelFilter = new System.Windows.Forms.LinkLabel();
+            this.comboBoxTargetLanguage = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.fastObjListView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -295,9 +296,10 @@ namespace TranslateFileNamesForm
             // 
             // TargetLanguage
             // 
-            this.TargetLanguage.Location = new System.Drawing.Point(293, 140);
+            this.TargetLanguage.Location = new System.Drawing.Point(502, 140);
             this.TargetLanguage.MaxLength = 2;
             this.TargetLanguage.Name = "TargetLanguage";
+            this.TargetLanguage.ReadOnly = true;
             this.TargetLanguage.Size = new System.Drawing.Size(37, 31);
             this.TargetLanguage.TabIndex = 12;
             // 
@@ -413,6 +415,7 @@ namespace TranslateFileNamesForm
             // 
             // comboBoxFilesPerTransReq
             // 
+            this.comboBoxFilesPerTransReq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilesPerTransReq.FormattingEnabled = true;
             this.comboBoxFilesPerTransReq.Items.AddRange(new object[] {
             "Auto",
@@ -422,7 +425,6 @@ namespace TranslateFileNamesForm
             this.comboBoxFilesPerTransReq.Name = "comboBoxFilesPerTransReq";
             this.comboBoxFilesPerTransReq.Size = new System.Drawing.Size(155, 33);
             this.comboBoxFilesPerTransReq.TabIndex = 14;
-            this.comboBoxFilesPerTransReq.Text = "Auto";
             // 
             // labelFilesPerTransReq
             // 
@@ -446,7 +448,7 @@ namespace TranslateFileNamesForm
             // linkLabelISO6391LangCode
             // 
             this.linkLabelISO6391LangCode.AutoSize = true;
-            this.linkLabelISO6391LangCode.Location = new System.Drawing.Point(336, 140);
+            this.linkLabelISO6391LangCode.Location = new System.Drawing.Point(545, 140);
             this.linkLabelISO6391LangCode.Name = "linkLabelISO6391LangCode";
             this.linkLabelISO6391LangCode.Size = new System.Drawing.Size(20, 25);
             this.linkLabelISO6391LangCode.TabIndex = 130;
@@ -564,6 +566,16 @@ namespace TranslateFileNamesForm
             this.linkLabelFilter.Text = "?";
             this.linkLabelFilter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelFilter_LinkClicked);
             // 
+            // comboBoxTargetLanguage
+            // 
+            this.comboBoxTargetLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTargetLanguage.FormattingEnabled = true;
+            this.comboBoxTargetLanguage.Location = new System.Drawing.Point(293, 140);
+            this.comboBoxTargetLanguage.Name = "comboBoxTargetLanguage";
+            this.comboBoxTargetLanguage.Size = new System.Drawing.Size(205, 33);
+            this.comboBoxTargetLanguage.TabIndex = 141;
+            this.comboBoxTargetLanguage.SelectedValueChanged += new System.EventHandler(this.comboBoxTargetLanguage_SelectedValueChanged);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -610,6 +622,7 @@ namespace TranslateFileNamesForm
             this.Controls.Add(this.SourceLanguage);
             this.Controls.Add(this.TargetLanguage);
             this.Controls.Add(this.labelTargetLang);
+            this.Controls.Add(this.comboBoxTargetLanguage);
             this.MinimumSize = new System.Drawing.Size(980, 250);
             this.Name = "Form1";
             this.Text = "TranslateFilenames - Utility to Translate Language(s) of Filenames in Bulk";
@@ -667,5 +680,6 @@ namespace TranslateFileNamesForm
         private LinkLabel linkLabelMaxTranslateLen;
         private LinkLabel linkLabelFilesPerTranslationReq;
         private LinkLabel linkLabelFilter;
+        private ComboBox comboBoxTargetLanguage;
     }
 }

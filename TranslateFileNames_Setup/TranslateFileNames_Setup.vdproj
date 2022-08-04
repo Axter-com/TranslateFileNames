@@ -349,7 +349,7 @@
         "Name" = "8:TranslateFileNames"
         "ProductName" = "8:TranslateFileNames"
         "ProductCode" = "8:{3DE5F2C9-D4FB-4B53-ADB6-C312FE66BF47}"
-        "PackageCode" = "8:{0C840DA8-C21C-49D8-B507-7D3A68F1B52C}"
+        "PackageCode" = "8:{7750329A-D44F-4A68-AC49-6FB792F1BC73}"
         "UpgradeCode" = "8:{BDDEBB36-2CC4-4937-982A-BB70A39CAC94}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -372,7 +372,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:"
+        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)EnableLaunchApplication.js\" \"$(BuiltOuputPath)\""
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
