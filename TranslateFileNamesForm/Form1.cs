@@ -7,6 +7,7 @@ using TranslateFilenamesCore;
 using static System.Net.Mime.MediaTypeNames;
 using static TranslateFilenamesCore.TranslateFilenames;
 using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
+using langRes = LanguageResourceManager.LangRes<TranslateFileNamesForm.Form1>;
 
 namespace TranslateFileNamesForm
 {

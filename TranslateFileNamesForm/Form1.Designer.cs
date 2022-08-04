@@ -3,11 +3,14 @@ using BrightIdeasSoftware;
 using static System.Windows.Forms.ListView;
 using static TranslateFilenamesCore.TranslateFilenames;
 using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
+using langRes = LanguageResourceManager.LangRes<TranslateFileNamesForm.Form1>;
+
 
 namespace TranslateFileNamesForm
 {
     partial class Form1
     {
+
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -125,7 +128,7 @@ namespace TranslateFileNamesForm
             this.RenameAll.Name = "RenameAll";
             this.RenameAll.Size = new System.Drawing.Size(112, 34);
             this.RenameAll.TabIndex = 16;
-            this.RenameAll.Text = "Rename All";
+            this.RenameAll.Text = "Rename All"; //langRes.RenameAll;
             this.RenameAll.UseVisualStyleBackColor = true;
             this.RenameAll.Click += new System.EventHandler(this.RenameAll_Click);
             // 
