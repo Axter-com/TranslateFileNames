@@ -2,7 +2,7 @@
 using BrightIdeasSoftware;
 using static System.Windows.Forms.ListView;
 using static TranslateFilenamesCore.TranslateFilenames;
-using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
+using ItemDetails = TranslateFilenamesCore.TranslateFilenames.ItemDetails;
 using langRes = LanguageResourceManager.LangRes<TranslateFileNamesForm.Form1>;
 
 
@@ -128,7 +128,7 @@ namespace TranslateFileNamesForm
             this.RenameAll.Name = "RenameAll";
             this.RenameAll.Size = new System.Drawing.Size(112, 34);
             this.RenameAll.TabIndex = 16;
-            this.RenameAll.Text = "Rename All"; //langRes.RenameAll;
+            this.RenameAll.Text = "Rename All";
             this.RenameAll.UseVisualStyleBackColor = true;
             this.RenameAll.Click += new System.EventHandler(this.RenameAll_Click);
             // 
@@ -182,12 +182,12 @@ namespace TranslateFileNamesForm
             this.olv_FileExt});
             this.fastObjListView1.ColumnsNotEditable = null;
             this.fastObjListView1.FullRowSelect = true;
-            this.fastObjListView1.Location = new System.Drawing.Point(2, 40);
+            this.fastObjListView1.Location = new System.Drawing.Point(2, 198);
             this.fastObjListView1.Name = "fastObjListView1";
             this.fastObjListView1.ShowGroups = false;
             this.fastObjListView1.ShowImagesOnSubItems = true;
             this.fastObjListView1.ShowItemToolTips = true;
-            this.fastObjListView1.Size = new System.Drawing.Size(967, 450);
+            this.fastObjListView1.Size = new System.Drawing.Size(967, 292);
             this.fastObjListView1.TabIndex = 21;
             this.fastObjListView1.TintSortColumn = true;
             this.fastObjListView1.UseAlternatingBackColors = true;
@@ -629,6 +629,8 @@ namespace TranslateFileNamesForm
             this.MinimumSize = new System.Drawing.Size(980, 250);
             this.Name = "Form1";
             this.Text = "TranslateFilenames - Utility to Translate Language(s) of Filenames in Bulk";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fastObjListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

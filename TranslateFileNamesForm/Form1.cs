@@ -4,9 +4,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TranslateFilenamesCore;
+using TranslateFileNamesForm.Properties;
 using static System.Net.Mime.MediaTypeNames;
 using static TranslateFilenamesCore.TranslateFilenames;
-using FileDetails = TranslateFilenamesCore.TranslateFilenames.FileDetails;
+using ItemDetails = TranslateFilenamesCore.TranslateFilenames.ItemDetails;
 using langRes = LanguageResourceManager.LangRes<TranslateFileNamesForm.Form1>;
 
 namespace TranslateFileNamesForm
@@ -15,7 +16,7 @@ namespace TranslateFileNamesForm
     {
         #region class variables
         private static string _path = Directory.GetCurrentDirectory();
-        private static List<FileDetails> filesDetails = new List<FileDetails>();
+        private static List<ItemDetails> filesDetails = new List<ItemDetails>();
         private static readonly object _lock = new object();
 
         public delegate void UpdateList();
@@ -82,9 +83,9 @@ namespace TranslateFileNamesForm
 #endif
         }
 
-        private static FileDetails? Get_filesDetails()
+        private static ItemDetails? Get_filesDetails()
         {
-            FileDetails? fileDetails = null;
+            ItemDetails? fileDetails = null;
             Monitor.Enter(_lock);
             try
             {
@@ -102,7 +103,7 @@ namespace TranslateFileNamesForm
             return fileDetails;
         }
 
-        public static void AddTo_filesDetails(FileDetails fileDetails)
+        public static void AddTo_filesDetails(ItemDetails fileDetails)
         {
             if (fileDetails == null)
                 return;
@@ -120,7 +121,7 @@ namespace TranslateFileNamesForm
 
         public void UpdateListMethod()
         {
-            FileDetails fileDetails = Get_filesDetails();
+            ItemDetails fileDetails = Get_filesDetails();
             AddToList(fileDetails);
         }
         public void SetupProgressBar(int QtyFilesToCheck)
@@ -166,7 +167,9 @@ namespace TranslateFileNamesForm
             //ClearList.di
             fastObjListView1.Visible = false;
             ClearList.Visible = false;
+#if !DEBUG
             RenameAll.Visible = false;
+#endif
             RenameSelected.Visible = false;
             RenameNotSelected.Visible = false;
             RenameChecked.Visible = false;
@@ -271,7 +274,7 @@ namespace TranslateFileNamesForm
             Debug.WriteLine("Info: AddFilesToList Exiting.");
             return true;
         }
-        public void AddToList(FileDetails fileDetails)
+        public void AddToList(ItemDetails fileDetails)
         {
             pBar1.PerformStep();
             string oldFileName = fileDetails.Name.ToString();
@@ -310,7 +313,7 @@ namespace TranslateFileNamesForm
 
         private void RenameItem(string OrgName, string NewName, string ParentPath, string OrgLang, string Extension)
         {
-            FileDetails fileDetail = new FileDetails { Name = OrgName, Extension = Extension, Translation = NewName, ParrentPath = ParentPath, SourceLang = OrgLang };
+            ItemDetails fileDetail = new ItemDetails { Name = OrgName, Extension = Extension, Translation = NewName, ParrentPath = ParentPath, SourceLang = OrgLang };
             string oldFileName = Path.Combine(fileDetail.ParrentPath, fileDetail.Name + fileDetail.Extension);
             string appendedName = _translateFilenames.GetAppendedName(fileDetail);
             string newFileName = Path.Combine(fileDetail.ParrentPath, fileDetail.Translation + appendedName + fileDetail.Extension);
@@ -642,6 +645,40 @@ namespace TranslateFileNamesForm
                 }
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Set window location
+            if (Settings.Default.WindowLocation != null)
+            {
+                this.Location = Settings.Default.WindowLocation;
+            }
+
+            // Set window size
+            if (Settings.Default.WindowSize != null)
+            {
+                this.Size = Settings.Default.WindowSize;
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Copy window location to app settings
+            Settings.Default.WindowLocation = this.Location;
+
+            // Copy window size to app settings
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                Settings.Default.WindowSize = this.Size;
+            }
+            else
+            {
+                Settings.Default.WindowSize = this.RestoreBounds.Size;
+            }
+
+            // Save settings
+            Settings.Default.Save();
+        }
     }
 
     public class TranslateFilenamesFrm : TranslateFilenames
@@ -656,7 +693,7 @@ namespace TranslateFileNamesForm
             _form1 = form1;
         }
 
-        protected override void RenameRequired(FileDetails fileDetail, string oldFileName, string newFileName)
+        protected override void RenameRequired(ItemDetails fileDetail, string oldFileName, string newFileName)
         {
             Form1.AddTo_filesDetails(fileDetail);
             _form1.Invoke(_form1.UpdateListDelegate);
@@ -798,14 +835,14 @@ namespace TranslateFileNamesForm
         }
         private string _fileExt;
 
-        #region Implementation of INotifyPropertyChanged
+#region Implementation of INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+#endregion
     }
 
 }

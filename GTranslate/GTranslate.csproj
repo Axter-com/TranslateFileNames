@@ -19,7 +19,7 @@
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
-    <BaseOutputPath>$(SolutionDir)TranslateFileNames\bin\</BaseOutputPath>
+    <BaseOutputPath></BaseOutputPath>
   </PropertyGroup>
   <PropertyGroup>
   	<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>

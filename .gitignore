@@ -262,6 +262,8 @@ __pycache__/
 
 # Exclude From Github
 zzExcludeFromGithub/
+zzReasearchData/
+ResxTranslator/
 
 
 # Other files and fold

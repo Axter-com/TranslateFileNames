@@ -34,15 +34,15 @@ namespace TranslateFilenamesCore
             _initializeSuccess = Initialize();
         }
 
-        public bool TranslatePath(string PathToTranslate = "")
+        public bool TranslatePath(string DataToTranslate = "")
         {
             if (_initializeSuccess == false)
             {
                 OutPut("Class TranslateFilenames failed initialization.", OutPutLevel.ErrorLvl);
                 return false;
             }
-            if (PathToTranslate != null && PathToTranslate.Length > 0)
-                _options._path = new string(PathToTranslate);
+            if (DataToTranslate != null && DataToTranslate.Length > 0)
+                _options._path = new string(DataToTranslate);
             if (_options._path == null || _options._path.Length == 0)
                 _options._path = Directory.GetCurrentDirectory();
 
@@ -65,13 +65,13 @@ namespace TranslateFilenamesCore
             if (_options._filesToRename.Count < ((_options._maxWorkerThreads * 4) + 11) && _options._filesPerTransReq == FilesPerTransReq.Auto)
                 _options._filesPerTransReq = FilesPerTransReq.OnePerFile;
             string sourceText = "";
-            List<FileDetails> fileDetailsList = new List<FileDetails>();
+            List<ItemDetails> itemDetailsList = new List<ItemDetails>();
             List<Task> tasks = new List<Task>();
             int subCount = 0;
             foreach (var file in _options._filesToRename)
             {
                 OutPut("Parsing file: " + file);
-                var fileDetails = new FileDetails()
+                var fileDetails = new ItemDetails()
                 {
                     Name = Path.GetFileNameWithoutExtension(file),
                     Extension = Path.GetExtension(file),
@@ -93,21 +93,21 @@ namespace TranslateFilenamesCore
                     while (Volatile.Read(ref _workerThreadCount) > _options._maxWorkerThreads)
                         Task.WaitAny(tasks.ToArray());
                     OutPut("** Sending " + subCount.ToString() + " file names to translator.");
-                    Task task = TranslateSourceText(sourceText, fileDetailsList);
+                    Task task = TranslateSourceText(sourceText, itemDetailsList);
                     tasks.Add(task);
                     subCount = 0;
                     sourceText = "";
-                    fileDetailsList = new List<FileDetails>();
+                    itemDetailsList = new List<ItemDetails>();
                 }
 
-                fileDetailsList.Add(fileDetails);
+                itemDetailsList.Add(fileDetails);
                 sourceText += fileDetails.Name;
                 ++subCount;
                 if (_options._filesToRename.Last() != file)
                     sourceText += "\n";
             }
 
-            tasks.Add(TranslateSourceText(sourceText, fileDetailsList));
+            tasks.Add(TranslateSourceText(sourceText, itemDetailsList));
             Task.WaitAll(tasks.ToArray());
             if (_options._createUndoList)
                 _options._writer.Close();
@@ -163,7 +163,7 @@ namespace TranslateFilenamesCore
             public List<string> _filesToRename { get; set; } = new List<string>();
         }
 
-        public class FileDetails
+        public class ItemDetails
         {
             public string Name { get; set; }
             public string Extension { get; set; }
@@ -350,7 +350,7 @@ namespace TranslateFilenamesCore
             return true;
         }
 
-        public string GetAppendedName(FileDetails fileDetail)
+        public string GetAppendedName(ItemDetails fileDetail)
         {
             return (_options._appendOrgName ? " (" + fileDetail.Name + ")" : "") + ((_options._appendLangName > 0 && fileDetail.SourceLang != null && fileDetail.SourceLang.Length > 0) ? fileDetail.SourceLang : "");
         }
@@ -359,15 +359,15 @@ namespace TranslateFilenamesCore
         /// Translator Wrapper
         /// </summary>
         /// <param name="sourceText">Consolidated source text to translate</param>
-        /// <param name="fileDetailsList">List of files to translate</param>
-        public async Task TranslateSourceText(string sourceText, List<FileDetails> fileDetailsList)
+        /// <param name="itemDetailsList">List of files to translate</param>
+        public async Task TranslateSourceText(string sourceText, List<ItemDetails> itemDetailsList)
         {
             try
             {
                 try
                 {
                     Interlocked.Increment(ref _workerThreadCount);
-                    await GTranslate_TranslateSourceText(sourceText, fileDetailsList);
+                    await GTranslate_TranslateSourceText(sourceText, itemDetailsList);
                 }
                 catch (Exception ee)
                 {
@@ -381,7 +381,7 @@ namespace TranslateFilenamesCore
                 }
 
                 _undoListText = new string("");
-                foreach (FileDetails fileDetail in fileDetailsList)
+                foreach (ItemDetails fileDetail in itemDetailsList)
                 {
                     ++_options._totalCount;
                     if (fileDetail.Name == null || fileDetail.Name.Length == 0 || fileDetail.Translation == null || fileDetail.Translation.Length == 0)
@@ -432,7 +432,7 @@ namespace TranslateFilenamesCore
         }
 
         /// <summary>
-        /// Sets Translation variable in each FileDetails
+        /// Sets Translation variable in each ItemDetails
         /// </summary>
         /// <param name="oldFileName">Original file name</param>
         /// <param name="newFileName">Translated file name</param>
@@ -462,12 +462,12 @@ namespace TranslateFilenamesCore
         /// <summary>
         /// Rename file 
         /// </summary>
-        /// <param name="fileDetailsList">File detail to rename</param>
+        /// <param name="itemDetailsList">File detail to rename</param>
         /// <param name="oldFileName">Original file name</param>
         /// <param name="newFileName">Translated file name</param>
         /// <param name="CheckIfOrgFileExist">If true, checks if the original file still exists before rename</param>
         /// <param name="UseIndexIfNeeded">If true, and if file with same target name exists, then rename using appended index number</param>
-        public void RenameFile(FileDetails fileDetail, string oldFileName, string newFileName, bool CheckIfOrgFileExist = false, bool UseIndexIfNeeded = true)
+        public void RenameFile(ItemDetails fileDetail, string oldFileName, string newFileName, bool CheckIfOrgFileExist = false, bool UseIndexIfNeeded = true)
         {
             try
             {
@@ -496,11 +496,11 @@ namespace TranslateFilenamesCore
             }
         }
 
-        protected virtual void RenameRequired(FileDetails fileDetail, string oldFileName, string newFileName)
+        protected virtual void RenameRequired(ItemDetails fileDetail, string oldFileName, string newFileName)
         {
             RenameFile(fileDetail, oldFileName, newFileName);
         }
-        protected virtual void CheckIfRenameNeeded(FileDetails fileDetail, string oldFileName, string newFileName)
+        protected virtual void CheckIfRenameNeeded(ItemDetails fileDetail, string oldFileName, string newFileName)
         {
             if (fileDetail.Translation.Equals(fileDetail.Name))
                 OutPut("Skipping file rename \"" + fileDetail.Name + "\" to \"" + fileDetail.Translation + "\"");
@@ -519,32 +519,32 @@ namespace TranslateFilenamesCore
 
 
         /// <summary>
-        /// Sets Translation variable in each FileDetails
+        /// Sets Translation variable in each ItemDetails
         /// </summary>
-        /// <param name="fileDetailsList">List of files to translate</param>
+        /// <param name="itemDetailsList">List of files to translate</param>
         /// <param name="TranslatedFileNames_str">Translated text</param>
         /// <param name="SourceLanguage">2 letter source language code</param>
-        private void SetTranslation(List<FileDetails> fileDetailsList, string TranslatedFileNames_str, string SourceLanguage)
+        private void SetTranslation(List<ItemDetails> itemDetailsList, string TranslatedFileNames_str, string SourceLanguage)
         {
             string[] TranslatedFileNames = TranslatedFileNames_str.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             int fileDetailsIndex = 0;
             foreach (string fileName in TranslatedFileNames)
             {
-                fileDetailsList[fileDetailsIndex].Translation = fileName.Contains("\\n") ? fileName.Substring(0, fileName.Length - 2) : fileName;
+                itemDetailsList[fileDetailsIndex].Translation = fileName.Contains("\\n") ? fileName.Substring(0, fileName.Length - 2) : fileName;
                 fileDetailsIndex++;
             }
 
-            if (fileDetailsIndex == 1 && fileDetailsList.Count == 1 && SourceLanguage.Length > 0)
-                fileDetailsList[0].SourceLang = SourceLanguage;
+            if (fileDetailsIndex == 1 && itemDetailsList.Count == 1 && SourceLanguage.Length > 0)
+                itemDetailsList[0].SourceLang = SourceLanguage;
         }
 
 
         /// <summary>
         /// Translate via GTranslate
         /// </summary>
-        /// <param name="sourceText">Source text to trnaslate</param>
-        /// <param name="fileDetailsList">List of files to translate</param>
-        private async Task GTranslate_TranslateSourceText(string sourceText, List<FileDetails> fileDetailsList)
+        /// <param name="sourceText">Source text to translate</param>
+        /// <param name="itemDetailsList">List of files to translate</param>
+        private async Task GTranslate_TranslateSourceText(string sourceText, List<ItemDetails> itemDetailsList)
         {
             var translator = new AggregateTranslator(); // GoogleTranslator2();// AggregateTranslator(); //
             try
@@ -613,7 +613,7 @@ namespace TranslateFilenamesCore
                             break;
                     }
                 }
-                SetTranslation(fileDetailsList, result.Translation, SrcLang);
+                SetTranslation(itemDetailsList, result.Translation, SrcLang);
 
             }
             catch (Exception e)
@@ -626,8 +626,8 @@ namespace TranslateFilenamesCore
         /// <summary>
         /// replaces illegal filename characters with alternatives
         /// </summary>
-        /// <param name="fileDetailsList">File detail to translate</param>
-        public string FileDetailsReplaceIllegalFileNameChar(FileDetails fileDetail)
+        /// <param name="itemDetailsList">File detail to translate</param>
+        public string FileDetailsReplaceIllegalFileNameChar(ItemDetails fileDetail)
         {
             try
             {
