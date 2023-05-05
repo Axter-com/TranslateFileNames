@@ -1,3 +1,5 @@
+[![All Releases](https://img.shields.io/github/downloads/David-Maisonave/TranslateFileNames/total.svg)](https://github.com/David-Maisonave/TranslateFileNames/releases/latest)
+
 [![Screenshot1](doc/screenshot1.png)](https://github.com/David-Maisonave/TranslateFileNames)
 
 # Translate File Names
